@@ -1,14 +1,20 @@
 import { Button } from "@/components/ui/button";
+import nailWork1 from "@/assets/nail-work-1.jpg";
+import nailWork2 from "@/assets/nail-work-2.jpg";
+import nailWork3 from "@/assets/nail-work-3.jpg";
+import nailWork4 from "@/assets/nail-work-4.jpg";
+import nailWork5 from "@/assets/nail-work-5.jpg";
+import nailWork6 from "@/assets/nail-work-6.jpg";
 
 const Hero = () => {
-  // Создаем заглушки для nail images - будут заменены на настоящие фото
+  // Реальные фотографии маникюра для анимированных кружков
   const nailImages = [
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23FFD700'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='%23000'%3ENails 1%3C/text%3E%3C/svg%3E",
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23FFD700'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='%23000'%3ENails 2%3C/text%3E%3C/svg%3E",
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23FFD700'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='%23000'%3ENails 3%3C/text%3E%3C/svg%3E",
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23FFD700'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='%23000'%3ENails 4%3C/text%3E%3C/svg%3E",
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23FFD700'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='%23000'%3ENails 5%3C/text%3E%3C/svg%3E",
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23FFD700'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='16' fill='%23000'%3ENails 6%3C/text%3E%3C/svg%3E"
+    nailWork1,
+    nailWork2,
+    nailWork3,
+    nailWork4,
+    nailWork5,
+    nailWork6
   ];
 
   return (
