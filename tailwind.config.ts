@@ -62,13 +62,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Nail studio custom colors - черно-бело-желтая схема
-				nail: {
-					black: 'hsl(var(--nail-black))',
-					white: 'hsl(var(--nail-white))',
-					yellow: 'hsl(var(--nail-yellow))',
-					'yellow-light': 'hsl(var(--nail-yellow-light))',
-					gray: 'hsl(var(--nail-gray))'
+				// Tropical theme custom colors
+				tropical: {
+					dark: 'hsl(var(--tropical-dark))',
+					green: 'hsl(var(--tropical-green))',
+					'green-light': 'hsl(var(--tropical-green-light))',
+					gold: 'hsl(var(--tropical-gold))',
+					'gold-light': 'hsl(var(--tropical-gold-light))',
+					cream: 'hsl(var(--tropical-cream))'
 				}
 			},
 			borderRadius: {

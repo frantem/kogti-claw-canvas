@@ -18,15 +18,15 @@ const Services = () => {
   const doubledServices = [...services, ...services];
 
   return (
-    <section id="services" className="py-20 bg-nail-dark text-white overflow-hidden">
+    <section id="services" className="py-20 bg-tropical-green text-tropical-cream overflow-hidden">
       <div className="mb-16 text-center">
         <h2 className="text-5xl font-bold mb-4">
           Наши услуги
         </h2>
-        <p className="text-xl text-white/80 max-w-2xl mx-auto">
+        <p className="text-xl text-tropical-gold max-w-2xl mx-auto">
           Полный спектр услуг для красоты ваших ногтей
         </p>
-        <div className="text-2xl mt-4 cat-paw">💅</div>
+        <div className="text-2xl mt-4 cat-paw">🌿</div>
       </div>
 
       <div className="relative">
@@ -36,7 +36,7 @@ const Services = () => {
             {doubledServices.map((service, index) => (
               <span 
                 key={index}
-                className="inline-block text-2xl md:text-3xl font-light mx-12 hover:text-nail-gold transition-colors duration-300"
+                className="inline-block text-2xl md:text-3xl font-light mx-12 hover:text-tropical-gold transition-colors duration-300"
               >
                 {service} •
               </span>
@@ -45,17 +45,17 @@ const Services = () => {
         </div>
         
         {/* Gradient overlays to create fade effect */}
-        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-nail-dark to-transparent z-10"></div>
-        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-nail-dark to-transparent z-10"></div>
+        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-tropical-green to-transparent z-10"></div>
+        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-tropical-green to-transparent z-10"></div>
       </div>
 
       {/* Service categories */}
       <div className="container mx-auto px-6 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="glass-card rounded-3xl p-8 text-center">
-            <div className="text-4xl mb-4">💅</div>
+            <div className="text-4xl mb-4">🌿</div>
             <h3 className="text-2xl font-semibold mb-4">Маникюр</h3>
-            <p className="text-white/80">
+            <p className="text-tropical-cream/80">
               Классический и комбинированный маникюр с покрытием и без
             </p>
           </div>
@@ -63,15 +63,15 @@ const Services = () => {
           <div className="glass-card rounded-3xl p-8 text-center">
             <div className="text-4xl mb-4">✨</div>
             <h3 className="text-2xl font-semibold mb-4">Наращивание</h3>
-            <p className="text-white/80">
+            <p className="text-tropical-cream/80">
               Наращивание и коррекция ногтей любой сложности
             </p>
           </div>
           
           <div className="glass-card rounded-3xl p-8 text-center">
-            <div className="text-4xl mb-4">🦶</div>
+            <div className="text-4xl mb-4">🍃</div>
             <h3 className="text-2xl font-semibold mb-4">Педикюр</h3>
-            <p className="text-white/80">
+            <p className="text-tropical-cream/80">
               Умный педикюр и покрытие пальцев ног
             </p>
           </div>

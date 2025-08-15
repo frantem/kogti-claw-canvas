@@ -8,50 +8,52 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 90%;
-    --foreground: 0 0% 0%;
+    --background: 140 15% 5%;
+    --foreground: 60 60% 85%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card: 140 20% 8%;
+    --card-foreground: 60 60% 85%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover: 140 20% 8%;
+    --popover-foreground: 60 60% 85%;
 
-    --primary: 45 100% 50%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 50 95% 60%;
+    --primary-foreground: 140 15% 5%;
 
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 140 20% 15%;
+    --secondary-foreground: 60 60% 85%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 140 20% 12%;
+    --muted-foreground: 60 30% 65%;
 
-    --accent: 45 100% 50%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 50 95% 60%;
+    --accent-foreground: 140 15% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 45 100% 50%;
+    --border: 140 15% 20%;
+    --input: 140 20% 15%;
+    --ring: 50 95% 60%;
 
-    /* Custom nail studio tokens - черно-бело-желтая схема */
-    --nail-black: 0 0% 0%;
-    --nail-white: 0 0% 100%;
-    --nail-yellow: 45 100% 50%;
-    --nail-yellow-light: 45 100% 60%;
-    --nail-gray: 0 0% 50%;
+    /* Tropical leaf theme - dark green with golden accents */
+    --tropical-dark: 140 15% 5%;
+    --tropical-green: 140 40% 15%;
+    --tropical-green-light: 140 30% 25%;
+    --tropical-gold: 50 95% 60%;
+    --tropical-gold-light: 50 95% 70%;
+    --tropical-cream: 60 60% 85%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--nail-yellow)), hsl(var(--nail-yellow-light)));
-    --gradient-soft: linear-gradient(180deg, hsl(var(--background)), hsl(var(--accent)));
-    --gradient-overlay: linear-gradient(135deg, hsl(var(--nail-yellow) / 0.2), hsl(var(--nail-yellow) / 0.1));
-    --gradient-glow: radial-gradient(circle, hsl(var(--nail-yellow) / 0.8), transparent);
+    --gradient-tropical: linear-gradient(135deg, hsl(var(--tropical-gold)), hsl(var(--tropical-gold-light)));
+    --gradient-leaf: linear-gradient(180deg, hsl(var(--tropical-dark)), hsl(var(--tropical-green)));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--tropical-gold) / 0.3), hsl(var(--tropical-gold) / 0.1));
+    --gradient-glow: radial-gradient(circle, hsl(var(--tropical-gold) / 0.8), transparent);
     
     /* Shadows */
-    --shadow-soft: 0 10px 30px -10px hsl(var(--nail-black) / 0.15);
-    --shadow-glow: 0 0 40px hsl(var(--nail-yellow) / 0.6);
+    --shadow-soft: 0 10px 30px -10px hsl(var(--tropical-dark) / 0.8);
+    --shadow-glow: 0 0 40px hsl(var(--tropical-gold) / 0.6);
+    --shadow-leaf: 0 8px 25px -8px hsl(var(--tropical-green) / 0.4);
     
     /* Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -77,46 +79,47 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 140 15% 3%;
+    --foreground: 60 60% 90%;
 
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 100%;
+    --card: 140 20% 6%;
+    --card-foreground: 60 60% 90%;
 
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 140 20% 6%;
+    --popover-foreground: 60 60% 90%;
 
-    --primary: 45 100% 50%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 50 95% 65%;
+    --primary-foreground: 140 15% 3%;
 
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 140 20% 10%;
+    --secondary-foreground: 60 60% 90%;
 
-    --muted: 0 0% 8%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 140 20% 8%;
+    --muted-foreground: 60 30% 70%;
 
-    --accent: 45 100% 50%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 50 95% 65%;
+    --accent-foreground: 140 15% 3%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 45 100% 50%;
+    --border: 140 15% 15%;
+    --input: 140 20% 12%;
+    --ring: 50 95% 65%;
     
-    /* Dark mode nail studio tokens */
-    --nail-black: 0 0% 100%;
-    --nail-white: 0 0% 0%;
-    --nail-yellow: 45 100% 50%;
-    --nail-yellow-light: 45 100% 60%;
-    --nail-gray: 0 0% 70%;
+    /* Dark mode tropical theme */
+    --tropical-dark: 140 15% 3%;
+    --tropical-green: 140 40% 12%;
+    --tropical-green-light: 140 30% 20%;
+    --tropical-gold: 50 95% 65%;
+    --tropical-gold-light: 50 95% 75%;
+    --tropical-cream: 60 60% 90%;
     
     /* Dark gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--nail-yellow)), hsl(var(--nail-yellow-light)));
-    --gradient-soft: linear-gradient(180deg, hsl(var(--background)), hsl(var(--accent)));
-    --gradient-overlay: linear-gradient(135deg, hsl(var(--nail-yellow) / 0.3), hsl(var(--nail-yellow) / 0.2));
-    --gradient-glow: radial-gradient(circle, hsl(var(--nail-yellow) / 0.8), transparent);
+    --gradient-tropical: linear-gradient(135deg, hsl(var(--tropical-gold)), hsl(var(--tropical-gold-light)));
+    --gradient-leaf: linear-gradient(180deg, hsl(var(--tropical-dark)), hsl(var(--tropical-green)));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--tropical-gold) / 0.4), hsl(var(--tropical-gold) / 0.2));
+    --gradient-glow: radial-gradient(circle, hsl(var(--tropical-gold) / 0.8), transparent);
     
     --sidebar-background: 340 15% 8%;
     --sidebar-foreground: 8 20% 97%;
@@ -188,37 +191,37 @@ All colors MUST be HSL.
     100% { transform: translateX(-100%); }
   }
   
-  /* Gradient hover effects */
+  /* Tropical theme buttons and effects */
   .btn-hero {
-    background: var(--gradient-hero);
+    background: var(--gradient-tropical);
     box-shadow: var(--shadow-soft);
     transition: var(--transition-bounce);
-    color: hsl(var(--nail-black));
-    border: 2px solid hsl(var(--nail-black));
+    color: hsl(var(--tropical-dark));
+    border: 2px solid hsl(var(--tropical-gold));
   }
   
   .btn-hero:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-glow);
-    background: hsl(var(--nail-yellow-light));
+    background: hsl(var(--tropical-gold-light));
   }
   
-  /* Glass morphism effect */
+  /* Glass morphism effect with tropical theme */
   .glass-card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(20, 40, 20, 0.85);
     backdrop-filter: blur(10px);
-    border: 2px solid hsl(var(--nail-yellow));
-    box-shadow: var(--shadow-glow);
+    border: 2px solid hsl(var(--tropical-gold) / 0.6);
+    box-shadow: var(--shadow-leaf);
   }
   
-  /* Glowing circles */
+  /* Tropical glowing circles */
   .nail-circle {
     position: absolute;
     border-radius: 50%;
-    border: 3px solid hsl(var(--nail-yellow));
+    border: 3px solid hsl(var(--tropical-gold));
     box-shadow: 
-      0 0 20px hsl(var(--nail-yellow) / 0.8),
-      inset 0 0 20px hsl(var(--nail-yellow) / 0.3);
+      0 0 20px hsl(var(--tropical-gold) / 0.8),
+      inset 0 0 20px hsl(var(--tropical-gold) / 0.3);
     overflow: hidden;
   }
   
@@ -226,6 +229,6 @@ All colors MUST be HSL.
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(1.1) contrast(1.1);
+    filter: brightness(1.1) contrast(1.1) sepia(0.3) hue-rotate(80deg);
   }
 }
