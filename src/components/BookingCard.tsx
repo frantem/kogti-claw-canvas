@@ -5,15 +5,6 @@ import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
   return (
     <div className="max-w-sm mx-auto bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-2xl border border-white/20">
-      {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-5xl font-bold text-gray-900 mb-2 tracking-tight">
-          N99°
-        </h1>
-        <p className="text-sm text-gray-600 font-medium uppercase tracking-wider">
-          BEAUTY STUDIO
-        </p>
-      </div>
 
       {/* Service Card */}
       <div className="bg-gray-50 rounded-2xl p-4 mb-6">
