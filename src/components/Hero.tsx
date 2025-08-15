@@ -18,46 +18,14 @@ const Hero = () => {
   ];
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Animated nail photo circles in background */}
-      <div className="absolute inset-0">
-        {nailImages.map((image, index) => (
-          <div
-            key={index}
-            className={`nail-circle animate-move-up w-32 h-32 md:w-40 md:h-40`}
-            style={{
-              left: `${10 + (index * 15)}%`,
-              animationDelay: `${index * 2}s`,
-              animationDuration: `${15 + (index * 3)}s`
-            }}
-          >
-            <img 
-              src={image} 
-              alt={`Nail art ${index + 1}`}
-              className="rounded-full"
-            />
-          </div>
-        ))}
-        {/* Additional circles for fuller background */}
-        {nailImages.map((image, index) => (
-          <div
-            key={`second-${index}`}
-            className={`nail-circle animate-move-up w-24 h-24 md:w-32 md:h-32`}
-            style={{
-              right: `${5 + (index * 12)}%`,
-              animationDelay: `${(index * 2.5) + 8}s`,
-              animationDuration: `${18 + (index * 2)}s`
-            }}
-          >
-            <img 
-              src={image} 
-              alt={`Nail art duplicate ${index + 1}`}
-              className="rounded-full"
-            />
-          </div>
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-br from-background/70 via-background/50 to-background/80"></div>
-      </div>
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Tropical background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(/lovable-uploads/70c7a95a-b7aa-413f-b691-6b738c05bfd6.png)`
+        }}
+      ></div>
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
