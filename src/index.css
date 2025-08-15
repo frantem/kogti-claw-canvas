@@ -8,33 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 8 20% 97%;
+    --foreground: 340 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 340 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 340 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 350 50% 25%;
+    --primary-foreground: 8 20% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 15 25% 92%;
+    --secondary-foreground: 340 15% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 15 15% 94%;
+    --muted-foreground: 340 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 320 30% 88%;
+    --accent-foreground: 340 15% 25%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 15 20% 88%;
+    --input: 15 20% 88%;
+    --ring: 350 50% 25%;
+
+    /* Custom nail studio tokens */
+    --nail-pink: 340 45% 85%;
+    --nail-rose: 350 40% 75%;
+    --nail-cream: 25 50% 95%;
+    --nail-gold: 40 80% 75%;
+    --nail-dark: 340 15% 15%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--nail-pink)), hsl(var(--nail-rose)));
+    --gradient-soft: linear-gradient(180deg, hsl(var(--nail-cream)), hsl(var(--accent)));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--nail-rose) / 0.2));
+    
+    /* Shadows */
+    --shadow-soft: 0 10px 30px -10px hsl(var(--primary) / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--nail-rose) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --radius: 0.5rem;
 
@@ -56,41 +76,54 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 340 15% 8%;
+    --foreground: 8 20% 97%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 340 15% 12%;
+    --card-foreground: 8 20% 97%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 340 15% 12%;
+    --popover-foreground: 8 20% 97%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 350 50% 70%;
+    --primary-foreground: 340 15% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 340 10% 20%;
+    --secondary-foreground: 8 20% 97%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 340 10% 18%;
+    --muted-foreground: 340 8% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 340 10% 20%;
+    --accent-foreground: 8 20% 97%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 8 20% 97%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 340 10% 22%;
+    --input: 340 10% 22%;
+    --ring: 350 50% 70%;
+    
+    /* Dark mode nail studio tokens */
+    --nail-pink: 340 35% 25%;
+    --nail-rose: 350 30% 35%;
+    --nail-cream: 25 30% 15%;
+    --nail-gold: 40 60% 45%;
+    --nail-dark: 8 20% 97%;
+    
+    /* Dark gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--nail-pink)), hsl(var(--nail-rose)));
+    --gradient-soft: linear-gradient(180deg, hsl(var(--background)), hsl(var(--accent)));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--nail-rose) / 0.3));
+    
+    --sidebar-background: 340 15% 8%;
+    --sidebar-foreground: 8 20% 97%;
+    --sidebar-primary: 350 50% 70%;
+    --sidebar-primary-foreground: 340 15% 8%;
+    --sidebar-accent: 340 10% 20%;
+    --sidebar-accent-foreground: 8 20% 97%;
+    --sidebar-border: 340 10% 22%;
+    --sidebar-ring: 350 50% 70%;
   }
 }
 
@@ -100,6 +133,64 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-light;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Hero animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+  
+  /* Cat paw animation */
+  .cat-paw {
+    animation: paw-wiggle 3s ease-in-out infinite;
+  }
+  
+  @keyframes paw-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+  }
+  
+  /* Scrolling text animation */
+  .scroll-text {
+    animation: scroll-left 30s linear infinite;
+  }
+  
+  @keyframes scroll-left {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  /* Gradient hover effects */
+  .btn-hero {
+    background: var(--gradient-hero);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-bounce);
+  }
+  
+  .btn-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Glass morphism effect */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 }

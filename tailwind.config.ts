@@ -61,6 +61,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Nail studio custom colors
+				nail: {
+					pink: 'hsl(var(--nail-pink))',
+					rose: 'hsl(var(--nail-rose))',
+					cream: 'hsl(var(--nail-cream))',
+					gold: 'hsl(var(--nail-gold))',
+					dark: 'hsl(var(--nail-dark))'
 				}
 			},
 			borderRadius: {
