@@ -4,16 +4,16 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass-card">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-nail-pink to-nail-rose flex items-center justify-center">
-              <span className="text-2xl cat-paw">🐾</span>
+            <div className="w-10 h-10 rounded-full bg-nail-black flex items-center justify-center">
+              <span className="text-2xl text-nail-white">🐾</span>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-nail-dark">KOGTI</h1>
-              <p className="text-sm text-muted-foreground">nail studio</p>
+              <h1 className="text-2xl font-bold text-nail-black">KOGTI</h1>
+              <p className="text-sm text-nail-gray">nail studio</p>
             </div>
           </div>
           
