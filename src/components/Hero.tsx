@@ -2,7 +2,7 @@ import BookingCard from "@/components/BookingCard";
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden py-8">
+    <section id="hero" className="relative min-h-screen flex items-end justify-center overflow-hidden py-8 pb-16">,
       {/* Nail art background with edge blur */}
       <div className="absolute inset-0">
          <div 
