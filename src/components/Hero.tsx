@@ -70,7 +70,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="glass-card rounded-3xl p-8 mb-12 animate-scale-in delay-400">
+        <div className="bg-background/95 backdrop-blur-sm border-2 border-nail-black rounded-2xl p-6 mb-12 animate-scale-in delay-400">
           <p className="text-lg md:text-xl text-nail-black mb-2 font-medium">
             Профессиональный уход за ногтями
           </p>
