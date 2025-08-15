@@ -62,13 +62,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Nail studio custom colors
+				// Nail studio custom colors - черно-бело-желтая схема
 				nail: {
-					pink: 'hsl(var(--nail-pink))',
-					rose: 'hsl(var(--nail-rose))',
-					cream: 'hsl(var(--nail-cream))',
-					gold: 'hsl(var(--nail-gold))',
-					dark: 'hsl(var(--nail-dark))'
+					black: 'hsl(var(--nail-black))',
+					white: 'hsl(var(--nail-white))',
+					yellow: 'hsl(var(--nail-yellow))',
+					'yellow-light': 'hsl(var(--nail-yellow-light))',
+					gray: 'hsl(var(--nail-gray))'
 				}
 			},
 			borderRadius: {
