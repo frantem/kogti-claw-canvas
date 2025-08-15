@@ -45,41 +45,44 @@ const Team = () => {
           <div className="text-2xl mt-4 cat-paw">🌿</div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {masters.map((master, index) => (
             <div 
               key={index}
-              className="glass-card rounded-3xl p-6 text-center hover:transform hover:scale-105 transition-all duration-500 animate-fade-in"
-              style={{animationDelay: `${index * 200}ms`}}
+              className="profile-card p-6 text-center animate-fade-in"
+              style={{animationDelay: `${index * 150}ms`}}
             >
               <div className="relative mb-6">
-                <img 
-                  src={master.image} 
-                  alt={master.name}
-                  className="w-32 h-32 mx-auto rounded-full object-cover border-4 border-tropical-gold/70"
-                />
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-tropical-gold rounded-full flex items-center justify-center">
+                <div className="w-28 h-28 mx-auto rounded-2xl overflow-hidden">
+                  <img 
+                    src={master.image} 
+                    alt={master.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-tropical-gold rounded-xl flex items-center justify-center">
                   <span className="text-tropical-dark text-sm">💅</span>
                 </div>
               </div>
               
-              <h3 className="text-xl font-semibold text-tropical-cream mb-2">
+              <h3 className="text-lg font-semibold text-tropical-cream mb-1">
                 {master.name}
               </h3>
               
-              <p className="text-tropical-gold font-medium mb-3">
+              <p className="text-tropical-gold text-sm font-medium mb-3 uppercase tracking-wide">
                 {master.role}
               </p>
               
-              <p className="text-sm text-tropical-cream/80 mb-6">
+              <p className="text-xs text-tropical-cream/70 mb-6 leading-relaxed">
                 {master.specialty}
               </p>
               
               <Button 
-                variant="outline" 
-                className="w-full rounded-xl border-tropical-gold text-tropical-gold hover:bg-tropical-gold hover:text-tropical-dark transition-all duration-300"
+                variant="secondary" 
+                size="sm"
+                className="w-full"
               >
-                Записаться к {master.name.split(' ')[1]}
+                Записаться
               </Button>
             </div>
           ))}

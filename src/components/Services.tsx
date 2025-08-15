@@ -51,27 +51,33 @@ const Services = () => {
 
       {/* Service categories */}
       <div className="container mx-auto px-6 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="glass-card rounded-3xl p-8 text-center">
-            <div className="text-4xl mb-4">🌿</div>
-            <h3 className="text-2xl font-semibold mb-4">Маникюр</h3>
-            <p className="text-tropical-cream/80">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="service-item text-center group">
+            <div className="w-16 h-16 mx-auto mb-6 bg-tropical-gold/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-tropical-gold/20 transition-colors">
+              🌿
+            </div>
+            <h3 className="text-xl font-semibold mb-4 text-tropical-cream">Маникюр</h3>
+            <p className="text-tropical-cream/70 text-sm leading-relaxed">
               Классический и комбинированный маникюр с покрытием и без
             </p>
           </div>
           
-          <div className="glass-card rounded-3xl p-8 text-center">
-            <div className="text-4xl mb-4">✨</div>
-            <h3 className="text-2xl font-semibold mb-4">Наращивание</h3>
-            <p className="text-tropical-cream/80">
+          <div className="service-item text-center group">
+            <div className="w-16 h-16 mx-auto mb-6 bg-tropical-gold/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-tropical-gold/20 transition-colors">
+              ✨
+            </div>
+            <h3 className="text-xl font-semibold mb-4 text-tropical-cream">Наращивание</h3>
+            <p className="text-tropical-cream/70 text-sm leading-relaxed">
               Наращивание и коррекция ногтей любой сложности
             </p>
           </div>
           
-          <div className="glass-card rounded-3xl p-8 text-center">
-            <div className="text-4xl mb-4">🍃</div>
-            <h3 className="text-2xl font-semibold mb-4">Педикюр</h3>
-            <p className="text-tropical-cream/80">
+          <div className="service-item text-center group">
+            <div className="w-16 h-16 mx-auto mb-6 bg-tropical-gold/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-tropical-gold/20 transition-colors">
+              🍃
+            </div>
+            <h3 className="text-xl font-semibold mb-4 text-tropical-cream">Педикюр</h3>
+            <p className="text-tropical-cream/70 text-sm leading-relaxed">
               Умный педикюр и покрытие пальцев ног
             </p>
           </div>
