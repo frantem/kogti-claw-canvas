@@ -70,7 +70,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="bg-background/95 backdrop-blur-sm border-2 border-nail-black rounded-2xl p-6 mb-12 animate-scale-in delay-400">
+        <div className="bg-background/95 backdrop-blur-sm border-4 border-nail-black rounded-2xl p-4 md:p-6 mb-12 mx-4 md:mx-0 animate-scale-in delay-400 shadow-[0_0_30px_rgba(255,223,0,0.5)]">
           <p className="text-lg md:text-xl text-nail-black mb-2 font-medium">
             Профессиональный уход за ногтями
           </p>
