@@ -300,4 +300,10 @@ All colors MUST be HSL.
   .glass-card {
     @apply modern-card;
   }
+
+  /* Radial blur mask for edge blur effect */
+  .mask-radial-blur {
+    mask: radial-gradient(circle at center, transparent 40%, black 70%);
+    -webkit-mask: radial-gradient(circle at center, transparent 40%, black 70%);
+  }
 }
