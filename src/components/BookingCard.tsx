@@ -42,7 +42,7 @@ const BookingCard = () => {
           </div>
         </div>
         <div>
-          <p className="text-sm text-gray-500 mb-2">Горящие окна🔥</p>
+          <p className="text-sm text-gray-500 mb-2">   Горящие окна🔥</p>
           <div className="text-right">
             <p className="font-semibold text-gray-900">Пн 21.08</p>
             <p className="text-sm text-gray-500">12:00-18:30</p>
@@ -55,7 +55,7 @@ const BookingCard = () => {
         Записаться
       </Button>
 
-      <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с пеперсанальной скидкой 20%</p>
+      <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персанальной скидкой 20%</p>
     </div>;
 };
 export default BookingCard;
