@@ -1,10 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import masterEmily from "@/assets/master-anna.jpg";
-
 const BookingCard = () => {
-  return (
-    <div className="w-full bg-white/95 backdrop-blur-xl rounded-t-[3rem] p-6 shadow-2xl border border-white/20">
+  return <div className="w-full bg-white/95 backdrop-blur-xl rounded-t-[3rem] p-6 shadow-2xl border border-white/20">
 
       {/* Service Card */}
       <div className="bg-gray-50 rounded-2xl p-4 mb-6">
@@ -13,12 +11,10 @@ const BookingCard = () => {
             <span className="text-xl">💅</span>
           </div>
           <div className="flex-1">
-            <h3 className="font-semibold text-gray-900">Manicure 3D</h3>
+            <h3 className="font-semibold text-gray-900">Маникюр</h3>
             <p className="text-xs text-gray-500">+ mini pedicure</p>
           </div>
-          <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">
-            RECOMMENDED
-          </span>
+          <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">рекомендуем</span>
         </div>
 
         <div className="flex items-center gap-3 mb-4">
@@ -27,7 +23,7 @@ const BookingCard = () => {
             <AvatarFallback>ET</AvatarFallback>
           </Avatar>
           <div className="flex-1">
-            <p className="text-sm font-medium text-gray-900">Stylist: Emily Taylor</p>
+            <p className="text-sm font-medium text-gray-900">Мастер: Аня</p>
             <p className="text-xs text-gray-500">nail studio</p>
           </div>
         </div>
@@ -63,8 +59,6 @@ const BookingCard = () => {
         By confirming this reservation, a deposit of 50% 
         of the amount due will be collected
       </p>
-    </div>
-  );
+    </div>;
 };
-
 export default BookingCard;
