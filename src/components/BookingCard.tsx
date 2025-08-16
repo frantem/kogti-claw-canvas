@@ -24,7 +24,7 @@ const BookingCard = () => {
           </Avatar>
           <div className="flex-1">
             <p className="text-sm font-medium text-gray-900">Мастер: Аня</p>
-            <p className="text-xs text-gray-500">nail studio</p>
+            <p className="text-xs text-gray-500">Опыт работы более 2 лет</p>
           </div>
         </div>
       </div>
