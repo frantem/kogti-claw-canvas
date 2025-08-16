@@ -32,7 +32,7 @@ const BookingCard = () => {
       {/* Date & Time Selection */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div>
-          <p className="text-sm text-gray-500 mb-2">Added inspo</p>
+          <p className="text-sm text-gray-500 mb-2">Работы мастера</p>
           <div className="flex -space-x-2">
             <div className="w-8 h-8 bg-amber-200 rounded-full border-2 border-white"></div>
             <div className="w-8 h-8 bg-rose-200 rounded-full border-2 border-white"></div>
@@ -42,7 +42,7 @@ const BookingCard = () => {
           </div>
         </div>
         <div>
-          <p className="text-sm text-gray-500 mb-2">Selected date</p>
+          <p className="text-sm text-gray-500 mb-2">Горящие окна🔥</p>
           <div className="text-right">
             <p className="font-semibold text-gray-900">Mon 12.11</p>
             <p className="text-sm text-gray-500">12:00-18:30</p>
