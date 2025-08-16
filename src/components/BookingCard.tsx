@@ -9,7 +9,7 @@ const BookingCard = () => {
         <div className="flex items-center gap-4">
           {/* Oval image with KOGTI text */}
           <div className="relative">
-            <div className="w-20 h-28 rounded-[3rem] bg-cover bg-center border-2 border-white shadow-md" style={{
+            <div className="w-24 h-36 rounded-[3rem] bg-cover bg-center border-2 border-white shadow-md" style={{
             backgroundImage: `url(/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png)`
           }}>
               <div className="absolute inset-0 bg-black/30 rounded-[3rem] flex items-center justify-center">
