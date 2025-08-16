@@ -55,10 +55,7 @@ const BookingCard = () => {
         Записаться
       </Button>
 
-      <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">
-        By confirming this reservation, a deposit of 50% 
-        of the amount due will be collected
-      </p>
+      <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента со с пеперсанальной скидкой 20%</p>
     </div>;
 };
 export default BookingCard;
