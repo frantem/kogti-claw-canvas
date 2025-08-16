@@ -55,7 +55,7 @@ const BookingCard = () => {
         Записаться
       </Button>
 
-      <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента со пеперсанальной скидкой 20%</p>
+      <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента сс пеперсанальной скидкой 20%</p>
     </div>;
 };
 export default BookingCard;
