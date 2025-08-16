@@ -2,48 +2,29 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
-  return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[3rem] p-6 shadow-2xl border border-white/20">
+  return <div className="w-full bg-white/95 backdrop-blur-xl rounded-t-[3rem] p-6 shadow-2xl border border-white/20">
 
       {/* Service Card */}
-      <div className="bg-gray-50 rounded-[6rem] p-6 mb-3 -mt-[22px] -mx-[22px]">
-        <div className="flex items-center gap-4">
-          {/* Oval image with KOGTI text */}
-          <div className="relative">
-            <div 
-              className="w-20 h-28 rounded-[3rem] bg-cover bg-center border-2 border-white shadow-md"
-              style={{
-                backgroundImage: `url(/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png)`
-              }}
-            >
-              <div className="absolute inset-0 bg-black/30 rounded-[3rem] flex items-center justify-center">
-                <span className="text-white text-xs font-bold">KOGTI</span>
-              </div>
-            </div>
+      <div className="bg-gray-50 rounded-[48px] p-4 mb-6">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center">
+            <span className="text-xl">💅</span>
           </div>
-          
-          {/* Content on the right */}
           <div className="flex-1">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center">
-                <span className="text-sm">💅</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900 text-sm">Маникюр</h3>
-                <p className="text-xs text-gray-500">+ pedicure</p>
-              </div>
-              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">рекомендуем</span>
-            </div>
+            <h3 className="font-semibold text-gray-900">Маникюр</h3>
+            <p className="text-xs text-gray-500">+ mini pedicure</p>
+          </div>
+          <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">рекомендуем</span>
+        </div>
 
-            <div className="flex items-center gap-3">
-              <Avatar className="w-6 h-6">
-                <AvatarImage src={masterEmily} alt="Stylist" />
-                <AvatarFallback>ET</AvatarFallback>
-              </Avatar>
-              <div className="flex-1">
-                <p className="text-xs font-medium text-gray-900">Мастер: Аня</p>
-                <p className="text-xs text-gray-500">Kogti studio</p>
-              </div>
-            </div>
+        <div className="flex items-center gap-3 mb-4">
+          <Avatar className="w-8 h-8">
+            <AvatarImage src={masterEmily} alt="Stylist" />
+            <AvatarFallback>ET</AvatarFallback>
+          </Avatar>
+          <div className="flex-1">
+            <p className="text-sm font-medium text-gray-900">Мастер: Аня</p>
+            <p className="text-xs text-gray-500">nail studio</p>
           </div>
         </div>
       </div>
@@ -61,7 +42,7 @@ const BookingCard = () => {
           </div>
         </div>
         <div>
-          <p className="text-sm text-gray-500 mb-2">   Горящие окна🔥</p>
+          <p className="text-sm text-gray-500 mb-2">Горящие окна🔥</p>
           <div className="text-right">
             <p className="font-semibold text-gray-900">Пн 21.08</p>
             <p className="text-sm text-gray-500">12:00-18:30</p>
