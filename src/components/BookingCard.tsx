@@ -1,19 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import masterEmily from "@/assets/master-anna.jpg";
-const BookingCard = () => {
-  return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[3rem] p-6 shadow-2xl border border-white/20">
 
-      {/* Service Card */}
+const BookingCard = () => {
+  return (
+    <div className="w-full bg-white/95 backdrop-blur-xl rounded-[3rem] p-6 shadow-2xl border border-white/20">
+      {/* Service Card - модифицирован */}
       <div className="rounded-[3rem] p-6 mb-3 -mt-[18px] -mx-[18px] bg-neutral-300">
         <div className="flex items-center gap-4">
-          {/* Oval image with KOGTI text */}
-          <div className="relative">
-            <div className="w-24 h-36 rounded-[3rem] bg-cover bg-center border-2 border-white shadow-md" style={{
-            backgroundImage: `url(/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png)`
-          }}>
+          {/* Изменения здесь: добавлен margin и увеличен размер */}
+          <div className="relative ml-1.5 mt-1.5 mb-1.5"> {/* gap 6px = 1.5 в Tailwind */}
+            <div 
+              className="w-24 h-32 rounded-[3rem] bg-cover bg-center border-2 border-white shadow-md"
+              style={{
+                backgroundImage: `url(/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png)`
+              }}
+            >
               <div className="absolute inset-0 bg-black/30 rounded-[3rem] flex items-center justify-center">
-                <span className="text-white text-xs font-bold">KOGTI</span>
+                {/* Увеличим текст для нового размера */}
+                <span className="text-sm font-bold text-white">KOGTI</span>
               </div>
             </div>
           </div>
@@ -45,7 +50,7 @@ const BookingCard = () => {
         </div>
       </div>
 
-      {/* Date & Time Selection */}
+      {/* Остальной код без изменений */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div>
           <p className="text-sm text-gray-500 mb-2">Работы мастера</p>
@@ -66,12 +71,15 @@ const BookingCard = () => {
         </div>
       </div>
 
-      {/* Payment Button */}
       <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base">
         Записаться
       </Button>
 
-      <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персанальной скидкой 20%</p>
-    </div>;
+      <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">
+        При записи Вы получаете карту клиента с персанальной скидкой 20%
+      </p>
+    </div>
+  );
 };
+
 export default BookingCard;
