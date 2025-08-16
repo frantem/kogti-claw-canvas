@@ -12,7 +12,7 @@ const BookingCard = () => {
           </div>
           <div className="flex-1">
             <h3 className="font-semibold text-gray-900">Маникюр</h3>
-            <p className="text-xs text-gray-500">+ mipedicure</p>
+            <p className="text-xs text-gray-500">+ pedicure</p>
           </div>
           <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">рекомендуем</span>
         </div>
