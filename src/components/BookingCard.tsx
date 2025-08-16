@@ -44,7 +44,7 @@ const BookingCard = () => {
         <div>
           <p className="text-sm text-gray-500 mb-2">Горящие окна🔥</p>
           <div className="text-right">
-            <p className="font-semibold text-gray-900">Mon 12.11</p>
+            <p className="font-semibold text-gray-900">Пн 21.08</p>
             <p className="text-sm text-gray-500">12:00-18:30</p>
           </div>
         </div>
