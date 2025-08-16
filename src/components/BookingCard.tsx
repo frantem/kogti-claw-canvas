@@ -4,7 +4,7 @@ import masterEmily from "@/assets/master-anna.jpg";
 
 const BookingCard = () => {
   return (
-    <div className="w-full bg-white/95 backdrop-blur-xl rounded-t-[3.5rem] p-6 shadow-2xl border border-white/20">
+    <div className="w-full bg-white/95 backdrop-blur-xl rounded-t-[3rem] p-6 shadow-2xl border border-white/20">
 
       {/* Service Card */}
       <div className="bg-gray-50 rounded-2xl p-4 mb-6">
