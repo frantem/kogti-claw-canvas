@@ -52,7 +52,7 @@ const BookingCard = () => {
 
       {/* Payment Button */}
       <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base">
-        Pay 48.99$
+        Записаться
       </Button>
 
       <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">
