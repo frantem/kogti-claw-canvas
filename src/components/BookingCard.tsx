@@ -42,7 +42,7 @@ const BookingCard = () => {
               <div className="flex-1">
                 <p className="text-xs font-medium text-gray-900">Мастер: Аня</p>
                 <div className="flex items-center">
-                  <span className="text-yellow-400 text-xs">★★★★★</span>
+                  <span className="text-yellow-400 text-lg">★★★★★</span>
                 </div>
               </div>
             </div>
