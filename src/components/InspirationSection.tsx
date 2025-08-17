@@ -1,10 +1,6 @@
 import InspirationGallery from "@/components/InspirationGallery";
 import appBackground from "@/assets/app-background.jpg";
 const InspirationSection = () => {
-  return (
-    <section className="py-16 bg-white">
-      <InspirationGallery />
-    </section>
-  );
+  return;
 };
 export default InspirationSection;
