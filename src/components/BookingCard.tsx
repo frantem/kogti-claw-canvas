@@ -3,6 +3,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Check } from "lucide-react";
 import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
+  const handleBookingClick = () => {
+    // @ts-ignore
+    if (window.dikidi) {
+      // @ts-ignore
+      window.dikidi.open();
+    }
+  };
+
   return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
 
       {/* Service Card */}
@@ -72,7 +80,10 @@ const BookingCard = () => {
       </div>
 
       {/* Payment Button */}
-      <Button className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base">
+      <Button 
+        onClick={handleBookingClick}
+        className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base"
+      >
         Записаться
       </Button>
 
