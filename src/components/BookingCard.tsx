@@ -5,7 +5,7 @@ const BookingCard = () => {
   return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
 
       {/* Service Card */}
-      <div className="rounded-[4rem] p-6 mb-3 -mt-[14px] -mx-[14px] bg-neutral-300">
+      <div className="rounded-[4rem] p-6 mb-3 -mt-[20px] -mx-[20px] bg-neutral-300">
         <div className="flex items-center gap-4">
           {/* Oval image with KOGTI text */}
           <div className="relative">
