@@ -22,9 +22,6 @@ const BookingCard = () => {
           {/* Content on the right */}
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center">
-                <span className="text-sm">💅</span>
-              </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 text-sm">Маникюр</h3>
                 <p className="text-xs text-gray-500">+ pedicure</p>
@@ -44,7 +41,9 @@ const BookingCard = () => {
               </div>
               <div className="flex-1">
                 <p className="text-xs font-medium text-gray-900">Мастер: Аня</p>
-                <p className="text-xs text-gray-500">Kogti studio</p>
+                <div className="flex items-center">
+                  <span className="text-yellow-400 text-xs">★★★★★</span>
+                </div>
               </div>
             </div>
           </div>
