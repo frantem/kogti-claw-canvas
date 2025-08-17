@@ -12,8 +12,8 @@ const Index = () => {
       <InspirationSection />
       <ServicesSection />
       <Team />
-      <LocationSection />
       <ContactSection />
+      <LocationSection />
     </div>
   );
 };
