@@ -42,7 +42,7 @@ const ContactSection = () => {
     >
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
             Переходите и записывайте любым удобным способом
           </h2>
         </div>
