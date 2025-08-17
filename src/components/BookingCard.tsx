@@ -7,7 +7,7 @@ const BookingCard = () => {
     console.log('Button clicked, checking dikidi widget...');
     console.log('window.dikidi:', (window as any).dikidi);
     console.log('window.DikidiOnlineWidget:', (window as any).DikidiOnlineWidget);
-    
+
     // Попробуем разные варианты API
     try {
       // @ts-ignore
@@ -15,12 +15,12 @@ const BookingCard = () => {
         // @ts-ignore
         (window as any).DikidiOnlineWidget();
         console.log('DikidiOnlineWidget() called');
-      // @ts-ignore  
+        // @ts-ignore  
       } else if ((window as any).dikidi && typeof (window as any).dikidi.openWidget === 'function') {
         // @ts-ignore
         (window as any).dikidi.openWidget();
         console.log('dikidi.openWidget() called');
-      // @ts-ignore
+        // @ts-ignore
       } else if ((window as any).dikidi && typeof (window as any).dikidi.open === 'function') {
         // @ts-ignore
         (window as any).dikidi.open();
@@ -33,11 +33,10 @@ const BookingCard = () => {
       console.error('Error opening widget:', error);
     }
   };
-
   return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
 
       {/* Service Card */}
-      <div className="rounded-[4rem] p-6 mb-3 -mt-[20px] -mx-[20px] bg-neutral-300">
+      <div className="rounded-[4rem] p-6 mb-3 -mt-[20px] -mx-[20px] bg-neutral-100">
         <div className="flex items-center gap-4">
           {/* Oval image with KOGTI text */}
           <div className="relative -mt-4 -ml-4 -mb-4">
@@ -103,10 +102,7 @@ const BookingCard = () => {
       </div>
 
       {/* Payment Button */}
-      <a 
-        href="https://dikidi.ru/#widget=192168"
-        className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base block text-center"
-      >
+      <a href="https://dikidi.ru/#widget=192168" className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base block text-center">
         Записаться
       </a>
 
