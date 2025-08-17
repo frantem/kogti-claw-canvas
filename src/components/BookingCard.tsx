@@ -1,8 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Check } from "lucide-react";
+import { useState } from "react";
 import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  
+  const nailPhotos = [
+    "/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png",
+    "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png", 
+    "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png",
+    "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"
+  ];
+
   const handleBookingClick = () => {
     console.log('Button clicked, checking dikidi widget...');
     console.log('window.dikidi:', (window as any).dikidi);
@@ -85,11 +97,96 @@ const BookingCard = () => {
         <div>
           <p className="text-sm text-gray-500 mb-2">Работы мастера</p>
           <div className="flex -space-x-2">
-            <div className="w-8 h-8 bg-amber-200 rounded-full border-2 border-white"></div>
-            <div className="w-8 h-8 bg-rose-200 rounded-full border-2 border-white"></div>
-            <div className="w-8 h-8 bg-purple-200 rounded-full border-2 border-white flex items-center justify-center">
-              <span className="text-xs font-medium">+3</span>
-            </div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button 
+                  className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" 
+                  style={{ backgroundImage: `url(${nailPhotos[0]})` }}
+                  onClick={() => setSelectedImageIndex(0)}
+                />
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {nailPhotos.map((photo, index) => (
+                      <CarouselItem key={index}>
+                        <div className="flex aspect-square items-center justify-center p-6">
+                          <img 
+                            src={photo} 
+                            alt={`Nail work ${index + 1}`}
+                            className="max-w-full max-h-full object-contain rounded-lg"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <button 
+                  className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" 
+                  style={{ backgroundImage: `url(${nailPhotos[1]})` }}
+                  onClick={() => setSelectedImageIndex(1)}
+                />
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {nailPhotos.map((photo, index) => (
+                      <CarouselItem key={index}>
+                        <div className="flex aspect-square items-center justify-center p-6">
+                          <img 
+                            src={photo} 
+                            alt={`Nail work ${index + 1}`}
+                            className="max-w-full max-h-full object-contain rounded-lg"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <button 
+                  className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform flex items-center justify-center"
+                  style={{ backgroundImage: `url(${nailPhotos[2]})` }}
+                  onClick={() => setSelectedImageIndex(2)}
+                >
+                  <div className="bg-black/50 text-white text-xs font-medium rounded-full w-full h-full flex items-center justify-center">
+                    +{nailPhotos.length - 2}
+                  </div>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {nailPhotos.map((photo, index) => (
+                      <CarouselItem key={index}>
+                        <div className="flex aspect-square items-center justify-center p-6">
+                          <img 
+                            src={photo} 
+                            alt={`Nail work ${index + 1}`}
+                            className="max-w-full max-h-full object-contain rounded-lg"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
         <div>
