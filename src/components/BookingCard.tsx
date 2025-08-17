@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CheckCheck } from "lucide-react";
+import { Check } from "lucide-react";
 import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
   return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
@@ -34,12 +34,12 @@ const BookingCard = () => {
 
             <div className="flex items-center gap-3">
               <div className="relative">
-                <Avatar className="w-9 h-9 border-2 border-white">
+                <Avatar className="w-14 h-14 border-2 border-white">
                   <AvatarImage src={masterEmily} alt="Stylist" />
                   <AvatarFallback>ET</AvatarFallback>
                 </Avatar>
-                <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-black rounded-full flex items-center justify-center border border-white">
-                  <CheckCheck className="w-2.5 h-2.5 text-white" strokeWidth={3} />
+                <div className="absolute -bottom-1 -left-1 w-4 h-4 bg-white rounded-full flex items-center justify-center border border-gray-300">
+                  <Check className="w-2.5 h-2.5 text-black" strokeWidth={3} />
                 </div>
               </div>
               <div className="flex-1">
