@@ -29,7 +29,7 @@ const Team = () => {
   ];
 
   return (
-    <section id="team" className="relative min-h-screen bg-gray-100 py-20">
+    <section id="team" className="relative min-h-screen py-20" style={{ backgroundImage: 'url(/lovable-uploads/82f78b18-14fe-4e4d-9d23-d4c0f6f9cdcb.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-black mb-4">
