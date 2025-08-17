@@ -40,7 +40,7 @@ const ContactSection = () => {
       id="contact" 
       className="relative min-h-screen py-20 flex items-center justify-center"
       style={{ 
-        backgroundImage: 'url(/lovable-uploads/faf7cd88-9898-4ed8-b10f-87f855f3fe1b.png)', 
+        backgroundImage: 'url(/lovable-uploads/7940ccfa-f017-436e-81b7-d69cae5284dc.png)', 
         backgroundSize: 'cover', 
         backgroundPosition: 'center' 
       }}
@@ -60,8 +60,8 @@ const ContactSection = () => {
           <Button
             onClick={handleDikidiBooking}
             variant="default"
-            size="lg"
-            className="h-16 text-lg font-semibold bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-black transition-all duration-300"
+            size="default"
+            className="h-8 text-sm font-semibold bg-sky-500 hover:bg-sky-600 text-white transition-all duration-300"
           >
             Онлайн-запись
           </Button>
@@ -70,10 +70,10 @@ const ContactSection = () => {
           <Button
             onClick={handlePhoneCall}
             variant="default"
-            size="lg"
-            className="h-16 text-lg font-semibold bg-green-600 hover:bg-green-700 text-white transition-all duration-300 flex items-center gap-2"
+            size="default"
+            className="h-8 text-sm font-semibold bg-green-600 hover:bg-green-700 text-white transition-all duration-300 flex items-center gap-2"
           >
-            <Phone className="w-5 h-5" />
+            <Phone className="w-3 h-3" />
             Позвонить
           </Button>
 
@@ -81,8 +81,8 @@ const ContactSection = () => {
           <Button
             onClick={handleInstagram}
             variant="default"
-            size="lg"
-            className="h-16 text-lg font-semibold bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-all duration-300"
+            size="default"
+            className="h-8 text-sm font-semibold bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white transition-all duration-300"
           >
             Instagram
           </Button>
@@ -91,8 +91,8 @@ const ContactSection = () => {
           <Button
             onClick={handleTelegram}
             variant="default"
-            size="lg"
-            className="h-16 text-lg font-semibold bg-blue-500 hover:bg-blue-600 text-white transition-all duration-300"
+            size="default"
+            className="h-8 text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white transition-all duration-300"
           >
             Telegram
           </Button>
@@ -101,10 +101,10 @@ const ContactSection = () => {
           <Button
             onClick={handleViber}
             variant="default"
-            size="lg"
-            className="h-16 text-lg font-semibold bg-purple-600 hover:bg-purple-700 text-white transition-all duration-300 flex items-center gap-2"
+            size="default"
+            className="h-8 text-sm font-semibold bg-purple-600 hover:bg-purple-700 text-white transition-all duration-300 flex items-center gap-2"
           >
-            <MessageCircle className="w-5 h-5" />
+            <MessageCircle className="w-3 h-3" />
             Viber
           </Button>
 
@@ -112,10 +112,10 @@ const ContactSection = () => {
           <Button
             onClick={handleWhatsApp}
             variant="default"
-            size="lg"
-            className="h-16 text-lg font-semibold bg-green-500 hover:bg-green-600 text-white transition-all duration-300 flex items-center gap-2"
+            size="default"
+            className="h-8 text-sm font-semibold bg-green-400 hover:bg-green-500 text-white transition-all duration-300 flex items-center gap-2"
           >
-            <MessageCircle className="w-5 h-5" />
+            <MessageCircle className="w-3 h-3" />
             WhatsApp
           </Button>
         </div>
