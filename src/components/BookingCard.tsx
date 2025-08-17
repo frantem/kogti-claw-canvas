@@ -8,7 +8,7 @@ const BookingCard = () => {
       <div className="rounded-[4rem] p-6 mb-3 -mt-[20px] -mx-[20px] bg-neutral-300">
         <div className="flex items-center gap-4">
           {/* Oval image with KOGTI text */}
-          <div className="relative -mt-10 -ml-10 -mb-10">
+          <div className="relative -mt-3 -ml-3 -mb-3">
             <div className="w-24 h-36 rounded-[4rem] bg-cover bg-center border-2 border-white shadow-md" style={{
             backgroundImage: `url(/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png)`
           }}>
