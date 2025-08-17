@@ -64,14 +64,6 @@ const Team = () => {
                       {master.experience}
                     </p>
                   </div>
-                  
-                  <Button 
-                    variant="default"
-                    size="sm"
-                    className="w-full bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-black transition-all duration-300"
-                  >
-                    Записаться
-                  </Button>
                 </div>
               </div>
             </div>
