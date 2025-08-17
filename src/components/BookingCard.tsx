@@ -103,12 +103,12 @@ const BookingCard = () => {
       </div>
 
       {/* Payment Button */}
-      <Button 
-        onClick={handleBookingClick}
-        className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base"
+      <a 
+        href="https://dikidi.ru/#widget=192168"
+        className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base block text-center"
       >
         Записаться
-      </Button>
+      </a>
 
       <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персанальной скидкой 20%</p>
     </div>;
