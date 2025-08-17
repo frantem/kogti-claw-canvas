@@ -4,6 +4,16 @@ import appBackground from "@/assets/app-background.jpg";
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState<'manicure' | 'pedicure'>('manicure');
 
+  const nailImages = [
+    "/lovable-uploads/770b1f7b-239e-4d27-9d9f-ccbcd0f4d782.png",
+    "/lovable-uploads/fd23db15-f23d-4ff9-8c88-6f63706dc4a1.png",
+    "/lovable-uploads/97fe75cf-3ac1-4579-911e-f5dd89f29120.png",
+    "/lovable-uploads/561482c5-bd57-423e-908b-8c13c394a90b.png",
+    "/lovable-uploads/0b67f8e0-2e73-4296-8207-9a016f836474.png",
+    "/lovable-uploads/fd58fd9d-58a6-47b6-a743-1681b29593d0.png",
+    "/lovable-uploads/0d28f136-94b4-47d1-bc06-86c56a540227.png"
+  ];
+
   const manicureServices = [
     "комбинированный маникюр + покрытие лаком",
     "комбинированный маникюр без покрытия",
@@ -24,6 +34,10 @@ const ServicesSection = () => {
   ];
 
   const currentServices = activeTab === 'manicure' ? manicureServices : pedicureServices;
+
+  const getRandomImage = (index: number) => {
+    return nailImages[index % nailImages.length];
+  };
 
   return (
     <section className="relative min-h-screen bg-gray-100 py-20">
@@ -70,20 +84,19 @@ const ServicesSection = () => {
           {currentServices.map((service, index) => (
             <div
               key={`${activeTab}-${index}`}
-              className="animate-fade-in bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+              className="animate-fade-in rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-tropical-gold/20 rounded-full flex items-center justify-center">
-                    <div className="w-8 h-8 bg-tropical-gold rounded-full"></div>
-                  </div>
+              <div 
+                className="aspect-square relative bg-cover bg-center"
+                style={{ backgroundImage: `url(${getRandomImage(index)})` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-sm font-medium text-white leading-tight">
+                    {service}
+                  </h3>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-sm font-medium text-black leading-tight">
-                  {service}
-                </h3>
               </div>
             </div>
           ))}
