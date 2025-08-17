@@ -34,11 +34,11 @@ const BookingCard = () => {
 
             <div className="flex items-center gap-3">
               <div className="relative">
-                <Avatar className="w-10 h-10 border-2 border-white">
+                <Avatar className="w-12 h-12 border-2 border-white">
                   <AvatarImage src={masterEmily} alt="Stylist" />
                   <AvatarFallback>ET</AvatarFallback>
                 </Avatar>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center border border-gray-300">
+                <div className="absolute bottom-0 right-0 w-4 h-4 bg-white rounded-full flex items-center justify-center border border-gray-300">
                   <Check className="w-2.5 h-2.5 text-black" strokeWidth={3} />
                 </div>
               </div>
