@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Check } from "lucide-react";
 import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
   return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
@@ -21,29 +20,25 @@ const BookingCard = () => {
           
           {/* Content on the right */}
           <div className="flex-1">
-            <div className="mb-3">
-              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium mb-2 inline-block">рекомендуем</span>
-              <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center">
+                <span className="text-sm">💅</span>
+              </div>
+              <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 text-sm">Маникюр</h3>
                 <p className="text-xs text-gray-500">+ pedicure</p>
               </div>
+              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium">рекомендуем</span>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <Avatar className="w-12 h-12 border-2 border-white">
-                  <AvatarImage src={masterEmily} alt="Stylist" />
-                  <AvatarFallback>ET</AvatarFallback>
-                </Avatar>
-                <div className="absolute bottom-0 right-0 w-4 h-4 bg-white rounded-full flex items-center justify-center border border-gray-300">
-                  <Check className="w-2.5 h-2.5 text-black" strokeWidth={3} />
-                </div>
-              </div>
+              <Avatar className="w-6 h-6">
+                <AvatarImage src={masterEmily} alt="Stylist" />
+                <AvatarFallback>ET</AvatarFallback>
+              </Avatar>
               <div className="flex-1">
                 <p className="text-xs font-medium text-gray-900">Мастер: Аня</p>
-                <div className="flex items-center">
-                  <span className="text-yellow-400 text-lg">★★★★★</span>
-                </div>
+                <p className="text-xs text-gray-500">Kogti studio</p>
               </div>
             </div>
           </div>
@@ -63,7 +58,7 @@ const BookingCard = () => {
           </div>
         </div>
         <div>
-          <p className="text-sm text-gray-500 mb-2">   Горящие окна🔥</p>
+          <p className="text-sm text-gray-500 mb-2">🔥Горящие окна</p>
           <div className="text-right">
             <p className="font-semibold text-gray-900">Пн 21.08</p>
             <p className="text-sm text-gray-500">12:00-18:30</p>
