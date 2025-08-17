@@ -62,7 +62,7 @@ const BookingCard = () => {
             <div className="flex items-center gap-3">
               <div className="relative">
                 <Avatar className="w-12 h-12 border-2 border-white">
-                  <AvatarImage src={masterEmily} alt="Stylist" />
+                  <AvatarImage src="/lovable-uploads/0037d6a4-735d-49bb-8011-d4ba7f19c613.png" alt="Stylist" />
                   <AvatarFallback>ET</AvatarFallback>
                 </Avatar>
                 <div className="absolute bottom-0 right-0 w-4 h-4 bg-white rounded-full flex items-center justify-center border border-gray-300">
