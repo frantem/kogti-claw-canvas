@@ -4,31 +4,27 @@ const Team = () => {
   const masters = [
     {
       name: "Анна",
-      role: "Мастер",
+      role: "мастер",
       experience: "опыт 2 года",
-      image: "/lovable-uploads/e84b7e94-c364-40bc-a99e-5d69cc533df3.png",
-      description: "быстро и без потери качества, сделает самый чёткий квадрат."
+      image: "/lovable-uploads/e84b7e94-c364-40bc-a99e-5d69cc533df3.png"
     },
     {
       name: "Алина", 
-      role: "Мастер",
+      role: "мастер",
       experience: "опыт 3 года",
-      image: "/lovable-uploads/4dd231fb-3fef-4306-9f06-e42942cfde19.png",
-      description: "сделает как нюд так и крутой дизайн, творчиская, слишком добрая, отзывчивая"
+      image: "/lovable-uploads/4dd231fb-3fef-4306-9f06-e42942cfde19.png"
     },
     {
       name: "Виктория",
       role: "ТОП-мастер",
       experience: "опыт 6 лет",
-      image: "/lovable-uploads/b85037a7-90ce-4158-af33-f564797e2736.png",
-      description: "сделает безупречный маникюр так и педикюр, 100% возращаемость клиентов."
+      image: "/lovable-uploads/b85037a7-90ce-4158-af33-f564797e2736.png"
     },
     {
       name: "Оля",
       role: "ТОП-мастер", 
       experience: "опыт 5 лет",
-      image: "/lovable-uploads/3663b521-4a9a-4846-90b4-6c24e0c5cf6c.png",
-      description: "коммуникабильность, нюд за час, идальный френч."
+      image: "/lovable-uploads/3663b521-4a9a-4846-90b4-6c24e0c5cf6c.png"
     }
   ];
 
@@ -61,11 +57,8 @@ const Team = () => {
                     <h3 className="text-xl font-bold mb-1">
                       {master.name}
                     </h3>
-                    <p className="text-sm font-medium text-yellow-400 mb-1">
+                    <p className="text-sm font-medium text-yellow-400">
                       {master.role}, {master.experience}
-                    </p>
-                    <p className="text-xs leading-relaxed text-white/90">
-                      {master.description}
                     </p>
                   </div>
                   
