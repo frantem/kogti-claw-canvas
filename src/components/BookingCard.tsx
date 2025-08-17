@@ -4,10 +4,33 @@ import { Check } from "lucide-react";
 import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
   const handleBookingClick = () => {
-    // @ts-ignore
-    if (window.dikidi) {
+    console.log('Button clicked, checking dikidi widget...');
+    console.log('window.dikidi:', (window as any).dikidi);
+    console.log('window.DikidiOnlineWidget:', (window as any).DikidiOnlineWidget);
+    
+    // Попробуем разные варианты API
+    try {
       // @ts-ignore
-      window.dikidi.open();
+      if (typeof (window as any).DikidiOnlineWidget === 'function') {
+        // @ts-ignore
+        (window as any).DikidiOnlineWidget();
+        console.log('DikidiOnlineWidget() called');
+      // @ts-ignore  
+      } else if ((window as any).dikidi && typeof (window as any).dikidi.openWidget === 'function') {
+        // @ts-ignore
+        (window as any).dikidi.openWidget();
+        console.log('dikidi.openWidget() called');
+      // @ts-ignore
+      } else if ((window as any).dikidi && typeof (window as any).dikidi.open === 'function') {
+        // @ts-ignore
+        (window as any).dikidi.open();
+        console.log('dikidi.open() called');
+      } else {
+        console.error('Dikidi widget not found or not loaded properly');
+        console.log('Available window properties:', Object.keys(window).filter(key => key.toLowerCase().includes('dikidi')));
+      }
+    } catch (error) {
+      console.error('Error opening widget:', error);
     }
   };
 
