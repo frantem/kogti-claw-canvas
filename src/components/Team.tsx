@@ -32,7 +32,7 @@ const Team = () => {
     <section id="team" className="relative min-h-screen py-20" style={{ backgroundImage: 'url(/lovable-uploads/82f78b18-14fe-4e4d-9d23-d4c0f6f9cdcb.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-black mb-4">
+          <h2 className="text-5xl font-bold text-white mb-4">
             Команда
           </h2>
         </div>
@@ -54,11 +54,14 @@ const Team = () => {
                 {/* Content overlay */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
                   <div className="mb-4">
-                    <h3 className="text-xl font-bold mb-1">
+                    <h3 className="text-xl font-bold mb-1 text-white">
                       {master.name}
                     </h3>
-                    <p className="text-sm font-medium text-yellow-400">
-                      {master.role}, {master.experience}
+                    <p className="text-sm font-medium text-white">
+                      {master.role}
+                    </p>
+                    <p className="text-sm font-medium text-white">
+                      {master.experience}
                     </p>
                   </div>
                   
