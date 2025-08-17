@@ -199,7 +199,7 @@ const BookingCard = () => {
       </div>
 
       {/* Payment Button */}
-      <a href="https://dikidi.ru/#widget=192168" className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base block text-center">
+      <a href="https://dikidi.ru/#widget=192147" className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base block text-center">
         Записаться
       </a>
 
