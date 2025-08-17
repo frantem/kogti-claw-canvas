@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import InspirationSection from "@/components/InspirationSection";
 import ServicesSection from "@/components/ServicesSection";
+import Team from "@/components/Team";
 
 const Index = () => {
   return (
@@ -8,6 +9,7 @@ const Index = () => {
       <Hero />
       <InspirationSection />
       <ServicesSection />
+      <Team />
     </div>
   );
 };

@@ -1,89 +1,83 @@
 import { Button } from "@/components/ui/button";
-import alinaImage from "@/assets/master-alina.jpg";
-import annaImage from "@/assets/master-anna.jpg";
-import olyaImage from "@/assets/master-olya.jpg";
-import victoriaImage from "@/assets/master-victoria.jpg";
 
 const Team = () => {
   const masters = [
     {
-      name: "Фазлиева Алина",
+      name: "Анна",
       role: "Мастер",
-      image: alinaImage,
-      specialty: "Классический маникюр, гель-лак"
+      experience: "опыт 2 года",
+      image: "/lovable-uploads/e84b7e94-c364-40bc-a99e-5d69cc533df3.png",
+      description: "быстро и без потери качества, сделает самый чёткий квадрат."
     },
     {
-      name: "Островская Анна", 
+      name: "Алина", 
       role: "Мастер",
-      image: annaImage,
-      specialty: "Дизайн ногтей, художественная роспись"
+      experience: "опыт 3 года",
+      image: "/lovable-uploads/4dd231fb-3fef-4306-9f06-e42942cfde19.png",
+      description: "сделает как нюд так и крутой дизайн, творчиская, слишком добрая, отзывчивая"
     },
     {
-      name: "Котович Оля",
-      role: "Топ-мастер",
-      image: olyaImage,
-      specialty: "Наращивание, сложные техники"
+      name: "Виктория",
+      role: "ТОП-мастер",
+      experience: "опыт 6 лет",
+      image: "/lovable-uploads/b85037a7-90ce-4158-af33-f564797e2736.png",
+      description: "сделает безупречный маникюр так и педикюр, 100% возращаемость клиентов."
     },
     {
-      name: "Демиденко Виктория",
-      role: "Топ-мастер", 
-      image: victoriaImage,
-      specialty: "Авторские дизайны, VIP-обслуживание"
+      name: "Оля",
+      role: "ТОП-мастер", 
+      experience: "опыт 5 лет",
+      image: "/lovable-uploads/3663b521-4a9a-4846-90b4-6c24e0c5cf6c.png",
+      description: "коммуникабильность, нюд за час, идальный френч."
     }
   ];
 
   return (
-    <section id="team" className="py-20 bg-gradient-to-b from-tropical-dark to-tropical-green">
+    <section id="team" className="relative min-h-screen bg-gray-100 py-20">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-tropical-cream mb-4">
-            Наша команда
+          <h2 className="text-5xl font-bold text-black mb-4">
+            Команда
           </h2>
-          <p className="text-xl text-tropical-gold max-w-2xl mx-auto">
-            Профессиональные мастера с многолетним опытом создания красоты
-          </p>
-          <div className="text-2xl mt-4 cat-paw">🌿</div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {masters.map((master, index) => (
             <div 
               key={index}
-              className="profile-card p-6 text-center animate-fade-in"
+              className="rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in backdrop-blur-sm"
               style={{animationDelay: `${index * 150}ms`}}
             >
-              <div className="relative mb-6">
-                <div className="w-28 h-28 mx-auto rounded-2xl overflow-hidden">
-                  <img 
-                    src={master.image} 
-                    alt={master.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-tropical-gold rounded-xl flex items-center justify-center">
-                  <span className="text-tropical-dark text-sm">💅</span>
+              <div 
+                className="relative h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${master.image})` }}
+              >
+                {/* Gradient overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                
+                {/* Content overlay */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold mb-1">
+                      {master.name}
+                    </h3>
+                    <p className="text-sm font-medium text-yellow-400 mb-1">
+                      {master.role}, {master.experience}
+                    </p>
+                    <p className="text-xs leading-relaxed text-white/90">
+                      {master.description}
+                    </p>
+                  </div>
+                  
+                  <Button 
+                    variant="default"
+                    size="sm"
+                    className="w-full bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-black transition-all duration-300"
+                  >
+                    Записаться
+                  </Button>
                 </div>
               </div>
-              
-              <h3 className="text-lg font-semibold text-tropical-cream mb-1">
-                {master.name}
-              </h3>
-              
-              <p className="text-tropical-gold text-sm font-medium mb-3 uppercase tracking-wide">
-                {master.role}
-              </p>
-              
-              <p className="text-xs text-tropical-cream/70 mb-6 leading-relaxed">
-                {master.specialty}
-              </p>
-              
-              <Button 
-                variant="secondary" 
-                size="sm"
-                className="w-full"
-              >
-                Записаться
-              </Button>
             </div>
           ))}
         </div>
