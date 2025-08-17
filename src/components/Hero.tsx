@@ -2,10 +2,12 @@ import BookingCard from "@/components/BookingCard";
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-start justify-center overflow-hidden pt-20 pb-10">
-      {/* Content positioned for mobile visibility */}
-      <div className="relative z-10 w-full max-w-sm mx-auto px-6 mt-16 md:mt-32">
-        <BookingCard />
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Content positioned from middle of screen */}
+      <div className="absolute top-1/2 left-0 right-0 z-10">
+        <div className="px-6 w-full max-w-sm mx-auto">
+          <BookingCard />
+        </div>
       </div>
       {/* Nail art background with edge blur */}
       <div className="absolute inset-0">
