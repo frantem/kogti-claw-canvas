@@ -45,24 +45,32 @@ const Team = () => {
               style={{animationDelay: `${index * 150}ms`}}
             >
               <div 
-                className="relative h-80 bg-cover bg-center"
-                style={{ backgroundImage: `url(${master.image})` }}
+                className="relative h-80 bg-cover bg-center shadow-lg"
+                style={{ 
+                  backgroundImage: `url(${master.image})`,
+                  boxShadow: '0 0 20px hsl(45 93% 58% / 0.6), 0 0 40px hsl(45 93% 58% / 0.3)'
+                }}
               >
                 {/* Gradient overlay for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
                 {/* Content overlay */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold mb-1 text-white">
+                  <div className="mb-3">
+                    <h3 className="text-xl font-bold mb-0.5 text-white">
                       {master.name}
                     </h3>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-white mb-0.5">
                       {master.role}
                     </p>
-                    <p className="text-sm font-medium text-white">
+                    <p className="text-sm font-medium text-white mb-3">
                       {master.experience}
                     </p>
+                    <Button 
+                      className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-2 rounded-xl text-sm transition-all duration-300"
+                    >
+                      Записаться
+                    </Button>
                   </div>
                 </div>
               </div>
