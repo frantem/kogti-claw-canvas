@@ -44,7 +44,7 @@ const Team = () => {
               className="rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in backdrop-blur-sm"
               style={{
                 animationDelay: `${index * 150}ms`,
-                boxShadow: '0 0 30px #fbbf24, 0 0 60px #fbbf24, 0 0 90px rgba(251, 191, 36, 0.3)'
+                boxShadow: '0 0 15px #fbbf24, 0 0 30px #fbbf24, 0 0 45px rgba(251, 191, 36, 0.15)'
               }}
             >
               <div 
