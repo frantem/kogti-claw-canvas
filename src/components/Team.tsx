@@ -82,8 +82,8 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
       }}
     >
-      {/* Photo Section - 60% */}
-      <div className="relative h-[60%] overflow-hidden">
+      {/* Full Photo Background with Carousel */}
+      <div className="absolute inset-0">
         <Carousel className="w-full h-full">
           <CarouselContent>
             {master.images.map((image: string, imgIndex: number) => (
@@ -99,57 +99,53 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="left-2 bg-white/20 border-white/30 text-white hover:bg-white/30" />
-          <CarouselNext className="right-2 bg-white/20 border-white/30 text-white hover:bg-white/30" />
+          <CarouselPrevious className="left-2 top-1/2 bg-white/20 border-white/30 text-white hover:bg-white/30" />
+          <CarouselNext className="right-2 top-1/2 bg-white/20 border-white/30 text-white hover:bg-white/30" />
         </Carousel>
       </div>
 
-      {/* Text Section with Gradient Blur - 25% */}
+      {/* Clear Photo Area - 60% */}
+      <div className="relative h-[60%]" />
+
+      {/* Blurred Bottom Section - 40% */}
       <div 
-        className="relative h-[25%] flex flex-col justify-center px-6 text-white"
+        className="absolute bottom-0 left-0 right-0 h-[40%] flex flex-col justify-between px-6 py-4"
         style={{
           background: `linear-gradient(to bottom, 
-            rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 0.3) 20%, 
-            rgba(0, 0, 0, 0.7) 60%,
-            rgba(0, 0, 0, 0.9) 100%)`,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 10%,
+            rgba(0, 0, 0, 0.3) 30%,
+            rgba(0, 0, 0, 0.6) 70%,
+            rgba(0, 0, 0, 0.8) 100%)`,
           backdropFilter: 'blur(8px)'
         }}
       >
-        <div className="absolute inset-0" 
-          style={{
-            backgroundImage: `url(${master.images[0]})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'blur(12px)',
-            transform: 'scale(1.1)',
-            zIndex: -1
-          }}
-        />
-        
-        <h3 className="text-xl font-bold mb-1 relative z-10">
-          {master.name}
-        </h3>
-        <p className="text-xs text-gray-200 mb-2 relative z-10">
-          {master.title}
-        </p>
-        <p className="text-xs text-gray-200 mb-2 relative z-10">
-          {master.experience}
-        </p>
-        <div className="text-xs leading-relaxed relative z-10">
-          {master.description.split('\n').map((line: string, lineIndex: number) => (
-            <div key={lineIndex}>{line}</div>
-          ))}
+        {/* Text Content */}
+        <div className="text-white flex-1 flex flex-col justify-center">
+          <h3 className="text-xl font-bold mb-1">
+            {master.name}
+          </h3>
+          <p className="text-sm text-gray-200 mb-1">
+            {master.title}
+          </p>
+          <p className="text-sm text-gray-200 mb-2">
+            {master.experience}
+          </p>
+          <div className="text-sm leading-relaxed">
+            {master.description.split('\n').map((line: string, lineIndex: number) => (
+              <div key={lineIndex}>{line}</div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Button Section - 15% */}
-      <div className="h-[15%] flex items-center justify-center px-6 bg-white/95 backdrop-blur-sm">
-        <Button 
-          className="w-full bg-white text-black hover:bg-gray-50 font-semibold py-3 rounded-2xl transition-all duration-300 shadow-lg border border-gray-200"
-        >
-          Записаться
-        </Button>
+        {/* Button */}
+        <div className="mt-4">
+          <Button 
+            className="w-full bg-white text-black hover:bg-gray-50 font-semibold py-3 rounded-3xl transition-all duration-300 shadow-lg border border-gray-200"
+          >
+            Записаться
+          </Button>
+        </div>
       </div>
     </Card>
   );
