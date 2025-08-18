@@ -85,11 +85,9 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
 
   return (
     <Card 
-      className="relative overflow-hidden rounded-3xl h-[500px] md:h-[600px] shadow-2xl animate-fade-in group transform-gpu perspective-1000"
+      className="relative overflow-hidden rounded-2xl h-[550px] md:h-[600px] shadow-xl animate-fade-in"
       style={{
-        animationDelay: `${index * 150}ms`,
-        transform: 'perspective(1000px) rotateX(2deg) rotateY(-2deg)',
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+        animationDelay: `${index * 150}ms`
       }}
     >
       {/* Swipeable Carousel */}
@@ -110,77 +108,68 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
         </div>
       </div>
 
-      {/* Smooth gradient overlay for transition */}
+      {/* Gradient overlay */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `linear-gradient(to bottom, 
             transparent 0%,
-            transparent 55%,
-            rgba(0, 0, 0, 0.05) 60%,
-            rgba(0, 0, 0, 0.15) 65%,
+            transparent 50%,
+            rgba(0, 0, 0, 0.1) 60%,
             rgba(0, 0, 0, 0.3) 70%,
-            rgba(0, 0, 0, 0.5) 75%,
-            rgba(0, 0, 0, 0.7) 80%,
-            rgba(0, 0, 0, 0.85) 90%,
-            rgba(0, 0, 0, 0.9) 100%)`,
-          backdropFilter: 'blur(0px)'
+            rgba(0, 0, 0, 0.6) 80%,
+            rgba(0, 0, 0, 0.8) 90%,
+            rgba(0, 0, 0, 0.9) 100%)`
         }}
       />
 
-      {/* Blur overlay for bottom 40% */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-[40%] pointer-events-none"
-        style={{
-          backdropFilter: 'blur(12px)'
-        }}
-      />
-
-      {/* Clear Photo Area - 60% with dots */}
-      <div className="relative h-[60%] pointer-events-none">
-        {/* Dots Indicator */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1.5 pointer-events-auto">
-          {master.images.map((_: string, imgIndex: number) => (
-            <div
-              key={imgIndex}
-              className={`w-1 h-1 rounded-full transition-all duration-300 ${
-                imgIndex === currentImageIndex 
-                  ? 'bg-white shadow-lg' 
-                  : 'bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
+      {/* Dots Indicator */}
+      <div className="absolute bottom-48 left-1/2 transform -translate-x-1/2 flex space-x-1.5 z-10">
+        {master.images.map((_: string, imgIndex: number) => (
+          <div
+            key={imgIndex}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+              imgIndex === currentImageIndex 
+                ? 'bg-white' 
+                : 'bg-white/60'
+            }`}
+          />
+        ))}
       </div>
 
-      {/* Content Section - 40% */}
-      <div className="absolute bottom-0 left-0 right-0 h-[40%] flex flex-col justify-between px-4 md:px-6 py-3 md:py-4">
-        {/* Text Content */}
-        <div className="text-white flex-1 flex flex-col justify-center">
-          <h3 className="text-lg md:text-xl font-bold mb-1">
-            {master.name}
-          </h3>
-          <p className="text-xs md:text-sm text-gray-200 mb-1">
+      {/* Content Section */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+        {/* Master Name */}
+        <h3 className="text-2xl font-bold mb-3">
+          {master.name}
+        </h3>
+        
+        {/* Description */}
+        <p className="text-sm text-gray-200 mb-4 leading-relaxed">
+          {master.description.split('\n').map((line: string, lineIndex: number) => (
+            <span key={lineIndex}>
+              {line}
+              {lineIndex < master.description.split('\n').length - 1 && <br />}
+            </span>
+          ))}
+        </p>
+
+        {/* Tags */}
+        <div className="flex gap-3 mb-4">
+          <span className="bg-white/20 text-white text-xs px-2 py-1 rounded-lg">
             {master.title}
-          </p>
-          <p className="text-xs md:text-sm text-gray-200 mb-2">
+          </span>
+          <span className="bg-white/20 text-white text-xs px-2 py-1 rounded-lg">
             {master.experience}
-          </p>
-          <div className="text-xs md:text-sm leading-relaxed">
-            {master.description.split('\n').map((line: string, lineIndex: number) => (
-              <div key={lineIndex}>{line}</div>
-            ))}
-          </div>
+          </span>
         </div>
 
-        {/* Button - 15% of total card */}
-        <div className="h-[37.5%] flex items-end pb-2">
-          <Button 
-            className="w-full bg-white text-black hover:bg-gray-100 font-semibold py-2.5 md:py-3 rounded-3xl transition-all duration-300 shadow-lg text-sm md:text-base"
-          >
-            Записаться
-          </Button>
-        </div>
+        {/* Button */}
+        <Button 
+          className="w-full bg-white text-black hover:bg-gray-100 font-semibold py-3 rounded-xl transition-all duration-300 text-base"
+        >
+          Записаться
+        </Button>
       </div>
     </Card>
   );
