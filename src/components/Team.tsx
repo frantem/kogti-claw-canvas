@@ -42,14 +42,14 @@ const Team = () => {
             <div 
               key={index}
               className="rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in backdrop-blur-sm"
-              style={{animationDelay: `${index * 150}ms`}}
+              style={{
+                animationDelay: `${index * 150}ms`,
+                boxShadow: '0 0 30px #fbbf24, 0 0 60px #fbbf24, 0 0 90px rgba(251, 191, 36, 0.3)'
+              }}
             >
               <div 
-                className="relative h-80 bg-cover bg-center shadow-lg"
-                style={{ 
-                  backgroundImage: `url(${master.image})`,
-                  boxShadow: '0 0 20px hsl(45 93% 58% / 0.6), 0 0 40px hsl(45 93% 58% / 0.3)'
-                }}
+                className="relative h-80 bg-cover bg-center"
+                style={{ backgroundImage: `url(${master.image})` }}
               >
                 {/* Gradient overlay for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -57,13 +57,13 @@ const Team = () => {
                 {/* Content overlay */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
                   <div className="mb-3">
-                    <h3 className="text-xl font-bold mb-0.5 text-white">
+                    <h3 className="text-xl font-bold leading-tight text-white">
                       {master.name}
                     </h3>
-                    <p className="text-sm font-medium text-white mb-0.5">
+                    <p className="text-sm font-medium text-white leading-tight">
                       {master.role}
                     </p>
-                    <p className="text-sm font-medium text-white mb-3">
+                    <p className="text-sm font-medium text-white leading-tight mb-3">
                       {master.experience}
                     </p>
                     <Button 
