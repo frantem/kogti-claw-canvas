@@ -85,7 +85,7 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
 
   return (
     <Card 
-      className="relative overflow-hidden rounded-2xl h-[550px] md:h-[600px] shadow-xl animate-fade-in"
+      className="relative overflow-hidden rounded-2xl h-[550px] md:h-[600px] shadow-xl animate-fade-in border-2 border-white/20 backdrop-blur-sm"
       style={{
         animationDelay: `${index * 150}ms`
       }}
@@ -166,7 +166,7 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
 
         {/* Button */}
         <Button 
-          className="w-full bg-white text-black hover:bg-gray-100 font-semibold py-3 rounded-xl transition-all duration-300 text-base"
+          className="w-full bg-white text-black hover:bg-gray-100 font-semibold py-3 rounded-full transition-all duration-300 text-base"
         >
           Записаться
         </Button>
