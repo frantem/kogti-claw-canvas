@@ -3,6 +3,7 @@ import ServicesSection from "@/components/ServicesSection";
 import Team from "@/components/Team";
 import LocationSection from "@/components/LocationSection";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
       <Team />
       <ContactSection />
       <LocationSection />
+      <Footer />
     </div>
   );
 };
