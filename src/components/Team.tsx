@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 const Team = () => {
   const masters = [
@@ -72,79 +73,110 @@ const Team = () => {
 
 const MasterCard = ({ master, index }: { master: any, index: number }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setCurrentImageIndex(emblaApi.selectedScrollSnap());
+      });
+    }
+  }, [emblaApi]);
 
   return (
     <Card 
-      className="relative overflow-hidden rounded-3xl h-[500px] shadow-2xl animate-fade-in group transform-gpu perspective-1000"
+      className="relative overflow-hidden rounded-3xl h-[500px] md:h-[600px] shadow-2xl animate-fade-in group transform-gpu perspective-1000"
       style={{
         animationDelay: `${index * 150}ms`,
         transform: 'perspective(1000px) rotateX(2deg) rotateY(-2deg)',
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
       }}
     >
-      {/* Full Photo Background */}
+      {/* Swipeable Carousel */}
+      <div className="embla absolute inset-0" ref={emblaRef}>
+        <div className="embla__container flex h-full">
+          {master.images.map((image: string, imgIndex: number) => (
+            <div key={imgIndex} className="embla__slide flex-none w-full h-full relative">
+              <div 
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ 
+                  backgroundImage: `url(${image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Smooth gradient overlay for transition */}
       <div 
-        className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-        style={{ 
-          backgroundImage: `url(${master.images[currentImageIndex]})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(to bottom, 
+            transparent 0%,
+            transparent 55%,
+            rgba(0, 0, 0, 0.05) 60%,
+            rgba(0, 0, 0, 0.15) 65%,
+            rgba(0, 0, 0, 0.3) 70%,
+            rgba(0, 0, 0, 0.5) 75%,
+            rgba(0, 0, 0, 0.7) 80%,
+            rgba(0, 0, 0, 0.85) 90%,
+            rgba(0, 0, 0, 0.9) 100%)`,
+          backdropFilter: 'blur(0px)'
         }}
       />
 
-      {/* Clear Photo Area - 60% */}
-      <div className="relative h-[60%]">
-        {/* Dots Indicator at bottom of clear area */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      {/* Blur overlay for bottom 40% */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-[40%] pointer-events-none"
+        style={{
+          backdropFilter: 'blur(12px)'
+        }}
+      />
+
+      {/* Clear Photo Area - 60% with dots */}
+      <div className="relative h-[60%] pointer-events-none">
+        {/* Dots Indicator */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1.5 pointer-events-auto">
           {master.images.map((_: string, imgIndex: number) => (
-            <button
+            <div
               key={imgIndex}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`w-1 h-1 rounded-full transition-all duration-300 ${
                 imgIndex === currentImageIndex 
                   ? 'bg-white shadow-lg' 
-                  : 'bg-white/50 hover:bg-white/80'
+                  : 'bg-white/50'
               }`}
-              onClick={() => setCurrentImageIndex(imgIndex)}
             />
           ))}
         </div>
       </div>
 
-      {/* Blurred Bottom Section - 40% */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-[40%] flex flex-col justify-between px-6 py-4"
-        style={{
-          background: `linear-gradient(to bottom, 
-            transparent 0%,
-            rgba(0, 0, 0, 0.1) 10%,
-            rgba(0, 0, 0, 0.3) 30%,
-            rgba(0, 0, 0, 0.6) 70%,
-            rgba(0, 0, 0, 0.8) 100%)`,
-          backdropFilter: 'blur(8px)'
-        }}
-      >
+      {/* Content Section - 40% */}
+      <div className="absolute bottom-0 left-0 right-0 h-[40%] flex flex-col justify-between px-4 md:px-6 py-3 md:py-4">
         {/* Text Content */}
         <div className="text-white flex-1 flex flex-col justify-center">
-          <h3 className="text-xl font-bold mb-1">
+          <h3 className="text-lg md:text-xl font-bold mb-1">
             {master.name}
           </h3>
-          <p className="text-sm text-gray-200 mb-1">
+          <p className="text-xs md:text-sm text-gray-200 mb-1">
             {master.title}
           </p>
-          <p className="text-sm text-gray-200 mb-2">
+          <p className="text-xs md:text-sm text-gray-200 mb-2">
             {master.experience}
           </p>
-          <div className="text-sm leading-relaxed">
+          <div className="text-xs md:text-sm leading-relaxed">
             {master.description.split('\n').map((line: string, lineIndex: number) => (
               <div key={lineIndex}>{line}</div>
             ))}
           </div>
         </div>
 
-        {/* Button */}
-        <div className="mt-4">
+        {/* Button - 15% of total card */}
+        <div className="h-[37.5%] flex items-end pb-2">
           <Button 
-            className="w-full bg-white text-black hover:bg-gray-50 font-semibold py-3 rounded-3xl transition-all duration-300 shadow-lg border border-gray-200"
+            className="w-full bg-white text-black hover:bg-gray-100 font-semibold py-2.5 md:py-3 rounded-3xl transition-all duration-300 shadow-lg text-sm md:text-base"
           >
             Записаться
           </Button>
