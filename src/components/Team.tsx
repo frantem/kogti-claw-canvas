@@ -85,7 +85,7 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
 
   return (
     <Card 
-      className="relative overflow-hidden rounded-2xl h-[550px] md:h-[600px] shadow-xl animate-fade-in border-2 border-white/20 backdrop-blur-sm"
+      className="relative overflow-hidden rounded-2xl h-[450px] md:h-[600px] shadow-xl animate-fade-in border-2 border-white/20 backdrop-blur-sm"
       style={{
         animationDelay: `${index * 150}ms`
       }}
