@@ -32,7 +32,7 @@ const Team = () => {
       name: "Виктория",
       title: "ТОП-мастер",
       experience: "опыт 6 лет",
-      description: "сделает безупречный маникюр так и педикюр\n100% возращаемость клиентов",
+      description: "сделает безупречный маникюр и педикюр\n100% возвращаемость клиентов",
       images: [
         "/lovable-uploads/b85037a7-90ce-4158-af33-f564797e2736.png",
         "/lovable-uploads/561482c5-bd57-423e-908b-8c13c394a90b.png",
@@ -43,7 +43,7 @@ const Team = () => {
       name: "Оля",
       title: "ТОП-мастер",
       experience: "опыт 5 лет", 
-      description: "коммуникабильность\nнюд за час\nидальный френч",
+      description: "коммуникабельность\nнюд за час\nидельный френч",
       images: [
         "/lovable-uploads/3663b521-4a9a-4846-90b4-6c24e0c5cf6c.png",
         "/lovable-uploads/fd23db15-f23d-4ff9-8c88-6f63706dc4a1.png",
