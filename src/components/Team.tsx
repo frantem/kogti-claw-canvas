@@ -21,7 +21,7 @@ const Team = () => {
       name: "Алина", 
       title: "мастер",
       experience: "опыт 3 года",
-      description: "сделает как нюд так и крутой дизайн\nтворчиская, добрая, отзывчивая",
+      description: "сделает как нюд так и крутой дизайн\nтворческая, добрая, отзывчивая",
       images: [
         "/lovable-uploads/4dd231fb-3fef-4306-9f06-e42942cfde19.png",
         "/lovable-uploads/82f78b18-14fe-4e4d-9d23-d4c0f6f9cdcb.png",
