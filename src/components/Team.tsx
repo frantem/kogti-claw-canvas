@@ -166,11 +166,22 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
         </div>
 
         {/* Button */}
-        <Button 
-          className="w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300"
-        >
-          Записаться
-        </Button>
+        {master.name === "Анна" ? (
+          <a 
+            href="https://dikidi.ru/#widget=192168"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
+          >
+            Записаться
+          </a>
+        ) : (
+          <Button 
+            className="w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300"
+          >
+            Записаться
+          </Button>
+        )}
       </div>
     </Card>
   );
