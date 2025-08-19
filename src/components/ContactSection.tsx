@@ -43,7 +43,7 @@ const ContactSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
-            Переходите и записывайте любым удобным способом
+            Переходите и записывайтесь любым удобным способом
           </h2>
         </div>
 
@@ -77,7 +77,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <h4 className="text-white font-semibold text-lg">Позвонить</h4>
-                <p className="text-gray-400 text-sm">Прямой звонок мастеру</p>
+                <p className="text-gray-400 text-sm">Прямой звонок администратору</p>
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <h4 className="text-white font-semibold text-lg">Telegram</h4>
-                <p className="text-gray-400 text-sm">Быстрая связь с мастером</p>
+                <p className="text-gray-400 text-sm">Быстрая связь с администратором</p>
               </div>
             </div>
           </div>
