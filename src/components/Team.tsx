@@ -1,8 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { useState, useEffect } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 
 const Team = () => {
   const masters = [
@@ -72,17 +69,6 @@ const Team = () => {
 };
 
 const MasterCard = ({ master, index }: { master: any, index: number }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-
-  useEffect(() => {
-    if (emblaApi) {
-      emblaApi.on('select', () => {
-        setCurrentImageIndex(emblaApi.selectedScrollSnap());
-      });
-    }
-  }, [emblaApi]);
-
   return (
     <Card 
       className="relative overflow-hidden h-[450px] md:h-[600px] shadow-xl animate-fade-in border-8 border-white/20 backdrop-blur-sm"
@@ -91,23 +77,15 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
         animationDelay: `${index * 150}ms`
       }}
     >
-      {/* Swipeable Carousel */}
-      <div className="embla absolute inset-0" ref={emblaRef}>
-        <div className="embla__container flex h-full">
-          {master.images.map((image: string, imgIndex: number) => (
-            <div key={imgIndex} className="embla__slide flex-none w-full h-full relative">
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ 
-                  backgroundImage: `url(${image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Single Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ 
+          backgroundImage: `url(${master.images[0]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
 
       {/* Gradient overlay */}
       <div 
@@ -123,20 +101,6 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
             rgba(0, 0, 0, 0.9) 100%)`
         }}
       />
-
-      {/* Dots Indicator */}
-      <div className="absolute bottom-48 left-1/2 transform -translate-x-1/2 flex space-x-1.5 z-10">
-        {master.images.map((_: string, imgIndex: number) => (
-          <div
-            key={imgIndex}
-            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-              imgIndex === currentImageIndex 
-                ? 'bg-white' 
-                : 'bg-white/60'
-            }`}
-          />
-        ))}
-      </div>
 
       {/* Content Section */}
       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
