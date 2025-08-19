@@ -177,7 +177,7 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
           </a>
         ) : master.name === "Алина" ? (
           <a 
-            href="https://dikidi.ru/#widget=192340"
+            href="https://dikidi.ru/#widget=192339"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
