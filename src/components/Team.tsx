@@ -167,7 +167,8 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
 
         {/* Button */}
         <Button 
-          className="w-full bg-white text-black hover:bg-gray-100 font-semibold py-3 rounded-full transition-all duration-300 text-base"
+          variant="modern"
+          className="w-full font-semibold py-3 rounded-full text-base"
         >
           Записаться
         </Button>
