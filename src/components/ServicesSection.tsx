@@ -15,28 +15,31 @@ const ServicesSection = () => {
   ];
 
   const manicureServices = [
-    "комбинированный маникюр + покрытие лаком",
-    "комбинированный маникюр без покрытия",
-    "коррекция ногтей гелем с восстановлением архитектуры",
-    "коррекция/покрытие ногтей гелем",
-    "маникюр мужской",
-    "наращивание ногтей",
-    "наращивание ногтей ЭКСТРА-длина",
-    "снятие покрытия + комбинированный маникюр",
-    "френч/втирка/стемпинг/ на все ногти"
+    { name: "Коррекция/покрытие ногтей гелем", widget: "192348" },
+    { name: "Наращивание ногтей", widget: "192349" },
+    { name: "Коррекция ногтей гелем с восстановлением архитектуры", widget: "192350" },
+    { name: "Комбинированный маникюр без покрытия", widget: "192351" },
+    { name: "Комбинированный маникюр + покрытие лаком", widget: "192352" },
+    { name: "Снятие покрытия + комбинированный маникюр", widget: "192471" },
+    { name: "Маникюр мужской", widget: "192472" },
+    { name: "Наращивание ногтей ЭКСТРА-длина", widget: "192473" }
   ];
 
   const pedicureServices = [
-    "педикюр пальчики + покрытие гель-лаком",
-    "смарт педикюр + пальчики без покрытия",
-    "смарт педикюр + пальчики+гель-лак",
-    "только пальчики без покрытия"
+    { name: "педикюр пальчики + покрытие гель-лаком", widget: "192474" },
+    { name: "смарт педикюр + пальчики+гель-лак", widget: "192475" },
+    { name: "смарт педикюр + пальчики без покрытия", widget: "192476" },
+    { name: "только пальчики без покрытия", widget: "192477" }
   ];
 
   const currentServices = activeTab === 'manicure' ? manicureServices : pedicureServices;
 
   const getRandomImage = (index: number) => {
     return nailImages[index % nailImages.length];
+  };
+
+  const handleServiceClick = (widget: string) => {
+    window.open(`https://dikidi.ru/#widget=${widget}`, '_blank');
   };
 
   return (
@@ -84,17 +87,18 @@ const ServicesSection = () => {
           {currentServices.map((service, index) => (
             <div
               key={`${activeTab}-${index}`}
-              className="animate-fade-in rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+              className="animate-fade-in rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group"
               style={{ animationDelay: `${index * 100}ms` }}
+              onClick={() => handleServiceClick(service.widget)}
             >
               <div 
-                className="aspect-square relative bg-cover bg-center"
+                className="aspect-square relative bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
                 style={{ backgroundImage: `url(${getRandomImage(index)})` }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 transition-all duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-sm font-medium text-white leading-tight">
-                    {service}
+                  <h3 className="text-sm font-medium text-white leading-tight group-hover:text-tropical-gold transition-colors duration-300">
+                    {service.name}
                   </h3>
                 </div>
               </div>
