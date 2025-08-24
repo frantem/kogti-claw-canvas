@@ -56,7 +56,7 @@ const Services = () => {
             <div className="w-16 h-16 mx-auto mb-6 bg-tropical-gold/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-tropical-gold/20 transition-colors">
               🌿
             </div>
-            <h3 className="text-xl font-semibold mb-4 text-tropical-cream">Маникюр</h3>
+            <h2 className="text-xl font-semibold mb-4 text-tropical-cream">Маникюр</h2>
             <p className="text-tropical-cream/70 text-sm leading-relaxed">
               Классический и комбинированный маникюр с покрытием и без
             </p>
@@ -66,7 +66,7 @@ const Services = () => {
             <div className="w-16 h-16 mx-auto mb-6 bg-tropical-gold/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-tropical-gold/20 transition-colors">
               ✨
             </div>
-            <h3 className="text-xl font-semibold mb-4 text-tropical-cream">Наращивание</h3>
+            <h2 className="text-xl font-semibold mb-4 text-tropical-cream">Наращивание</h2>
             <p className="text-tropical-cream/70 text-sm leading-relaxed">
               Наращивание и коррекция ногтей любой сложности
             </p>
@@ -76,7 +76,7 @@ const Services = () => {
             <div className="w-16 h-16 mx-auto mb-6 bg-tropical-gold/10 rounded-2xl flex items-center justify-center text-3xl group-hover:bg-tropical-gold/20 transition-colors">
               🍃
             </div>
-            <h3 className="text-xl font-semibold mb-4 text-tropical-cream">Педикюр</h3>
+            <h2 className="text-xl font-semibold mb-4 text-tropical-cream">Педикюр</h2>
             <p className="text-tropical-cream/70 text-sm leading-relaxed">
               Умный педикюр и покрытие пальцев ног
             </p>
