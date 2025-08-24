@@ -1,7 +1,6 @@
 import BookingCard from "@/components/BookingCard";
 
 const Hero = () => {
-  console.log('Hero component rendering');
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Content positioned slightly above middle of screen */}

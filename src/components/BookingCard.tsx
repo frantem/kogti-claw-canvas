@@ -4,27 +4,50 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Check } from "lucide-react";
 import { useState } from "react";
-
+import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
-  console.log('BookingCard component rendering');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const nailPhotos = [
-    "/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png", 
-    "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png", 
-    "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png", 
-    "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"
-  ];
+  const nailPhotos = ["/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png", "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png", "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png", "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"];
+  const handleBookingClick = () => {
+    console.log('Button clicked, checking dikidi widget...');
+    console.log('window.dikidi:', (window as any).dikidi);
+    console.log('window.DikidiOnlineWidget:', (window as any).DikidiOnlineWidget);
 
-  return (
-    <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
+    // Попробуем разные варианты API
+    try {
+      // @ts-ignore
+      if (typeof (window as any).DikidiOnlineWidget === 'function') {
+        // @ts-ignore
+        (window as any).DikidiOnlineWidget();
+        console.log('DikidiOnlineWidget() called');
+        // @ts-ignore  
+      } else if ((window as any).dikidi && typeof (window as any).dikidi.openWidget === 'function') {
+        // @ts-ignore
+        (window as any).dikidi.openWidget();
+        console.log('dikidi.openWidget() called');
+        // @ts-ignore
+      } else if ((window as any).dikidi && typeof (window as any).dikidi.open === 'function') {
+        // @ts-ignore
+        (window as any).dikidi.open();
+        console.log('dikidi.open() called');
+      } else {
+        console.error('Dikidi widget not found or not loaded properly');
+        console.log('Available window properties:', Object.keys(window).filter(key => key.toLowerCase().includes('dikidi')));
+      }
+    } catch (error) {
+      console.error('Error opening widget:', error);
+    }
+  };
+  return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
+
       {/* Service Card */}
       <div className="rounded-[4rem] p-6 mb-3 -mt-[20px] -mx-[20px] bg-gray-200">
         <div className="flex items-center gap-4">
           {/* Oval image with KOGTI text */}
           <div className="relative -mt-4 -ml-4 -mb-4">
             <div className="w-24 h-36 rounded-[4rem] bg-cover bg-center border-2 border-white shadow-md" style={{
-              backgroundImage: `url(/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png)`
-            }}>
+            backgroundImage: `url(/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png)`
+          }}>
               <div className="absolute inset-0 bg-black/30 rounded-[4rem] flex items-center justify-center">
                 <span className="text-white text-xs font-bold">KOGTI</span>
               </div>
@@ -69,22 +92,18 @@ const BookingCard = () => {
           <div className="flex -space-x-2">
             <Dialog>
               <DialogTrigger asChild>
-                <button 
-                  className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" 
-                  style={{ backgroundImage: `url(${nailPhotos[0]})` }} 
-                  onClick={() => setSelectedImageIndex(0)} 
-                />
+                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" style={{
+                backgroundImage: `url(${nailPhotos[0]})`
+              }} onClick={() => setSelectedImageIndex(0)} />
               </DialogTrigger>
               <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
                 <Carousel className="w-full">
                   <CarouselContent>
-                    {nailPhotos.map((photo, index) => (
-                      <CarouselItem key={index}>
+                    {nailPhotos.map((photo, index) => <CarouselItem key={index}>
                         <div className="flex aspect-square items-center justify-center p-6">
                           <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
                         </div>
-                      </CarouselItem>
-                    ))}
+                      </CarouselItem>)}
                   </CarouselContent>
                   <CarouselPrevious className="left-4" />
                   <CarouselNext className="right-4" />
@@ -94,22 +113,18 @@ const BookingCard = () => {
             
             <Dialog>
               <DialogTrigger asChild>
-                <button 
-                  className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" 
-                  style={{ backgroundImage: `url(${nailPhotos[1]})` }} 
-                  onClick={() => setSelectedImageIndex(1)} 
-                />
+                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" style={{
+                backgroundImage: `url(${nailPhotos[1]})`
+              }} onClick={() => setSelectedImageIndex(1)} />
               </DialogTrigger>
               <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
                 <Carousel className="w-full">
                   <CarouselContent>
-                    {nailPhotos.map((photo, index) => (
-                      <CarouselItem key={index}>
+                    {nailPhotos.map((photo, index) => <CarouselItem key={index}>
                         <div className="flex aspect-square items-center justify-center p-6">
                           <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
                         </div>
-                      </CarouselItem>
-                    ))}
+                      </CarouselItem>)}
                   </CarouselContent>
                   <CarouselPrevious className="left-4" />
                   <CarouselNext className="right-4" />
@@ -119,11 +134,9 @@ const BookingCard = () => {
             
             <Dialog>
               <DialogTrigger asChild>
-                <button 
-                  className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform flex items-center justify-center" 
-                  style={{ backgroundImage: `url(${nailPhotos[2]})` }} 
-                  onClick={() => setSelectedImageIndex(2)}
-                >
+                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform flex items-center justify-center" style={{
+                backgroundImage: `url(${nailPhotos[2]})`
+              }} onClick={() => setSelectedImageIndex(2)}>
                   <div className="bg-black/50 text-white text-xs font-medium rounded-full w-full h-full flex items-center justify-center">
                     +{nailPhotos.length - 2}
                   </div>
@@ -132,13 +145,11 @@ const BookingCard = () => {
               <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
                 <Carousel className="w-full">
                   <CarouselContent>
-                    {nailPhotos.map((photo, index) => (
-                      <CarouselItem key={index}>
+                    {nailPhotos.map((photo, index) => <CarouselItem key={index}>
                         <div className="flex aspect-square items-center justify-center p-6">
                           <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
                         </div>
-                      </CarouselItem>
-                    ))}
+                      </CarouselItem>)}
                   </CarouselContent>
                   <CarouselPrevious className="left-4" />
                   <CarouselNext className="right-4" />
@@ -148,7 +159,7 @@ const BookingCard = () => {
           </div>
         </div>
         <div>
-          <p className="text-sm text-gray-500 mb-2">Горящие окна🔥</p>
+          <p className="text-sm text-gray-500 mb-2">   Горящие окна🔥</p>
           <div className="text-right">
             <p className="font-semibold text-gray-900">Пн 21.08</p>
             <p className="text-sm text-gray-500">12:00-18:30</p>
@@ -162,8 +173,6 @@ const BookingCard = () => {
       </a>
 
       <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персональной скидкой 20%</p>
-    </div>
-  );
+    </div>;
 };
-
 export default BookingCard;
