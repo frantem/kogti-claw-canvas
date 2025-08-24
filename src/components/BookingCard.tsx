@@ -6,6 +6,7 @@ import { Check } from "lucide-react";
 import { useState } from "react";
 
 const BookingCard = () => {
+  console.log('BookingCard component rendering');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const nailPhotos = [
     "/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png", 

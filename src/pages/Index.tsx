@@ -1,3 +1,4 @@
+import ErrorBoundary from "@/components/ErrorBoundary";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Team from "@/components/Team";
@@ -6,14 +7,15 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
+  console.log('Index page rendering');
   return (
     <div className="min-h-screen">
-      <Hero />
-      <Services />
-      <Team />
-      <ContactSection />
-      <LocationSection />
-      <Footer />
+      <ErrorBoundary><Hero /></ErrorBoundary>
+      <ErrorBoundary><Services /></ErrorBoundary>
+      <ErrorBoundary><Team /></ErrorBoundary>
+      <ErrorBoundary><ContactSection /></ErrorBoundary>
+      <ErrorBoundary><LocationSection /></ErrorBoundary>
+      <ErrorBoundary><Footer /></ErrorBoundary>
     </div>
   );
 };

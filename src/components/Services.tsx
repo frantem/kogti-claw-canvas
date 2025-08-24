@@ -1,4 +1,5 @@
 const Services = () => {
+  console.log('Services component rendering');
   const services = [
     "комбинированный маникюр + покрытие лаком",
     "комбинированный маникюр без покрытия лаком", 
