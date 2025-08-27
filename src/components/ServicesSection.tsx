@@ -8,7 +8,7 @@ const ServicesSection = () => {
     "/lovable-uploads/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.png",
     "/lovable-uploads/5a5fefe4-d334-417b-8e67-e9fd1563b7ae.png",
     "/lovable-uploads/ac52d59c-f173-4e8c-bda0-e07b3687552e.png",
-    "/lovable-uploads/561482c5-bd57-423e-908b-8c13c394a90b.png",
+    "/lovable-uploads/b6801deb-8105-4883-85a9-3d0145835639.png",
     "/lovable-uploads/0b67f8e0-2e73-4296-8207-9a016f836474.png",
     "/lovable-uploads/fd58fd9d-58a6-47b6-a743-1681b29593d0.png",
     "/lovable-uploads/0d28f136-94b4-47d1-bc06-86c56a540227.png"
