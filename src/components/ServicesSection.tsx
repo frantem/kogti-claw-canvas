@@ -6,7 +6,7 @@ const ServicesSection = () => {
 
   const nailImages = [
     "/lovable-uploads/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.png",
-    "/lovable-uploads/fd23db15-f23d-4ff9-8c88-6f63706dc4a1.png",
+    "/lovable-uploads/5a5fefe4-d334-417b-8e67-e9fd1563b7ae.png",
     "/lovable-uploads/97fe75cf-3ac1-4579-911e-f5dd89f29120.png",
     "/lovable-uploads/561482c5-bd57-423e-908b-8c13c394a90b.png",
     "/lovable-uploads/0b67f8e0-2e73-4296-8207-9a016f836474.png",
