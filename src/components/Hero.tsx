@@ -27,9 +27,12 @@ const Hero = () => {
       
       {/* Header on background */}
       <div className="absolute top-16 left-0 right-0 z-10 text-center">
-        <h1 className="text-5xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
-          KOGTI
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
+          Студия маникюра и педикюра в Витебске
         </h1>
+        <div className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
+          KOGTI
+        </div>
         <p className="text-sm text-white/90 font-medium uppercase tracking-wider drop-shadow-md">
           BEAUTY STUDIO
         </p>
