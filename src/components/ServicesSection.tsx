@@ -5,7 +5,7 @@ const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState<'manicure' | 'pedicure'>('manicure');
 
   const nailImages = [
-    "/lovable-uploads/a6e361b2-839a-40ea-9eff-57dc72c99e6d.png",
+    "/lovable-uploads/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.png",
     "/lovable-uploads/fd23db15-f23d-4ff9-8c88-6f63706dc4a1.png",
     "/lovable-uploads/97fe75cf-3ac1-4579-911e-f5dd89f29120.png",
     "/lovable-uploads/561482c5-bd57-423e-908b-8c13c394a90b.png",
