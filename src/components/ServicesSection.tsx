@@ -87,10 +87,9 @@ const ServicesSection = () => {
           {currentServices.map((service, index) => (
             <div
               key={`${activeTab}-${index}`}
-              className="animate-fade-in overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group border-4 border-white/20"
+              className="animate-fade-in overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group border-4 border-white/20 rounded-3xl"
               style={{ 
-                animationDelay: `${index * 100}ms`,
-                borderRadius: '2rem'
+                animationDelay: `${index * 100}ms`
               }}
               onClick={() => handleServiceClick(service.widget)}
             >

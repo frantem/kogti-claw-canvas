@@ -306,4 +306,16 @@ All colors MUST be HSL.
     mask: radial-gradient(circle at center, transparent 40%, black 70%);
     -webkit-mask: radial-gradient(circle at center, transparent 40%, black 70%);
   }
+
+  /* Fade in animation */
+  .animate-fade-in {
+    opacity: 0;
+    animation: fade-in 0.6s ease-out forwards;
+  }
+  
+  @keyframes fade-in {
+    to {
+      opacity: 1;
+    }
+  }
 }
