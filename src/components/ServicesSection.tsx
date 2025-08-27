@@ -12,7 +12,8 @@ const ServicesSection = () => {
     "/lovable-uploads/e81a2e04-654b-4138-9198-7283d67c442d.png",
     "/lovable-uploads/d7e74cb2-6e4b-46ca-88e0-27733084fb89.png",
     "/lovable-uploads/f11a9b3d-0b52-4c87-b221-d4b74c8eb4c1.png",
-    "/lovable-uploads/94931675-31c1-47b7-8be5-3f3ea6ea18ec.png"
+    "/lovable-uploads/94931675-31c1-47b7-8be5-3f3ea6ea18ec.png",
+    "/lovable-uploads/20348d5e-0d42-4891-8a1b-fc777688060e.png"
   ];
 
   const manicureServices = [
