@@ -21,10 +21,25 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
+    const checkAdminStatus = async (userId: string) => {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', userId)
+        .single();
+      
+      setIsAdmin(profile?.role === 'admin');
+    };
+
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
+      
+      if (session?.user) {
+        await checkAdminStatus(session.user.id);
+      }
+      
       setLoading(false);
     });
 
@@ -33,20 +48,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       async (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
-        setLoading(false);
 
         // Check admin status
         if (session?.user) {
-          const { data: profile } = await supabase
-            .from('profiles')
-            .select('role')
-            .eq('id', session.user.id)
-            .single();
-          
-          setIsAdmin(profile?.role === 'admin');
+          await checkAdminStatus(session.user.id);
         } else {
           setIsAdmin(false);
         }
+        
+        setLoading(false);
       }
     );
 
