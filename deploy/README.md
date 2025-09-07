@@ -1,0 +1,198 @@
+# Deployment Guide for KOGTI Nail Studio Website
+
+This guide provides step-by-step instructions for deploying the KOGTI website to your server.
+
+## Prerequisites
+
+Ensure your server has the following installed:
+```bash
+sudo apt update
+sudo apt install -y git nodejs npm nginx certbot python3-certbot-nginx zip
+```
+
+## Option A: Build on Server (Recommended)
+
+### 1. Clone Repository
+```bash
+# Create directory and clone
+sudo mkdir -p /var/www/kogti
+cd /var/www/kogti
+sudo git clone <YOUR_REPOSITORY_URL> .
+```
+
+### 2. Install Dependencies and Build
+```bash
+# Install dependencies
+npm ci
+
+# Build the project
+npm run build
+```
+
+### 3. Configure Nginx
+```bash
+# Copy nginx configuration
+sudo cp deploy/nginx.example.conf /etc/nginx/sites-available/kogti
+
+# Enable the site
+sudo ln -s /etc/nginx/sites-available/kogti /etc/nginx/sites-enabled/kogti
+
+# Remove default nginx site
+sudo rm -f /etc/nginx/sites-enabled/default
+
+# Test configuration
+sudo nginx -t
+
+# Reload nginx
+sudo systemctl reload nginx
+```
+
+### 4. Set Proper Permissions
+```bash
+# Set ownership
+sudo chown -R www-data:www-data /var/www/kogti
+
+# Set directory permissions
+sudo find /var/www/kogti -type d -exec chmod 755 {} \;
+
+# Set file permissions
+sudo find /var/www/kogti -type f -exec chmod 644 {} \;
+```
+
+### 5. Verify HTTP Setup
+```bash
+# Check if site loads
+curl -I http://kogtistudio.by/
+
+# Expected response: HTTP/1.1 200 OK, Content-Type: text/html
+
+# Check static assets
+curl -I http://kogtistudio.by/assets/
+
+# Expected response: Cache-Control headers for assets
+```
+
+### 6. Setup HTTPS with Let's Encrypt
+```bash
+# Run certbot
+sudo certbot --nginx -d kogtistudio.by -d www.kogtistudio.by
+
+# Follow the prompts to configure SSL
+# Certbot will automatically update your nginx configuration
+```
+
+### 7. Final Verification
+```bash
+# Test HTTPS
+curl -I https://kogtistudio.by/
+
+# Check that HTTP redirects to HTTPS
+curl -I http://kogtistudio.by/
+```
+
+## Option B: Build Locally and Upload
+
+### 1. Build Locally
+```bash
+# On your local machine
+npm ci
+npm run build
+npm run package:zip
+```
+
+### 2. Upload to Server
+```bash
+# Upload the generated site.zip to your server
+scp dist.zip user@kogtistudio.by:/tmp/
+
+# On server
+sudo mkdir -p /var/www/kogti
+cd /var/www/kogti
+sudo unzip /tmp/dist.zip
+sudo mv dist/* .
+sudo rmdir dist
+```
+
+### 3. Follow Steps 3-7 from Option A
+
+## Updating the Website
+
+### For Git Deployment
+```bash
+cd /var/www/kogti
+sudo git pull origin main
+npm ci
+npm run build
+sudo systemctl reload nginx
+```
+
+### For Manual Upload
+```bash
+# Build locally and upload new site.zip
+# On server:
+cd /var/www/kogti
+sudo rm -rf assets index.html # Remove old files
+sudo unzip /tmp/new-site.zip
+sudo chown -R www-data:www-data /var/www/kogti
+```
+
+## Troubleshooting
+
+### White Screen Issues
+1. Clear browser cache (hard refresh: Ctrl+Shift+R)
+2. Try incognito/private browsing mode
+3. Check browser console for errors (F12)
+
+### Check Server Response
+```bash
+# Verify index.html is served
+curl -sS http://kogtistudio.by/ | head -20
+
+# Check static assets
+curl -I http://kogtistudio.by/assets/index-*.js
+
+# Check nginx error logs
+sudo tail -f /var/log/nginx/error.log
+```
+
+### Common Issues
+- **404 errors**: Check file permissions and nginx root path
+- **Cache issues**: Verify Cache-Control headers are set correctly
+- **SSL issues**: Re-run certbot if HTTPS doesn't work
+
+## DNS Configuration
+
+Ensure your domain points to your server:
+```bash
+# Check DNS resolution
+nslookup kogtistudio.by
+dig kogtistudio.by
+
+# Should return your server's IP address
+```
+
+## Performance Monitoring
+
+```bash
+# Check nginx access logs
+sudo tail -f /var/log/nginx/access.log
+
+# Monitor server resources
+htop
+df -h
+```
+
+## Security Notes
+
+- Keep nginx and certbot updated
+- Monitor server logs regularly
+- Consider enabling a firewall (ufw)
+- Regular backups of website files
+
+## Support
+
+If you encounter issues:
+1. Check nginx error logs: `sudo tail -f /var/log/nginx/error.log`
+2. Verify file permissions and ownership
+3. Test with curl commands provided above
+4. Clear browser cache completely
