@@ -14,24 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      agent_prompt_instructions: {
-        Row: {
-          agent_name: string | null
-          id: number
-          prompt: string | null
-        }
-        Insert: {
-          agent_name?: string | null
-          id?: number
-          prompt?: string | null
-        }
-        Update: {
-          agent_name?: string | null
-          id?: number
-          prompt?: string | null
-        }
-        Relationships: []
-      }
       color_images: {
         Row: {
           color_id: string
@@ -64,54 +46,78 @@ export type Database = {
           },
         ]
       }
-      documents: {
+      gallery_images: {
         Row: {
-          content: string | null
-          embedding: string | null
-          id: number
-          metadata: Json | null
+          alt_text: string | null
+          category: string | null
+          created_at: string | null
+          id: string
+          image_url: string
+          is_active: boolean | null
+          sort_order: number | null
         }
         Insert: {
-          content?: string | null
-          embedding?: string | null
-          id?: number
-          metadata?: Json | null
+          alt_text?: string | null
+          category?: string | null
+          created_at?: string | null
+          id?: string
+          image_url: string
+          is_active?: boolean | null
+          sort_order?: number | null
         }
         Update: {
-          content?: string | null
-          embedding?: string | null
-          id?: number
-          metadata?: Json | null
+          alt_text?: string | null
+          category?: string | null
+          created_at?: string | null
+          id?: string
+          image_url?: string
+          is_active?: boolean | null
+          sort_order?: number | null
         }
         Relationships: []
       }
-      message_logs: {
+      masters: {
         Row: {
-          chat_id: number
+          avatar_url: string | null
+          booking_link: string | null
           created_at: string | null
-          id: number
-          message_text: string | null
-          name: string | null
-          role: string | null
-          username: string | null
+          description: string | null
+          experience: string | null
+          id: string
+          images: string[] | null
+          is_active: boolean | null
+          name: string
+          sort_order: number | null
+          title: string | null
+          updated_at: string | null
         }
         Insert: {
-          chat_id: number
+          avatar_url?: string | null
+          booking_link?: string | null
           created_at?: string | null
-          id?: number
-          message_text?: string | null
-          name?: string | null
-          role?: string | null
-          username?: string | null
+          description?: string | null
+          experience?: string | null
+          id?: string
+          images?: string[] | null
+          is_active?: boolean | null
+          name: string
+          sort_order?: number | null
+          title?: string | null
+          updated_at?: string | null
         }
         Update: {
-          chat_id?: number
+          avatar_url?: string | null
+          booking_link?: string | null
           created_at?: string | null
-          id?: number
-          message_text?: string | null
-          name?: string | null
-          role?: string | null
-          username?: string | null
+          description?: string | null
+          experience?: string | null
+          id?: string
+          images?: string[] | null
+          is_active?: boolean | null
+          name?: string
+          sort_order?: number | null
+          title?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -195,24 +201,51 @@ export type Database = {
         }
         Relationships: []
       }
-      stocks: {
+      profiles: {
         Row: {
-          content: string | null
-          embedding: string | null
-          id: number
-          metadata: Json | null
+          created_at: string | null
+          email: string | null
+          id: string
+          role: string | null
+          updated_at: string | null
         }
         Insert: {
-          content?: string | null
-          embedding?: string | null
-          id?: number
-          metadata?: Json | null
+          created_at?: string | null
+          email?: string | null
+          id: string
+          role?: string | null
+          updated_at?: string | null
         }
         Update: {
-          content?: string | null
-          embedding?: string | null
-          id?: number
-          metadata?: Json | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          role?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          id: string
+          setting_key: string
+          setting_type: string | null
+          setting_value: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          setting_key: string
+          setting_type?: string | null
+          setting_value?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          setting_key?: string
+          setting_type?: string | null
+          setting_value?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -256,6 +289,10 @@ export type Database = {
       hnswhandler: {
         Args: { "": unknown }
         Returns: unknown
+      }
+      is_admin: {
+        Args: Record<PropertyKey, never>
+        Returns: boolean
       }
       ivfflat_bit_support: {
         Args: { "": unknown }
