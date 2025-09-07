@@ -142,17 +142,19 @@ export function MastersManagement() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Управление мастерами</h2>
-        <Button onClick={startCreate} className="flex items-center gap-2">
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          Управление мастерами
+        </h2>
+        <Button onClick={startCreate} className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
           <Plus className="h-4 w-4" />
           Добавить мастера
         </Button>
       </div>
 
       {(isCreating || editingId) && (
-        <Card>
-          <CardHeader>
-            <CardTitle>{isCreating ? 'Новый мастер' : 'Редактировать мастера'}</CardTitle>
+        <Card className="shadow-lg border-primary/20">
+          <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20">
+            <CardTitle className="text-xl text-primary">{isCreating ? 'Новый мастер' : 'Редактировать мастера'}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
@@ -234,43 +236,68 @@ export function MastersManagement() {
         </Card>
       )}
 
-      <div className="grid gap-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {masters.map((master) => (
-          <Card key={master.id}>
-            <CardHeader>
+          <Card key={master.id} className="shadow-lg border-primary/20 hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className="pb-2">
               <div className="flex justify-between items-start">
-                <div>
-                  <CardTitle>{master.name}</CardTitle>
-                  <CardDescription>{master.title}</CardDescription>
+                <div className="flex-1">
+                  <CardTitle className="text-lg font-semibold">{master.name}</CardTitle>
+                  <CardDescription className="text-sm text-muted-foreground">{master.title || 'Не указана должность'}</CardDescription>
                 </div>
                 <div className="flex gap-2">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => startEdit(master)}
-                    className="flex items-center gap-1"
+                    className="hover:bg-blue-50 hover:border-blue-300"
                   >
-                    <Edit className="h-3 w-3" />
-                    Изменить
+                    <Edit className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="destructive"
                     size="sm"
                     onClick={() => deleteMaster(master.id)}
-                    className="flex items-center gap-1"
                   >
-                    <Trash2 className="h-3 w-3" />
-                    Удалить
+                    <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
+              {master.avatar_url && (
+                <div className="mt-3 w-16 h-16 rounded-full overflow-hidden bg-muted mx-auto">
+                  <img src={master.avatar_url} alt={master.name} className="w-full h-full object-cover" />
+                </div>
+              )}
             </CardHeader>
-            <CardContent>
-              <div className="space-y-2 text-sm">
-                <p><strong>Опыт:</strong> {master.experience}</p>
-                <p><strong>Описание:</strong> {master.description}</p>
-                <p><strong>Ссылка:</strong> {master.booking_link}</p>
-                <p><strong>Статус:</strong> {master.is_active ? 'Активен' : 'Неактивен'}</p>
+            <CardContent className="space-y-3">
+              <div className="bg-muted/50 p-3 rounded-lg">
+                <p className="text-sm font-medium text-muted-foreground">Опыт работы</p>
+                <p className="font-medium">{master.experience || 'Не указан'}</p>
+              </div>
+              
+              <div className="bg-muted/50 p-3 rounded-lg">
+                <p className="text-sm font-medium text-muted-foreground">Описание</p>
+                <p className="text-sm line-clamp-3">{master.description || 'Описание не добавлено'}</p>
+              </div>
+              
+              {master.booking_link && (
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg">
+                  <p className="text-sm font-medium text-blue-700 dark:text-blue-300">Ссылка для записи</p>
+                  <p className="text-sm text-blue-600 dark:text-blue-400 truncate">{master.booking_link}</p>
+                </div>
+              )}
+              
+              <div className="flex items-center justify-between pt-2">
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  master.is_active 
+                    ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' 
+                    : 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
+                }`}>
+                  {master.is_active ? 'Активен' : 'Неактивен'}
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  Порядок: {master.sort_order}
+                </span>
               </div>
             </CardContent>
           </Card>

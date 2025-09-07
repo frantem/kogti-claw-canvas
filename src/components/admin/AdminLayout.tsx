@@ -25,12 +25,14 @@ export function AdminLayout() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
+      <div className="min-h-screen flex w-full bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
         <AdminSidebar activeSection={activeSection} onSectionChange={setActiveSection} />
         <div className="flex-1 flex flex-col">
           <AdminHeader />
-          <main className="flex-1 p-6">
-            {renderContent()}
+          <main className="flex-1 p-6 bg-gradient-to-br from-white/50 to-blue-50/50 dark:from-gray-800/50 dark:to-gray-700/50">
+            <div className="max-w-7xl mx-auto">
+              {renderContent()}
+            </div>
           </main>
         </div>
       </div>

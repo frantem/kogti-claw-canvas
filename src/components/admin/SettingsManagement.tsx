@@ -125,21 +125,26 @@ export function SettingsManagement() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Настройки сайта</h2>
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          Настройки сайта
+        </h2>
         <Button 
           onClick={saveAllSettings} 
           disabled={saving}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
         >
           <Save className="h-4 w-4" />
           Сохранить все
         </Button>
       </div>
 
-      <div className="grid gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Основная информация</CardTitle>
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card className="shadow-lg border-primary/20">
+          <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20">
+            <CardTitle className="text-xl text-primary flex items-center gap-2">
+              <span>📝</span>
+              Основная информация
+            </CardTitle>
             <CardDescription>Базовые настройки студии</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -163,9 +168,12 @@ export function SettingsManagement() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Контактная информация</CardTitle>
+        <Card className="shadow-lg border-primary/20">
+          <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20">
+            <CardTitle className="text-xl text-primary flex items-center gap-2">
+              <span>📞</span>
+              Контактная информация
+            </CardTitle>
             <CardDescription>Контакты для связи</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">

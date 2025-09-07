@@ -133,17 +133,19 @@ export function GalleryManagement() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Управление галереей</h2>
-        <Button onClick={startCreate} className="flex items-center gap-2">
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+          Управление галереей
+        </h2>
+        <Button onClick={startCreate} className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
           <Plus className="h-4 w-4" />
           Добавить изображение
         </Button>
       </div>
 
       {(isCreating || editingId) && (
-        <Card>
-          <CardHeader>
-            <CardTitle>{isCreating ? 'Новое изображение' : 'Редактировать изображение'}</CardTitle>
+        <Card className="shadow-lg border-primary/20">
+          <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20">
+            <CardTitle className="text-xl text-primary">{isCreating ? 'Новое изображение' : 'Редактировать изображение'}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -207,41 +209,58 @@ export function GalleryManagement() {
         </Card>
       )}
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {images.map((image) => (
-          <Card key={image.id}>
-            <CardHeader>
+          <Card key={image.id} className="shadow-lg border-primary/20 hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className="pb-2">
               <div className="flex justify-between items-start">
-                <CardTitle className="text-sm">{image.alt_text || 'Без названия'}</CardTitle>
+                <CardTitle className="text-sm font-medium truncate">{image.alt_text || 'Без названия'}</CardTitle>
                 <div className="flex gap-1">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => startEdit(image)}
+                    className="hover:bg-blue-50 hover:border-blue-300"
                   >
-                    <Edit className="h-3 w-3" />
+                    <Edit className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="destructive"
                     size="sm"
                     onClick={() => deleteImage(image.id)}
                   >
-                    <Trash2 className="h-3 w-3" />
+                    <Trash2 className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
+            <CardContent className="space-y-3">
+              <div className="relative">
                 <img
                   src={image.image_url}
                   alt={image.alt_text}
-                  className="w-full h-32 object-cover rounded"
+                  className="w-full h-48 object-cover rounded-lg shadow-sm"
                 />
-                <div className="text-xs text-muted-foreground">
-                  <p>Категория: {image.category}</p>
-                  <p>Порядок: {image.sort_order}</p>
-                  <p>Статус: {image.is_active ? 'Активно' : 'Неактивно'}</p>
+                <div className="absolute top-2 right-2">
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                    image.is_active 
+                      ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400' 
+                      : 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
+                  }`}>
+                    {image.is_active ? 'Активно' : 'Скрыто'}
+                  </span>
+                </div>
+              </div>
+              <div className="bg-muted/50 p-3 rounded-lg">
+                <div className="flex justify-between items-center text-sm">
+                  <div>
+                    <p className="font-medium text-muted-foreground">Категория</p>
+                    <p className="font-semibold capitalize">{image.category}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-medium text-muted-foreground">Порядок</p>
+                    <p className="font-semibold">{image.sort_order}</p>
+                  </div>
                 </div>
               </div>
             </CardContent>

@@ -71,11 +71,11 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-tropical-mint via-tropical-cream to-tropical-peach p-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-500 via-blue-500 to-indigo-600 p-4">
+      <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">A-Art Studio</CardTitle>
-          <CardDescription>Административная панель</CardDescription>
+          <CardTitle className="text-2xl font-bold text-primary">A-Art Studio</CardTitle>
+          <CardDescription className="text-muted-foreground">Административная панель</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="signin" className="w-full">
