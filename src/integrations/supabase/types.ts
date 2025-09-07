@@ -32,27 +32,6 @@ export type Database = {
         }
         Relationships: []
       }
-      chat_histories: {
-        Row: {
-          created_at: string | null
-          id: number
-          message: Json
-          session_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          id?: number
-          message: Json
-          session_id: string
-        }
-        Update: {
-          created_at?: string | null
-          id?: number
-          message?: Json
-          session_id?: string
-        }
-        Relationships: []
-      }
       color_images: {
         Row: {
           color_id: string
