@@ -1,12 +1,20 @@
 import React from "react";
+import Hero from "@/components/Hero";
+import ServicesSection from "@/components/ServicesSection";
+import Team from "@/components/Team";
+import LocationSection from "@/components/LocationSection";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
-  console.log("Index rendering...");
-  
   return (
-    <div className="min-h-screen p-8">
-      <h1 className="text-4xl font-bold">A-Art Studio</h1>
-      <p className="text-lg mt-4">Тестовая страница работает!</p>
+    <div className="min-h-screen">
+      <Hero />
+      <ServicesSection />
+      <Team />
+      <ContactSection />
+      <LocationSection />
+      <Footer />
     </div>
   );
 };
