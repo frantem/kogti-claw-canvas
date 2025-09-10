@@ -19,6 +19,7 @@ interface AdminSidebarProps {
 }
 
 const menuItems = [
+  { id: 'hero', title: 'Главный блок', icon: Image },
   { id: 'masters', title: 'Мастера', icon: Users },
   { id: 'gallery', title: 'Галерея', icon: Image },
   { id: 'settings', title: 'Настройки', icon: Settings },

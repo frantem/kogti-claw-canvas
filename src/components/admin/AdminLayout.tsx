@@ -6,12 +6,15 @@ import { SidebarProvider } from '@/components/ui/sidebar';
 import { MastersManagement } from './MastersManagement';
 import { GalleryManagement } from './GalleryManagement';
 import { SettingsManagement } from './SettingsManagement';
+import { HeroManagement } from './HeroManagement';
 
 export function AdminLayout() {
-  const [activeSection, setActiveSection] = useState('masters');
+  const [activeSection, setActiveSection] = useState('hero');
 
   const renderContent = () => {
     switch (activeSection) {
+      case 'hero':
+        return <HeroManagement />;
       case 'masters':
         return <MastersManagement />;
       case 'gallery':
@@ -19,7 +22,7 @@ export function AdminLayout() {
       case 'settings':
         return <SettingsManagement />;
       default:
-        return <MastersManagement />;
+        return <HeroManagement />;
     }
   };
 
