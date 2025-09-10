@@ -12,6 +12,7 @@ interface ImageUploadProps {
   label: string;
   bucket?: string;
   folder?: string;
+  trigger?: React.ReactNode;
 }
 
 export function ImageUpload({ 
@@ -19,7 +20,8 @@ export function ImageUpload({
   onImageUpload, 
   label, 
   bucket = 'product-images',
-  folder = 'admin-uploads'
+  folder = 'admin-uploads',
+  trigger
 }: ImageUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(currentImageUrl || '');
@@ -97,7 +99,7 @@ export function ImageUpload({
 
   return (
     <div className="space-y-4">
-      <Label>{label}</Label>
+      {label && <Label>{label}</Label>}
       
       {previewUrl ? (
         <div className="relative">
@@ -118,9 +120,11 @@ export function ImageUpload({
           </Button>
         </div>
       ) : (
-        <div className="w-32 h-32 rounded-lg border-2 border-dashed border-muted-foreground/25 flex items-center justify-center bg-muted/25">
-          <Image className="h-8 w-8 text-muted-foreground" />
-        </div>
+        label && (
+          <div className="w-32 h-32 rounded-lg border-2 border-dashed border-muted-foreground/25 flex items-center justify-center bg-muted/25">
+            <Image className="h-8 w-8 text-muted-foreground" />
+          </div>
+        )
       )}
 
       <div className="flex gap-2">
@@ -130,17 +134,23 @@ export function ImageUpload({
           onChange={handleFileSelect}
           disabled={uploading}
           className="hidden"
-          id={`file-upload-${label.replace(/\s+/g, '-').toLowerCase()}`}
+          id={`file-upload-${label?.replace(/\s+/g, '-').toLowerCase() || 'upload'}`}
         />
-        <Button
-          variant="outline"
-          onClick={() => document.getElementById(`file-upload-${label.replace(/\s+/g, '-').toLowerCase()}`)?.click()}
-          disabled={uploading}
-          className="flex items-center gap-2"
-        >
-          <Upload className="h-4 w-4" />
-          {uploading ? 'Загружаем...' : 'Загрузить'}
-        </Button>
+        {trigger ? (
+          <div onClick={() => document.getElementById(`file-upload-${label?.replace(/\s+/g, '-').toLowerCase() || 'upload'}`)?.click()}>
+            {trigger}
+          </div>
+        ) : (
+          <Button
+            variant="outline"
+            onClick={() => document.getElementById(`file-upload-${label?.replace(/\s+/g, '-').toLowerCase() || 'upload'}`)?.click()}
+            disabled={uploading}
+            className="flex items-center gap-2"
+          >
+            <Upload className="h-4 w-4" />
+            {uploading ? 'Загружаем...' : 'Загрузить'}
+          </Button>
+        )}
       </div>
     </div>
   );

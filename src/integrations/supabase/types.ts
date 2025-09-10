@@ -121,6 +121,54 @@ export type Database = {
         }
         Relationships: []
       }
+      orders: {
+        Row: {
+          created_at: string
+          delivery_point: string
+          delivery_service: string
+          first_name: string
+          id: string
+          items: Json
+          last_name: string
+          middle_name: string | null
+          phone: string
+          status: string
+          total_amount: number
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          delivery_point: string
+          delivery_service: string
+          first_name: string
+          id?: string
+          items: Json
+          last_name: string
+          middle_name?: string | null
+          phone: string
+          status?: string
+          total_amount: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          delivery_point?: string
+          delivery_service?: string
+          first_name?: string
+          id?: string
+          items?: Json
+          last_name?: string
+          middle_name?: string | null
+          phone?: string
+          status?: string
+          total_amount?: number
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       product_colors: {
         Row: {
           created_at: string
