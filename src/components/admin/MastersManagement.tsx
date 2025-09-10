@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { ImageUpload } from './ImageUpload';
 import { Plus, Edit, Trash2, Save, X } from 'lucide-react';
 
 interface Master {
@@ -204,13 +205,24 @@ export function MastersManagement() {
               />
             </div>
 
-            <div>
-              <Label htmlFor="avatar_url">URL аватара</Label>
-              <Input
-                id="avatar_url"
-                value={formData.avatar_url}
-                onChange={(e) => setFormData(prev => ({...prev, avatar_url: e.target.value}))}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <ImageUpload
+                  currentImageUrl={formData.avatar_url}
+                  onImageUpload={(url) => setFormData(prev => ({...prev, avatar_url: url}))}
+                  label="Аватар мастера"
+                  folder="masters/avatars"
+                />
+              </div>
+              <div>
+                <Label htmlFor="avatar_url">URL аватара (альтернативно)</Label>
+                <Input
+                  id="avatar_url"
+                  value={formData.avatar_url}
+                  onChange={(e) => setFormData(prev => ({...prev, avatar_url: e.target.value}))}
+                  placeholder="Или вставьте URL изображения"
+                />
+              </div>
             </div>
 
             <div className="flex items-center space-x-2">

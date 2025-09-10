@@ -4,8 +4,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { ImageUpload } from './ImageUpload';
 import { Plus, Edit, Trash2, Save, X } from 'lucide-react';
 
 interface GalleryImage {
@@ -148,13 +150,24 @@ export function GalleryManagement() {
             <CardTitle className="text-xl text-primary">{isCreating ? 'Новое изображение' : 'Редактировать изображение'}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div>
-              <Label htmlFor="image_url">URL изображения</Label>
-              <Input
-                id="image_url"
-                value={formData.image_url}
-                onChange={(e) => setFormData(prev => ({...prev, image_url: e.target.value}))}
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <ImageUpload
+                  currentImageUrl={formData.image_url}
+                  onImageUpload={(url) => setFormData(prev => ({...prev, image_url: url}))}
+                  label="Изображение"
+                  folder="gallery"
+                />
+              </div>
+              <div>
+                <Label htmlFor="image_url">URL изображения (альтернативно)</Label>
+                <Input
+                  id="image_url"
+                  value={formData.image_url}
+                  onChange={(e) => setFormData(prev => ({...prev, image_url: e.target.value}))}
+                  placeholder="Или вставьте URL изображения"
+                />
+              </div>
             </div>
 
             <div>
@@ -169,11 +182,22 @@ export function GalleryManagement() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="category">Категория</Label>
-                <Input
-                  id="category"
-                  value={formData.category}
-                  onChange={(e) => setFormData(prev => ({...prev, category: e.target.value}))}
-                />
+                <Select 
+                  value={formData.category} 
+                  onValueChange={(value) => setFormData(prev => ({...prev, category: value}))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Выберите категорию" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="work">Работы</SelectItem>
+                    <SelectItem value="interior">Интерьер</SelectItem>
+                    <SelectItem value="equipment">Оборудование</SelectItem>
+                    <SelectItem value="process">Процесс работы</SelectItem>
+                    <SelectItem value="team">Команда</SelectItem>
+                    <SelectItem value="certificates">Сертификаты</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label htmlFor="sort_order">Порядок сортировки</Label>
