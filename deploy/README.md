@@ -196,3 +196,14 @@ If you encounter issues:
 2. Verify file permissions and ownership
 3. Test with curl commands provided above
 4. Clear browser cache completely
+
+## Quick fix: White screen (MIME type) after deploy
+
+- Ensure Nginx serves the built site: `root /var/www/kogti/dist;` in your server block.
+- Rebuild on server: `npm ci && npm run build` (dist folder must exist).
+- Reload Nginx: `sudo nginx -t && sudo systemctl reload nginx`
+- Self-check:
+  - `curl -sS http://kogtistudio.by/ | grep -E "/assets/.+\\.js"`   # index.html must reference /assets/*.js, NOT /src/main.tsx
+  - `curl -I http://kogtistudio.by/assets/ | grep -i "Content-Type"` # should be application/javascript for .js files
+  - `curl -I http://kogtistudio.by/favicon.ico`                     # should be 200
+- Hard refresh browser (Ctrl+Shift+R) or try incognito.
