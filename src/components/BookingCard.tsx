@@ -150,7 +150,7 @@ const BookingCard = () => {
             <Dialog>
               <DialogTrigger asChild>
                 <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" style={{
-                backgroundImage: `url(${bookingData.masterPhotos[0]})`
+                backgroundImage: `url(${bookingData.masterPhotos[0] || '/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png'})`
               }} onClick={() => setSelectedImageIndex(0)} />
               </DialogTrigger>
               <DialogContent className="max-w-4xl w-full p-0 bg-black/95">

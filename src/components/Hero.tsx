@@ -63,10 +63,10 @@ const Hero = () => {
       {/* Header on background */}
       <div className="absolute top-16 left-0 right-0 z-10 text-center">
         <h1 className="text-5xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
-          {heroData.title}
+          Маникюр
         </h1>
         <p className="text-sm text-white/90 font-medium uppercase tracking-wider drop-shadow-md">
-          {heroData.subtitle}
+          + pedicure
         </p>
       </div>
       

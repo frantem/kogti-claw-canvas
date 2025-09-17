@@ -1,4 +1,4 @@
-import { Users, Image, Settings, Home } from 'lucide-react';
+import { Users, Image, Settings, Home, Type } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import {
   Sidebar,
@@ -22,6 +22,7 @@ const menuItems = [
   { id: 'hero', title: 'Главный блок', icon: Image },
   { id: 'masters', title: 'Мастера', icon: Users },
   { id: 'gallery', title: 'Галерея', icon: Image },
+  { id: 'headings', title: 'Заголовки', icon: Type },
   { id: 'settings', title: 'Настройки', icon: Settings },
 ];
 

@@ -7,6 +7,7 @@ import { MastersManagement } from './MastersManagement';
 import { GalleryManagement } from './GalleryManagement';
 import { SettingsManagement } from './SettingsManagement';
 import { HeroManagement } from './HeroManagement';
+import HeadingsManagement from './HeadingsManagement';
 
 export function AdminLayout() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -21,6 +22,8 @@ export function AdminLayout() {
         return <GalleryManagement />;
       case 'settings':
         return <SettingsManagement />;
+      case 'headings':
+        return <HeadingsManagement />;
       default:
         return <HeroManagement />;
     }
