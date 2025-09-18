@@ -14,6 +14,8 @@ interface Heading {
 
 const HeadingsManagement = () => {
   const [headings, setHeadings] = useState<Heading[]>([
+    { key: 'hero_h1_title', label: 'Главная - Заголовок H1 (основной)', value: '' },
+    { key: 'hero_h1_subtitle', label: 'Главная - Подзаголовок H1 (после +)', value: '' },
     { key: 'services_h2', label: 'Услуги - Заголовок H2', value: '' },
     { key: 'services_h3', label: 'Услуги - Подзаголовок H3', value: '' },
     { key: 'team_h2', label: 'Команда - Заголовок H2', value: '' },

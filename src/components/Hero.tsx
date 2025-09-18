@@ -6,7 +6,9 @@ const Hero = () => {
   const [heroData, setHeroData] = useState({
     title: 'KOGTI',
     subtitle: 'BEAUTY STUDIO',
-    backgroundImage: '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png'
+    backgroundImage: '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png',
+    h1Title: 'Маникюр',
+    h1Subtitle: 'pedicure'
   });
 
   useEffect(() => {
@@ -18,7 +20,7 @@ const Hero = () => {
       const { data } = await supabase
         .from('site_settings')
         .select('setting_key, setting_value')
-        .in('setting_key', ['hero_title', 'hero_subtitle', 'hero_background']);
+        .in('setting_key', ['hero_title', 'hero_subtitle', 'hero_background', 'hero_h1_title', 'hero_h1_subtitle']);
 
       if (data) {
         const settingsMap = data.reduce((acc, item) => {
@@ -29,7 +31,9 @@ const Hero = () => {
         setHeroData({
           title: settingsMap.hero_title || 'KOGTI',
           subtitle: settingsMap.hero_subtitle || 'BEAUTY STUDIO',
-          backgroundImage: settingsMap.hero_background || '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png'
+          backgroundImage: settingsMap.hero_background || '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png',
+          h1Title: settingsMap.hero_h1_title || 'Маникюр',
+          h1Subtitle: settingsMap.hero_h1_subtitle || 'pedicure'
         });
       }
     } catch (error) {
@@ -61,12 +65,20 @@ const Hero = () => {
       </div>
       
       {/* Header on background */}
-      <div className="absolute top-16 left-0 right-0 z-10 text-center">
+      <div className="absolute top-8 left-0 right-0 z-10 text-center">
+        <div className="text-white mb-4">
+          <h2 className="text-2xl font-bold tracking-tight drop-shadow-lg">
+            {heroData.title}
+          </h2>
+          <p className="text-sm font-medium uppercase tracking-wider drop-shadow-md">
+            {heroData.subtitle}
+          </p>
+        </div>
         <h1 className="text-5xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
-          Маникюр
+          {heroData.h1Title}
         </h1>
         <p className="text-sm text-white/90 font-medium uppercase tracking-wider drop-shadow-md">
-          + pedicure
+          + {heroData.h1Subtitle}
         </p>
       </div>
       
