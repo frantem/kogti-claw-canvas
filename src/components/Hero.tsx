@@ -65,7 +65,7 @@ const Hero = () => {
       </div>
       
       {/* Header on background */}
-      <div className="absolute top-8 left-0 right-0 z-10 text-center">
+      <div className="absolute top-[20%] left-0 right-0 z-10 text-center">
         <div className="text-white">
           <h1 className="text-2xl font-bold tracking-tight drop-shadow-lg">
             {heroData.title}
