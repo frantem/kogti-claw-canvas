@@ -66,20 +66,14 @@ const Hero = () => {
       
       {/* Header on background */}
       <div className="absolute top-8 left-0 right-0 z-10 text-center">
-        <div className="text-white mb-4">
-          <h2 className="text-2xl font-bold tracking-tight drop-shadow-lg">
+        <div className="text-white">
+          <h1 className="text-2xl font-bold tracking-tight drop-shadow-lg">
             {heroData.title}
-          </h2>
+          </h1>
           <p className="text-sm font-medium uppercase tracking-wider drop-shadow-md">
             {heroData.subtitle}
           </p>
         </div>
-        <h1 className="text-5xl font-bold text-white mb-2 tracking-tight drop-shadow-lg">
-          {heroData.h1Title}
-        </h1>
-        <p className="text-sm text-white/90 font-medium uppercase tracking-wider drop-shadow-md">
-          + {heroData.h1Subtitle}
-        </p>
       </div>
       
     </section>
