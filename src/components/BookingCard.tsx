@@ -6,7 +6,6 @@ import { Check } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from '@/integrations/supabase/client';
 import masterEmily from "@/assets/master-anna.jpg";
-
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [bookingData, setBookingData] = useState({
@@ -20,35 +19,25 @@ const BookingCard = () => {
     masterPhotos: ["/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png", "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png", "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png", "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"],
     bookingLink: 'https://dikidi.ru/#widget=192147'
   });
-
   useEffect(() => {
     fetchBookingData();
   }, []);
-
   const fetchBookingData = async () => {
     try {
-      const { data } = await supabase
-        .from('site_settings')
-        .select('setting_key, setting_value')
-        .in('setting_key', [
-          'booking_service_title', 'booking_service_subtitle', 'booking_service_image',
-          'booking_master_name', 'booking_master_avatar', 'booking_hot_date',
-          'booking_hot_time', 'booking_master_photos', 'booking_link'
-        ]);
-
+      const {
+        data
+      } = await supabase.from('site_settings').select('setting_key, setting_value').in('setting_key', ['booking_service_title', 'booking_service_subtitle', 'booking_service_image', 'booking_master_name', 'booking_master_avatar', 'booking_hot_date', 'booking_hot_time', 'booking_master_photos', 'booking_link']);
       if (data) {
         const settingsMap = data.reduce((acc, item) => {
           acc[item.setting_key] = item.setting_value || '';
           return acc;
         }, {} as Record<string, string>);
-
         let masterPhotos = [];
         try {
           masterPhotos = JSON.parse(settingsMap.booking_master_photos || '[]');
         } catch (e) {
           masterPhotos = ["/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png", "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png", "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png", "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"];
         }
-
         setBookingData({
           serviceTitle: settingsMap.booking_service_title || 'Маникюр',
           serviceSubtitle: settingsMap.booking_service_subtitle || '+ pedicure',
@@ -106,7 +95,7 @@ const BookingCard = () => {
             backgroundImage: `url(${bookingData.serviceImage})`
           }}>
               <div className="absolute inset-0 bg-black/30 rounded-[4rem] flex items-center justify-center">
-                <span className="text-white text-xs font-bold">KOGTI</span>
+                <span className="text-white text-xs font-bold">Ленина 26</span>
               </div>
             </div>
           </div>
