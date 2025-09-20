@@ -5,7 +5,7 @@ import { supabase } from '@/integrations/supabase/client';
 const Hero = () => {
   const [heroData, setHeroData] = useState({
     title: 'KOGTI',
-    subtitle: 'BEAUTY STUDIO',
+    subtitle: 'МАНИКЮР ПЕДИКЮР ВИТЕБСК',
     backgroundImage: '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png',
     h1Title: 'Маникюр',
     h1Subtitle: 'pedicure'
@@ -30,7 +30,7 @@ const Hero = () => {
 
         setHeroData({
           title: settingsMap.hero_title || 'KOGTI',
-          subtitle: settingsMap.hero_subtitle || 'BEAUTY STUDIO',
+          subtitle: settingsMap.hero_subtitle || 'МАНИКЮР ПЕДИКЮР ВИТЕБСК',
           backgroundImage: settingsMap.hero_background || '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png',
           h1Title: settingsMap.hero_h1_title || 'Маникюр',
           h1Subtitle: settingsMap.hero_h1_subtitle || 'pedicure'
