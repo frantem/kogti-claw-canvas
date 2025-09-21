@@ -76,7 +76,8 @@ const ServicesSection = () => {
               key={`${activeTab}-${index}`}
               className="animate-fade-in overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer group border-4 border-white/20 rounded-3xl"
               style={{ 
-                animationDelay: `${index * 100}ms`
+                animationDelay: `${index * 100}ms`,
+                boxShadow: '0 0 15px rgba(255, 204, 102, 0.6), 0 0 30px rgba(255, 204, 102, 0.4), 0 0 45px rgba(255, 204, 102, 0.3)'
               }}
               onClick={() => handleServiceClick(service.widget)}
             >
