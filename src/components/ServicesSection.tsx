@@ -79,7 +79,7 @@ const ServicesSection = () => {
               className="animate-fade-in overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group border-4 border-white/20 rounded-3xl"
               style={{ 
                 animationDelay: `${index * 100}ms`,
-                boxShadow: '0 0 20px rgba(255, 204, 102, 0.8), 0 0 40px rgba(255, 204, 102, 0.6), 0 0 60px rgba(255, 204, 102, 0.4), 0 4px 20px rgba(0, 0, 0, 0.3)'
+                boxShadow: '0 0 8px rgba(255, 204, 102, 0.6), 0 0 16px rgba(255, 204, 102, 0.4), 0 0 24px rgba(255, 204, 102, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2)'
               }}
               onClick={() => handleServiceClick(service.widget)}
             >

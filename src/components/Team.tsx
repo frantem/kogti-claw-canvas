@@ -75,7 +75,7 @@ const MasterCard = ({ master, index }: { master: any, index: number }) => {
       style={{
         borderRadius: '3rem',
         animationDelay: `${index * 150}ms`,
-        boxShadow: '0 0 20px rgba(255, 204, 102, 0.8), 0 0 40px rgba(255, 204, 102, 0.6), 0 0 60px rgba(255, 204, 102, 0.4), 0 4px 20px rgba(0, 0, 0, 0.3)'
+        boxShadow: '0 0 8px rgba(255, 204, 102, 0.6), 0 0 16px rgba(255, 204, 102, 0.4), 0 0 24px rgba(255, 204, 102, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2)'
       }}
     >
       {/* Single Background Image */}
