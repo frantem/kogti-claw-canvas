@@ -71,11 +71,11 @@ const Team = () => {
 const MasterCard = ({ master, index }: { master: any, index: number }) => {
   return (
     <Card 
-      className="relative overflow-hidden h-[450px] md:h-[600px] shadow-xl animate-fade-in border-8 border-white/20 backdrop-blur-sm"
+      className="relative overflow-hidden h-[450px] md:h-[600px] animate-fade-in border-8 border-white/20 backdrop-blur-sm"
       style={{
         borderRadius: '3rem',
         animationDelay: `${index * 150}ms`,
-        boxShadow: '0 0 15px rgba(255, 204, 102, 0.6), 0 0 30px rgba(255, 204, 102, 0.4), 0 0 45px rgba(255, 204, 102, 0.3)'
+        boxShadow: '0 0 20px rgba(255, 204, 102, 0.8), 0 0 40px rgba(255, 204, 102, 0.6), 0 0 60px rgba(255, 204, 102, 0.4), 0 4px 20px rgba(0, 0, 0, 0.3)'
       }}
     >
       {/* Single Background Image */}
