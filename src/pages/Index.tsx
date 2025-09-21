@@ -43,6 +43,8 @@ const Index = () => {
     fetchSEOData();
   }, []);
 
+  console.log('Index component rendering', { seoData });
+  
   return (
     <>
       <Helmet>

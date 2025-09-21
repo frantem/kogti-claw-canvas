@@ -29,6 +29,8 @@ const ServicesSection = () => {
     window.open(`https://dikidi.ru/#widget=${widget}`, '_blank');
   };
 
+  console.log('ServicesSection rendering');
+  
   return (
     <section className="relative min-h-screen bg-gray-100 py-20">
       {/* Content */}

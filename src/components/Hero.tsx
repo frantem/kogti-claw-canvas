@@ -11,6 +11,8 @@ const Hero = () => {
     h1Subtitle: 'pedicure'
   });
 
+  console.log('Hero component mounting');
+  
   useEffect(() => {
     fetchHeroData();
   }, []);
