@@ -54,8 +54,11 @@ const Team = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-4">
-            Команда
+            Наши мастера маникюра в Витебске
           </h2>
+          <p className="text-white/90 text-lg">
+            Команда профессионалов студии красоты KOGTI с опытом от 2 до 6 лет
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">

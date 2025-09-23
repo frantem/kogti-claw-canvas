@@ -35,10 +35,15 @@ const ServicesSection = () => {
     <section className="relative min-h-screen bg-gray-100 py-20">
       {/* Content */}
       <div className="relative z-10 px-6 w-full max-w-6xl mx-auto">
-        {/* Title */}
-        <h2 className="text-4xl font-bold text-center mb-12 text-black">
-          Услуги
-        </h2>
+        {/* SEO optimized title */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+            Услуги маникюра и педикюра в Витебске
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Профессиональные услуги nail-сервиса в студии красоты KOGTI: маникюр, педикюр, наращивание ногтей и дизайн в Витебске
+          </p>
+        </div>
 
         {/* Toggle Switch */}
         <div className="relative mb-12 bg-white rounded-2xl p-1.5 border border-gray-200 max-w-md mx-auto">

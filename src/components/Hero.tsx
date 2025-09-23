@@ -66,7 +66,7 @@ const Hero = () => {
         <div className="absolute inset-0 backdrop-blur-[2px] mask-radial-blur"></div>
       </div>
       
-      {/* Header on background */}
+      {/* Header on background with SEO H1 */}
       <div className="absolute top-[15%] left-0 right-0 z-10 text-center">
         <div className="text-white">
           <h2 className="text-4xl font-bold tracking-tight drop-shadow-lg" style={{

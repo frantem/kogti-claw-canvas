@@ -10,5 +10,14 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: Yandex
+Allow: /
+
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://kogti.lovable.app/sitemap.xml
+
+# Optimize crawling for Yandex (popular in Belarus)
+Crawl-delay: 1
