@@ -67,7 +67,7 @@ const Hero = () => {
       </div>
       
       {/* Header on background */}
-      <div className="absolute top-[15%] left-0 right-0 z-10 text-center">
+      <div className="absolute top-[20%] left-0 right-0 z-10 text-center">
         <div className="text-white">
           <h2 className="text-4xl font-bold tracking-tight drop-shadow-lg" style={{
             textShadow: '0 0 10px rgba(255, 204, 102, 1), 0 0 20px rgba(255, 204, 102, 0.8), 0 0 30px rgba(255, 204, 102, 0.6)'
