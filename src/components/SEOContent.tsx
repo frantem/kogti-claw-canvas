@@ -1,4 +1,4 @@
 const SEOContent = () => {
-  return;
+  return null;
 };
 export default SEOContent;
