@@ -70,43 +70,7 @@ const AboutSection = () => {
             </div>
 
             {/* Services list with local keywords */}
-            <div className="space-y-6">
-              
-              
-              <div className="space-y-4">
-                <Card className="p-6 bg-card/80 backdrop-blur-sm border border-border/50">
-                  <h4 className="text-lg font-semibold text-foreground mb-3">Маникюр в Витебске</h4>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Классический обрезной маникюр</li>
-                    <li>• Аппаратный маникюр</li>
-                    <li>• Покрытие гель-лаком</li>
-                    <li>• Дизайн ногтей и nail-арт</li>
-                    
-                  </ul>
-                </Card>
-                
-                <Card className="p-6 bg-card/80 backdrop-blur-sm border border-border/50">
-                  <h4 className="text-lg font-semibold text-foreground mb-3">Педикюр в Витебске</h4>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Классический педикюр</li>
-                    <li>• Аппаратный педикюр</li>
-                    <li>• СПА-педикюр</li>
-                    <li>• Покрытие гель-лаком на ногах</li>
-                    <li>• Лечение вросших ногтей</li>
-                  </ul>
-                </Card>
-                
-                <Card className="p-6 bg-card/80 backdrop-blur-sm border border-border/50">
-                  <h4 className="text-lg font-semibold text-foreground mb-3">Наращивание ногтей Витебск</h4>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Наращивание гелем</li>
-                    <li>• Наращивание акрилом</li>
-                    <li>• Коррекция наращенных ногтей</li>
-                    <li>• Укрепление натуральных ногтей</li>
-                  </ul>
-                </Card>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
