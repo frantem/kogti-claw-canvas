@@ -1,8 +1,6 @@
 import { Card } from "@/components/ui/card";
-
 const AboutSection = () => {
-  return (
-    <section id="about" className="py-20 bg-gradient-to-br from-background to-muted">
+  return <section id="about" className="py-20 bg-gradient-to-br from-background to-muted">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Main heading with local keywords */}
@@ -10,9 +8,7 @@ const AboutSection = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               О студии красоты KOGTI в Витебске
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Лучший салон красоты в Витебске для профессионального маникюра, педикюра и наращивания ногтей
-            </p>
+            
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -116,8 +112,6 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
