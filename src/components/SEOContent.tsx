@@ -42,9 +42,7 @@ const SEOContent = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h4 className="text-lg font-medium text-foreground">
-                  Почему клиенты выбирают нашу ногтевую студию в Витебске:
-                </h4>
+                <h4 className="text-lg font-medium text-foreground">Почему клиенты выбирают нашу ногтевую студию:</h4>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>✓ Лучшие мастера маникюра и педикюра в Витебске</li>
                   <li>✓ Удобное расположение в центре города (ул. Ленина, 26)</li>
