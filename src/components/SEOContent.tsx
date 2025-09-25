@@ -1,6 +1,5 @@
 const SEOContent = () => {
-  return (
-    <section className="py-16 bg-background">
+  return <section className="py-16 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Local SEO content */}
@@ -9,11 +8,7 @@ const SEOContent = () => {
               <h3 className="text-xl font-semibold text-foreground">
                 Маникюр в Витебске
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Профессиональный маникюр в Витебске в студии KOGTI. Мы предлагаем классический 
-                и аппаратный маникюр, покрытие гель-лаком, дизайн ногтей. Удобное расположение 
-                в центре города на ул. Ленина, 26.
-              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">Профессиональный маникюр в Витебске в студии KOGTI. Мы предлагаем классический и аппаратный маникюр, гелевое укрепление ногтей, покрытие гель-лаком, дизайн ногтей. Удобное расположение в центре города на ул. Ленина, 26.</p>
             </div>
             
             <div className="space-y-4">
@@ -84,8 +79,6 @@ const SEOContent = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SEOContent;
