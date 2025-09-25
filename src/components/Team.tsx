@@ -35,7 +35,7 @@ const Team = () => {
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-4"> Мастера ногтевого сервиса</h2>
           <p className="text-white/90 text-lg">
-            Команда профессионалов студии красоты KOGTI с опытом от 2 до 6 лет
+            Команда профессионалов студии красоты KOGTI
           </p>
         </div>
 
@@ -79,17 +79,17 @@ const MasterCard = ({
       {/* Content Section */}
       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
         {/* Master Name */}
-        <h3 className="text-2xl font-bold mb-3">
+        <p className="text-2xl font-bold mb-3">
           {master.name}
-        </h3>
+        </p>
         
         {/* Description */}
-        <p className="text-sm text-gray-200 mb-4 leading-relaxed">
+        <h3 className="text-sm text-gray-200 mb-4 leading-relaxed">
           {master.description.split('\n').map((line: string, lineIndex: number) => <span key={lineIndex}>
               {line}
               {lineIndex < master.description.split('\n').length - 1 && <br />}
             </span>)}
-        </p>
+        </h3>
 
         {/* Tags */}
         <div className="flex gap-3 mb-4">
