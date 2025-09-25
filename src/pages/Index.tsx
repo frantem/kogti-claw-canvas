@@ -128,13 +128,13 @@ const Index = () => {
       </Helmet>
       <main className="min-h-screen">
         <Hero />
-        <AboutSection />
         <ServicesSection />
         <Team />
-        <FAQSection />
         <ContactSection />
         <LocationSection />
         <SEOContent />
+        <AboutSection />
+        <FAQSection />
         <Footer />
       </main>
     </>
