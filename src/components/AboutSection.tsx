@@ -71,9 +71,7 @@ const AboutSection = () => {
 
             {/* Services list with local keywords */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-foreground">
-                Наши услуги в Витебске
-              </h3>
+              
               
               <div className="space-y-4">
                 <Card className="p-6 bg-card/80 backdrop-blur-sm border border-border/50">
@@ -83,7 +81,7 @@ const AboutSection = () => {
                     <li>• Аппаратный маникюр</li>
                     <li>• Покрытие гель-лаком</li>
                     <li>• Дизайн ногтей и nail-арт</li>
-                    <li>• Френч маникюр</li>
+                    
                   </ul>
                 </Card>
                 
