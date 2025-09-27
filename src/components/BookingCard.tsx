@@ -133,24 +133,30 @@ const BookingCard = () => {
       </div>
 
       {/* Date & Time Selection */}
-      <div className="flex items-center gap-6 mb-6">
-        <div>
-          <p className="text-sm text-gray-500 mb-2">Работы мастера</p>
+      <div className="flex items-start gap-6 mb-6">
+        <div className="flex-1">
+          <p className="text-xs text-gray-500 mb-2">Работы мастера</p>
           <div className="flex gap-2">
             {bookingData.masterPhotos && bookingData.masterPhotos.length > 0 ? (
               <>
                 {bookingData.masterPhotos.slice(0, 3).map((photo, index) => (
                   <Dialog key={index}>
                     <DialogTrigger asChild>
-                      <button className="w-12 h-12 rounded-lg border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform shadow-md" style={{
-                        backgroundImage: `url(${photo})`
-                      }}>
+                      <div className="relative w-12 h-12 rounded-lg border-2 border-white cursor-pointer hover:scale-105 transition-transform shadow-md overflow-hidden">
+                        <img 
+                          src={photo} 
+                          alt={`Master work ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.src = "/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png";
+                          }}
+                        />
                         {index === 2 && bookingData.masterPhotos.length > 3 && (
-                          <div className="bg-black/60 text-white text-xs font-medium rounded-lg w-full h-full flex items-center justify-center">
+                          <div className="absolute inset-0 bg-black/60 text-white text-xs font-medium rounded-lg flex items-center justify-center">
                             +{bookingData.masterPhotos.length - 2}
                           </div>
                         )}
-                      </button>
+                      </div>
                     </DialogTrigger>
                     <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
                       <Carousel className="w-full">
