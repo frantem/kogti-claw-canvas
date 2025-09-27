@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Separator } from "@/components/ui/separator";
 import { Check } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from '@/integrations/supabase/client';
@@ -132,78 +133,50 @@ const BookingCard = () => {
       </div>
 
       {/* Date & Time Selection */}
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <div className="flex items-center gap-6 mb-6">
         <div>
           <p className="text-sm text-gray-500 mb-2">Работы мастера</p>
-          <div className="flex -space-x-2">
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" style={{
-                backgroundImage: `url(${bookingData.masterPhotos[0] || '/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png'})`
-              }} onClick={() => setSelectedImageIndex(0)} />
-              </DialogTrigger>
-              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {bookingData.masterPhotos.map((photo, index) => <CarouselItem key={index}>
-                        <div className="flex aspect-square items-center justify-center p-6">
-                          <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
-                        </div>
-                      </CarouselItem>)}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-4" />
-                  <CarouselNext className="right-4" />
-                </Carousel>
-              </DialogContent>
-            </Dialog>
-            
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" style={{
-                backgroundImage: `url(${bookingData.masterPhotos[1]})`
-              }} onClick={() => setSelectedImageIndex(1)} />
-              </DialogTrigger>
-              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {bookingData.masterPhotos.map((photo, index) => <CarouselItem key={index}>
-                        <div className="flex aspect-square items-center justify-center p-6">
-                          <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
-                        </div>
-                      </CarouselItem>)}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-4" />
-                  <CarouselNext className="right-4" />
-                </Carousel>
-              </DialogContent>
-            </Dialog>
-            
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform flex items-center justify-center" style={{
-                backgroundImage: `url(${bookingData.masterPhotos[2]})`
-              }} onClick={() => setSelectedImageIndex(2)}>
-                  <div className="bg-black/50 text-white text-xs font-medium rounded-full w-full h-full flex items-center justify-center">
-                    +{bookingData.masterPhotos.length - 2}
-                  </div>
-                </button>
-              </DialogTrigger>
-              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
-                <Carousel className="w-full">
-                  <CarouselContent>
-                    {bookingData.masterPhotos.map((photo, index) => <CarouselItem key={index}>
-                        <div className="flex aspect-square items-center justify-center p-6">
-                          <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
-                        </div>
-                      </CarouselItem>)}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-4" />
-                  <CarouselNext className="right-4" />
-                </Carousel>
-              </DialogContent>
-            </Dialog>
+          <div className="flex gap-2">
+            {bookingData.masterPhotos && bookingData.masterPhotos.length > 0 ? (
+              <>
+                {bookingData.masterPhotos.slice(0, 3).map((photo, index) => (
+                  <Dialog key={index}>
+                    <DialogTrigger asChild>
+                      <button className="w-12 h-12 rounded-lg border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform shadow-md" style={{
+                        backgroundImage: `url(${photo})`
+                      }}>
+                        {index === 2 && bookingData.masterPhotos.length > 3 && (
+                          <div className="bg-black/60 text-white text-xs font-medium rounded-lg w-full h-full flex items-center justify-center">
+                            +{bookingData.masterPhotos.length - 2}
+                          </div>
+                        )}
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
+                      <Carousel className="w-full">
+                        <CarouselContent>
+                          {bookingData.masterPhotos.map((photo, photoIndex) => (
+                            <CarouselItem key={photoIndex}>
+                              <div className="flex aspect-square items-center justify-center p-6">
+                                <img src={photo} alt={`Nail work ${photoIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
+                              </div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-4" />
+                        <CarouselNext className="right-4" />
+                      </Carousel>
+                    </DialogContent>
+                  </Dialog>
+                ))}
+              </>
+            ) : (
+              <div className="text-xs text-gray-400">Нет фотографий</div>
+            )}
           </div>
         </div>
+        
+        <Separator orientation="vertical" className="h-16" />
         <div>
           <p className="text-sm text-gray-500 mb-2">   Горящие окна🔥</p>
           <div className="text-right">
