@@ -134,90 +134,75 @@ const BookingCard = () => {
       {/* Date & Time Selection */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div>
-          <p className="text-sm text-gray-500 mb-3">Работы мастера</p>
-          <Dialog>
-            <DialogTrigger asChild>
-              <div className="relative group cursor-pointer">
-                {/* Main preview with 3 photos */}
-                <div className="grid grid-cols-3 gap-1 rounded-2xl overflow-hidden shadow-lg border border-white/20 hover:scale-[1.02] transition-all duration-300">
-                  <div className="aspect-square bg-cover bg-center" 
-                       style={{ backgroundImage: `url(${bookingData.masterPhotos[0] || '/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png'})` }}>
-                  </div>
-                  <div className="aspect-square bg-cover bg-center" 
-                       style={{ backgroundImage: `url(${bookingData.masterPhotos[1] || '/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png'})` }}>
-                  </div>
-                  <div className="aspect-square bg-cover bg-center relative" 
-                       style={{ backgroundImage: `url(${bookingData.masterPhotos[2] || '/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png'})` }}>
-                    {bookingData.masterPhotos.length > 3 && (
-                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                        <span className="text-white text-xs font-semibold">+{bookingData.masterPhotos.length - 3}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-                
-                {/* Overlay with play button effect */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 rounded-2xl flex items-center justify-center transition-all duration-300">
-                  <div className="w-8 h-8 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300 shadow-lg">
-                    <svg className="w-4 h-4 text-gray-900 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </DialogTrigger>
-            <DialogContent className="max-w-5xl w-full p-0 bg-black/95 border-0">
-              <div className="relative">
-                <Carousel className="w-full" setApi={(api) => {
-                  if (api) {
-                    api.scrollTo(selectedImageIndex);
-                  }
-                }}>
+          <p className="text-sm text-gray-500 mb-2">Работы мастера</p>
+          <div className="flex -space-x-2">
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" style={{
+                backgroundImage: `url(${bookingData.masterPhotos[0] || '/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png'})`
+              }} onClick={() => setSelectedImageIndex(0)} />
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
+                <Carousel className="w-full">
                   <CarouselContent>
-                    {bookingData.masterPhotos.map((photo, index) => (
-                      <CarouselItem key={index}>
-                        <div className="flex aspect-video items-center justify-center p-6">
-                          <img 
-                            src={photo} 
-                            alt={`Работа мастера ${index + 1}`} 
-                            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl" 
-                          />
+                    {bookingData.masterPhotos.map((photo, index) => <CarouselItem key={index}>
+                        <div className="flex aspect-square items-center justify-center p-6">
+                          <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
                         </div>
-                      </CarouselItem>
-                    ))}
+                      </CarouselItem>)}
                   </CarouselContent>
-                  <CarouselPrevious className="left-4 bg-white/90 hover:bg-white text-black border-0 shadow-lg" />
-                  <CarouselNext className="right-4 bg-white/90 hover:bg-white text-black border-0 shadow-lg" />
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
                 </Carousel>
-                
-                {/* Image counter */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                  {selectedImageIndex + 1} / {bookingData.masterPhotos.length}
-                </div>
-                
-                {/* Thumbnails at bottom */}
-                <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex gap-2 bg-black/50 p-2 rounded-lg">
-                  {bookingData.masterPhotos.slice(0, 5).map((photo, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImageIndex(index)}
-                      className={`w-12 h-12 rounded-lg bg-cover bg-center border-2 transition-all duration-200 ${
-                        selectedImageIndex === index 
-                          ? 'border-white scale-110' 
-                          : 'border-white/50 hover:border-white/80'
-                      }`}
-                      style={{ backgroundImage: `url(${photo})` }}
-                    />
-                  ))}
-                  {bookingData.masterPhotos.length > 5 && (
-                    <div className="w-12 h-12 rounded-lg bg-white/20 border-2 border-white/50 flex items-center justify-center">
-                      <span className="text-white text-xs">+{bookingData.masterPhotos.length - 5}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform" style={{
+                backgroundImage: `url(${bookingData.masterPhotos[1]})`
+              }} onClick={() => setSelectedImageIndex(1)} />
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {bookingData.masterPhotos.map((photo, index) => <CarouselItem key={index}>
+                        <div className="flex aspect-square items-center justify-center p-6">
+                          <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
+                        </div>
+                      </CarouselItem>)}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+              </DialogContent>
+            </Dialog>
+            
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="w-8 h-8 rounded-full border-2 border-white bg-cover bg-center cursor-pointer hover:scale-105 transition-transform flex items-center justify-center" style={{
+                backgroundImage: `url(${bookingData.masterPhotos[2]})`
+              }} onClick={() => setSelectedImageIndex(2)}>
+                  <div className="bg-black/50 text-white text-xs font-medium rounded-full w-full h-full flex items-center justify-center">
+                    +{bookingData.masterPhotos.length - 2}
+                  </div>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {bookingData.masterPhotos.map((photo, index) => <CarouselItem key={index}>
+                        <div className="flex aspect-square items-center justify-center p-6">
+                          <img src={photo} alt={`Nail work ${index + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
+                        </div>
+                      </CarouselItem>)}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-4" />
+                  <CarouselNext className="right-4" />
+                </Carousel>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
         <div>
           <p className="text-sm text-gray-500 mb-2">   Горящие окна🔥</p>
