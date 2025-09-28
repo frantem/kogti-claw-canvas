@@ -134,7 +134,7 @@ const BookingCard = () => {
 
       {/* Date & Time Selection */}
       <div className="flex items-start gap-6 mb-6">
-        <div className="flex-1">
+        <div className="w-1/2">
           <p className="text-xs text-gray-500 mb-2">Работы мастера</p>
           <div className="flex gap-2">
             {bookingData.masterPhotos && bookingData.masterPhotos.length > 0 ? (
@@ -142,7 +142,7 @@ const BookingCard = () => {
                 {bookingData.masterPhotos.slice(0, 3).map((photo, index) => (
                   <Dialog key={index}>
                     <DialogTrigger asChild>
-                      <div className="relative w-12 h-12 rounded-lg border-2 border-white cursor-pointer hover:scale-105 transition-transform shadow-md overflow-hidden">
+                      <div className="relative w-12 h-12 rounded-full border-2 border-white cursor-pointer hover:scale-105 transition-transform shadow-md overflow-hidden">
                         <img 
                           src={photo} 
                           alt={`Master work ${index + 1}`}
@@ -152,7 +152,7 @@ const BookingCard = () => {
                           }}
                         />
                         {index === 2 && bookingData.masterPhotos.length > 3 && (
-                          <div className="absolute inset-0 bg-black/60 text-white text-xs font-medium rounded-lg flex items-center justify-center">
+                          <div className="absolute inset-0 bg-black/60 text-white text-xs font-medium rounded-full flex items-center justify-center">
                             +{bookingData.masterPhotos.length - 2}
                           </div>
                         )}
@@ -183,8 +183,9 @@ const BookingCard = () => {
         </div>
         
         <Separator orientation="vertical" className="h-16" />
-        <div>
-          <p className="text-sm text-gray-500 mb-2">   Горящие окна🔥</p>
+        
+        <div className="w-1/2">
+          <p className="text-xs text-gray-500 mb-2">Горящие окна🔥</p>
           <div className="text-right">
              <p className="font-semibold text-gray-900">{bookingData.hotDate}</p>
              <p className="text-sm text-gray-500">{bookingData.hotTime}</p>
