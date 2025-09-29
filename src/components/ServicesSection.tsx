@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import appBackground from "@/assets/app-background.jpg";
+import LazyImage from "@/components/LazyImage";
 
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState<'manicure' | 'pedicure'>('manicure');
@@ -88,10 +89,13 @@ const ServicesSection = () => {
               }}
               onClick={() => handleServiceClick(service.widget)}
             >
-              <div 
-                className="aspect-square relative bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                style={{ backgroundImage: `url(${service.image})` }}
-              >
+              <div className="aspect-square relative overflow-hidden">
+                <LazyImage
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  placeholder="true"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 transition-all duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h3 className="text-sm font-medium text-white leading-tight group-hover:text-tropical-gold transition-colors duration-300">
@@ -107,4 +111,4 @@ const ServicesSection = () => {
   );
 };
 
-export default ServicesSection;
+export default memo(ServicesSection);

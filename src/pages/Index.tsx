@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { supabase } from '@/integrations/supabase/client';
 import Hero from "@/components/Hero";
-import AboutSection from "@/components/AboutSection";
-import ServicesSection from "@/components/ServicesSection";
-import Team from "@/components/Team";
-import FAQSection from "@/components/FAQSection";
-import LocationSection from "@/components/LocationSection";
-import ContactSection from "@/components/ContactSection";
-import SEOContent from "@/components/SEOContent";
-import Footer from "@/components/Footer";
+import DeferredSection from "@/components/DeferredSection";
+
+// Lazy load non-critical components
+const AboutSection = React.lazy(() => import("@/components/AboutSection"));
+const ServicesSection = React.lazy(() => import("@/components/ServicesSection"));
+const Team = React.lazy(() => import("@/components/Team"));
+const FAQSection = React.lazy(() => import("@/components/FAQSection"));
+const LocationSection = React.lazy(() => import("@/components/LocationSection"));
+const ContactSection = React.lazy(() => import("@/components/ContactSection"));
+const SEOContent = React.lazy(() => import("@/components/SEOContent"));
+const Footer = React.lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   const [seoData, setSeoData] = useState({
@@ -128,14 +131,46 @@ const Index = () => {
       </Helmet>
       <main className="min-h-screen">
         <Hero />
-        <ServicesSection />
-        <Team />
-        <ContactSection />
-        <LocationSection />
-        <SEOContent />
-        <AboutSection />
-        <FAQSection />
-        <Footer />
+        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
+          <DeferredSection delay={500}>
+            <ServicesSection />
+          </DeferredSection>
+        </React.Suspense>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
+          <DeferredSection delay={800}>
+            <Team />
+          </DeferredSection>
+        </React.Suspense>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
+          <DeferredSection delay={1000}>
+            <ContactSection />
+          </DeferredSection>
+        </React.Suspense>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
+          <DeferredSection delay={1200}>
+            <LocationSection />
+          </DeferredSection>
+        </React.Suspense>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
+          <DeferredSection delay={1400}>
+            <SEOContent />
+          </DeferredSection>
+        </React.Suspense>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
+          <DeferredSection delay={1600}>
+            <AboutSection />
+          </DeferredSection>
+        </React.Suspense>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
+          <DeferredSection delay={1800}>
+            <FAQSection />
+          </DeferredSection>
+        </React.Suspense>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
+          <DeferredSection delay={2000}>
+            <Footer />
+          </DeferredSection>
+        </React.Suspense>
       </main>
     </>
   );

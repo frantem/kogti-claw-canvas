@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import BookingCard from "@/components/BookingCard";
 import { supabase } from '@/integrations/supabase/client';
 
@@ -50,7 +50,7 @@ const Hero = () => {
           <BookingCard />
         </div>
       </div>
-      {/* Nail art background with edge blur */}
+      {/* Nail art background with optimized loading */}
       <div className="absolute inset-0">
          <div 
            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -58,12 +58,10 @@ const Hero = () => {
              backgroundImage: `url(${heroData.backgroundImage})`
            }}
          ></div>
-        {/* Edge blur overlay */}
+        {/* Simplified overlay - removed heavy blur effects */}
         <div className="absolute inset-0" style={{
-          background: `radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.8) 100%)`
+          background: `radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0.9) 100%)`
         }}></div>
-        {/* Additional blur for edges */}
-        <div className="absolute inset-0 backdrop-blur-[2px] mask-radial-blur"></div>
       </div>
       
       {/* Header on background with SEO H1 */}
@@ -86,4 +84,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

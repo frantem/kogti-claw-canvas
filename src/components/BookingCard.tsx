@@ -4,8 +4,9 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
 import { Check } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { supabase } from '@/integrations/supabase/client';
+import LazyImage from "@/components/LazyImage";
 import masterEmily from "@/assets/master-anna.jpg";
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -143,13 +144,11 @@ const BookingCard = () => {
                   <Dialog key={index}>
                     <DialogTrigger asChild>
                       <div className="relative w-12 h-12 rounded-full border-2 border-white cursor-pointer hover:scale-105 transition-transform shadow-md overflow-hidden">
-                        <img 
-                          src={photo} 
+                        <LazyImage
+                          src={photo}
                           alt={`Master work ${index + 1}`}
                           className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.currentTarget.src = "/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png";
-                          }}
+                          placeholder="true"
                         />
                         {index === 2 && bookingData.masterPhotos.length > 3 && (
                           <div className="absolute inset-0 bg-black/60 text-white text-xs font-medium rounded-full flex items-center justify-center">
@@ -158,21 +157,25 @@ const BookingCard = () => {
                         )}
                       </div>
                     </DialogTrigger>
-                    <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
-                      <Carousel className="w-full">
-                        <CarouselContent>
-                          {bookingData.masterPhotos.map((photo, photoIndex) => (
-                            <CarouselItem key={photoIndex}>
-                              <div className="flex aspect-square items-center justify-center p-6">
-                                <img src={photo} alt={`Nail work ${photoIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
-                              </div>
-                            </CarouselItem>
-                          ))}
-                        </CarouselContent>
-                        <CarouselPrevious className="left-4" />
-                        <CarouselNext className="right-4" />
-                      </Carousel>
-                    </DialogContent>
+                      <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
+                        <Carousel className="w-full">
+                          <CarouselContent>
+                            {bookingData.masterPhotos.map((photo, photoIndex) => (
+                              <CarouselItem key={photoIndex}>
+                                <div className="flex aspect-square items-center justify-center p-6">
+                                  <LazyImage 
+                                    src={photo}
+                                    alt={`Nail work ${photoIndex + 1}`}
+                                    className="max-w-full max-h-full object-contain rounded-lg"
+                                  />
+                                </div>
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious className="left-4" />
+                          <CarouselNext className="right-4" />
+                        </Carousel>
+                      </DialogContent>
                   </Dialog>
                 ))}
               </>
@@ -201,4 +204,4 @@ const BookingCard = () => {
       <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персональной скидкой 20%</p>
     </div>;
 };
-export default BookingCard;
+export default memo(BookingCard);

@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { memo } from "react";
+import LazyImage from "@/components/LazyImage";
 const Team = () => {
   const masters = [{
     name: "Анна",
@@ -57,12 +59,15 @@ const MasterCard = ({
     animationDelay: `${index * 150}ms`,
     boxShadow: '0 0 8px rgba(255, 204, 102, 0.6), 0 0 16px rgba(255, 204, 102, 0.4), 0 0 24px rgba(255, 204, 102, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2)'
   }}>
-      {/* Single Background Image */}
-      <div className="absolute inset-0 bg-cover bg-center" style={{
-      backgroundImage: `url(${master.images[0]})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    }} />
+      {/* Single Background Image with lazy loading */}
+      <div className="absolute inset-0">
+        <LazyImage
+          src={master.images[0]}
+          alt={`${master.name} - мастер маникюра`}
+          className="w-full h-full object-cover"
+          placeholder="true"
+        />
+      </div>
 
       {/* Gradient overlay */}
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -116,4 +121,4 @@ const MasterCard = ({
       </div>
     </Card>;
 };
-export default Team;
+export default memo(Team);
