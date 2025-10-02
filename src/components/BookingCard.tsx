@@ -185,7 +185,7 @@ const BookingCard = () => {
           </div>
         </div>
         
-        <Separator orientation="vertical" className="h-16" />
+        <Separator orientation="vertical" className="h-16 self-center" />
         
         <div className="w-1/2">
           <p className="text-xs text-gray-500 mb-2">Горящие окна🔥</p>
