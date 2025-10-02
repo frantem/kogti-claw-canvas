@@ -143,11 +143,11 @@ const BookingCard = () => {
                 {bookingData.masterPhotos.slice(0, 3).map((photo, index) => (
                   <Dialog key={index}>
                     <DialogTrigger asChild>
-                      <div className="relative w-12 h-12 rounded-full border-2 border-white cursor-pointer hover:scale-105 transition-transform shadow-md overflow-hidden">
+                      <div className="relative w-12 h-12 rounded-full border-2 border-white cursor-pointer hover:scale-105 transition-transform shadow-md overflow-hidden aspect-square">
                         <LazyImage
                           src={photo}
                           alt={`Master work ${index + 1}`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover rounded-full"
                           placeholder="true"
                         />
                         {index === 2 && bookingData.masterPhotos.length > 3 && (
