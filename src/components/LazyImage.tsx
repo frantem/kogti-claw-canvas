@@ -6,9 +6,11 @@ interface LazyImageProps {
   className?: string;
   style?: React.CSSProperties;
   placeholder?: string;
+  wrapperClassName?: string;
+  imgClassName?: string;
 }
 
-const LazyImage = ({ src, alt, className, style, placeholder }: LazyImageProps) => {
+const LazyImage = ({ src, alt, className, style, placeholder, wrapperClassName, imgClassName }: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -32,7 +34,7 @@ const LazyImage = ({ src, alt, className, style, placeholder }: LazyImageProps) 
   }, []);
 
   return (
-    <div ref={imgRef} className={className} style={style}>
+    <div ref={imgRef} className={wrapperClassName ?? className} style={style}>
       {isInView && (
         <>
           {!isLoaded && placeholder && (
@@ -41,7 +43,7 @@ const LazyImage = ({ src, alt, className, style, placeholder }: LazyImageProps) 
           <img
             src={src}
             alt={alt}
-            className={`${className} transition-opacity duration-300 ${
+            className={`${imgClassName ?? className} transition-opacity duration-300 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             style={style}
