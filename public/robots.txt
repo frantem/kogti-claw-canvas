@@ -17,7 +17,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://kogti.lovable.app/sitemap.xml
+Sitemap: https://kogtistudio.by/sitemap.xml
 
 # Optimize crawling for Yandex (popular in Belarus)
 Crawl-delay: 1

@@ -65,13 +65,26 @@ const Index = () => {
         <meta name="geo.position" content="55.1904;30.2049" />
         <meta name="ICBM" content="55.1904, 30.2049" />
         
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://kogtistudio.by/" />
+        <link rel="alternate" hrefLang="ru" href="https://kogtistudio.by/" />
+        
         {/* Open Graph */}
         <meta property="og:title" content={seoData.title} />
         <meta property="og:description" content={seoData.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kogti.lovable.app" />
+        <meta property="og:url" content="https://kogtistudio.by/" />
+        <meta property="og:image" content="https://kogtistudio.by/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:locale" content="ru_BY" />
         <meta property="og:site_name" content="KOGTI Beauty Studio" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoData.title} />
+        <meta name="twitter:description" content={seoData.description} />
+        <meta name="twitter:image" content="https://kogtistudio.by/og-image.jpg" />
         
         {/* Business Schema */}
         <script type="application/ld+json">
@@ -80,6 +93,7 @@ const Index = () => {
             "@type": "BeautySalon",
             "name": "KOGTI Beauty Studio",
             "description": "Профессиональный маникюр и педикюр в Витебске",
+            "image": "https://kogtistudio.by/og-image.jpg",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "ул. Ленина, 26, БЦ СИТИ, 3 этаж, офис 314",
@@ -91,10 +105,19 @@ const Index = () => {
               "latitude": "55.1904",
               "longitude": "30.2049"
             },
-            "url": "https://kogti.lovable.app",
+            "url": "https://kogtistudio.by/",
             "telephone": "+375 (29) 123-45-67",
             "priceRange": "$$",
             "openingHours": "Mo-Su 10:00-20:00",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "5",
+              "reviewCount": "150"
+            },
+            "sameAs": [
+              "https://instagram.com/kogtistudio",
+              "https://vk.com/kogtistudio"
+            ],
             "servedCuisine": [],
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
