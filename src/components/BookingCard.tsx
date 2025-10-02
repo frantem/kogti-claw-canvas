@@ -134,8 +134,8 @@ const BookingCard = () => {
       </div>
 
       {/* Date & Time Selection */}
-      <div className="flex items-start gap-4 mb-6">
-        <div className="flex-1">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-start mb-6">
+        <div className="min-w-0">
           <p className="text-xs text-gray-500 mb-2">Работы мастера</p>
           <div className="flex gap-2">
             {bookingData.masterPhotos && bookingData.masterPhotos.length > 0 ? (
@@ -186,9 +186,9 @@ const BookingCard = () => {
           </div>
         </div>
         
-        <Separator orientation="vertical" className="h-16 self-center flex-shrink-0" />
+        <Separator orientation="vertical" className="h-16 justify-self-center mx-4" />
         
-        <div className="flex-1">
+        <div className="min-w-0">
           <p className="text-xs text-gray-500 mb-2">Горящие окна🔥</p>
           <div className="text-right">
              <p className="font-semibold text-gray-900">{bookingData.hotDate}</p>
