@@ -5,12 +5,20 @@ interface LazyImageProps {
   alt: string;
   className?: string;
   style?: React.CSSProperties;
-  placeholder?: string;
+  placeholder?: string; // truthy to show skeleton while loading
   wrapperClassName?: string;
   imgClassName?: string;
 }
 
-const LazyImage = ({ src, alt, className, style, placeholder, wrapperClassName, imgClassName }: LazyImageProps) => {
+const LazyImage = ({
+  src,
+  alt,
+  className,
+  style,
+  placeholder,
+  wrapperClassName,
+  imgClassName,
+}: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,21 +42,26 @@ const LazyImage = ({ src, alt, className, style, placeholder, wrapperClassName, 
   }, []);
 
   return (
-    <div ref={containerRef} className={`${wrapperClassName ?? className} relative`} style={style}>
+    <div
+      ref={containerRef}
+      className={`${wrapperClassName ?? className ?? ''} relative`}
+      style={style}
+      aria-busy={!isLoaded}
+    >
       {isInView && (
         <>
           {!isLoaded && placeholder && (
-            <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+            <div className="absolute inset-0 bg-muted/20 animate-pulse" />
           )}
           <img
             src={src}
             alt={alt}
-            className={`${imgClassName ?? className} transition-opacity duration-300 ${
+            className={`${imgClassName ?? className ?? ''} transition-opacity duration-300 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-            style={style}
             onLoad={() => setIsLoaded(true)}
             loading="lazy"
+            decoding="async"
           />
         </>
       )}
