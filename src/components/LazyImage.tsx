@@ -13,7 +13,7 @@ interface LazyImageProps {
 const LazyImage = ({ src, alt, className, style, placeholder, wrapperClassName, imgClassName }: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,15 +26,15 @@ const LazyImage = ({ src, alt, className, style, placeholder, wrapperClassName, 
       { threshold: 0.1 }
     );
 
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div ref={imgRef} className={wrapperClassName ?? className} style={style}>
+    <div ref={containerRef} className={`${wrapperClassName ?? className} relative`} style={style}>
       {isInView && (
         <>
           {!isLoaded && placeholder && (
