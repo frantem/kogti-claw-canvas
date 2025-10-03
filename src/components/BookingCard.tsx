@@ -137,13 +137,13 @@ const BookingCard = () => {
       <div className="grid grid-cols-[1fr_auto_1fr] items-start mb-6">
         <div className="min-w-0">
           <p className="text-xs text-gray-500 mb-2">Работы мастера</p>
-          <div className="flex gap-2">
+          <div className="flex -space-x-3">
             {bookingData.masterPhotos && bookingData.masterPhotos.length > 0 ? (
               <>
                 {bookingData.masterPhotos.slice(0, 3).map((photo, index) => (
                   <Dialog key={index}>
                     <DialogTrigger asChild>
-                      <div className="relative w-12 h-12 flex-shrink-0 rounded-full border-2 border-white cursor-pointer hover:scale-105 transition-transform shadow-md overflow-hidden aspect-square">
+                      <div className="relative w-12 h-12 flex-shrink-0 rounded-full border-2 border-white cursor-pointer hover:scale-105 hover:z-10 transition-all shadow-md overflow-hidden aspect-square" style={{ zIndex: index }}>
                         <LazyImage
                           src={photo}
                           alt={`Master work ${index + 1}`}
