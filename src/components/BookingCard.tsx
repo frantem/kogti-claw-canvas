@@ -147,8 +147,8 @@ const BookingCard = () => {
                         <LazyImage
                           src={photo}
                           alt={`Master work ${index + 1}`}
-                          wrapperClassName="w-full h-full"
-                          imgClassName="w-full h-full object-cover rounded-full"
+                          wrapperClassName="w-full h-full rounded-full overflow-hidden"
+                          imgClassName="w-full h-full object-cover"
                           placeholder="true"
                         />
                         {index === 2 && bookingData.masterPhotos.length > 3 && (
