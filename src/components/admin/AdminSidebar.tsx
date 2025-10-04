@@ -27,13 +27,18 @@ const menuItems = [
 ];
 
 export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarProps) {
-  const { state } = useSidebar();
+  const { state, isMobile, setOpenMobile } = useSidebar();
   const isCollapsed = state === 'collapsed';
 
+  const handleSectionChange = (section: string) => {
+    onSectionChange(section);
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
   return (
-    <Sidebar className={isCollapsed ? "w-14" : "w-64"}>
-      <SidebarTrigger className="m-2 self-end" />
-      
+    <Sidebar collapsible="offcanvas" className={isCollapsed ? "w-14" : "w-64"}>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-lg font-bold">
@@ -56,7 +61,7 @@ export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarPro
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton 
-                    onClick={() => onSectionChange(item.id)}
+                    onClick={() => handleSectionChange(item.id)}
                     className={`flex items-center gap-2 cursor-pointer ${
                       activeSection === item.id 
                         ? 'bg-primary text-primary-foreground' 

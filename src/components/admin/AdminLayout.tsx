@@ -30,7 +30,7 @@ export function AdminLayout() {
   };
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen flex w-full bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
         <AdminSidebar activeSection={activeSection} onSectionChange={setActiveSection} />
         <div className="flex-1 flex flex-col">
