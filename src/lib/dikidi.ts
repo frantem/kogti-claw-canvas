@@ -29,7 +29,7 @@ export const getWidgetIdFromUrl = (url: string): string | null => {
 /**
  * Ensure Dikidi script is loaded and ready
  */
-export const ensureDikidiReady = async (): Promise<boolean> => {
+export const ensureDikidiReady = async (timeoutMs: number = 10000): Promise<boolean> => {
   // Check if script is already loaded
   if (window.DIKIDI) {
     console.info('[Dikidi] DIKIDI API already available');
@@ -49,29 +49,13 @@ export const ensureDikidiReady = async (): Promise<boolean> => {
     script.crossOrigin = 'anonymous';
     script.setAttribute('data-dikidi-widget', 'true');
     document.head.appendChild(script);
+  } else {
+    console.info('[Dikidi] Script tag found, waiting for DIKIDI API');
   }
 
-  // If script is loading, wait once for onload
-  if (script && !script.dataset.loaded) {
-    await new Promise<void>((resolve) => {
-      // Some browsers expose readyState
-      if ((script as any).readyState === 'complete') {
-        resolve();
-      } else {
-        script!.addEventListener('load', () => {
-          script!.dataset.loaded = 'true';
-          resolve();
-        }, { once: true });
-        script!.addEventListener('error', () => {
-          resolve();
-        }, { once: true });
-      }
-    });
-  }
-
-  // Wait for DIKIDI to be available (max ~10 seconds)
+  // Poll for DIKIDI to be available
+  const maxAttempts = Math.floor(timeoutMs / 100);
   let attempts = 0;
-  const maxAttempts = 100;
   
   while (!window.DIKIDI && attempts < maxAttempts) {
     await new Promise(resolve => setTimeout(resolve, 100));
@@ -80,9 +64,9 @@ export const ensureDikidiReady = async (): Promise<boolean> => {
 
   const ready = !!window.DIKIDI;
   if (ready) {
-    console.info('[Dikidi] DIKIDI widget ready');
+    console.info('[Dikidi] DIKIDI widget ready after', attempts * 100, 'ms');
   } else {
-    console.warn('[Dikidi] DIKIDI widget failed to initialize in time');
+    console.warn('[Dikidi] DIKIDI widget failed to initialize in', timeoutMs, 'ms');
   }
   
   return ready;
@@ -93,18 +77,21 @@ export const ensureDikidiReady = async (): Promise<boolean> => {
  * Falls back to opening URL in new tab if widget fails
  */
 export const openDikidiWidgetById = async (widgetId: string): Promise<void> => {
-  const isReady = await ensureDikidiReady();
+  console.info('[Dikidi] Attempting to open widget:', widgetId);
+  const isReady = await ensureDikidiReady(2000); // 2 second timeout for user interaction
   
   if (isReady && window.DIKIDI) {
     try {
+      console.info('[Dikidi] Opening widget modal');
       window.DIKIDI.openWidget({ widget_id: widgetId });
       return;
     } catch (error) {
-      console.error('Error opening Dikidi widget:', error);
+      console.error('[Dikidi] Error opening widget:', error);
       throw error;
     }
   }
   
+  console.warn('[Dikidi] Widget not ready, throwing error for fallback');
   throw new Error('Dikidi widget not ready');
 };
 
