@@ -1,33 +1,37 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { memo } from "react";
 import LazyImage from "@/components/LazyImage";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+
 const Team = () => {
-  const masters = [{
-    name: "Анна",
-    title: "Мастер",
-    experience: "опыт 2 года",
-    description: "быстро и без потери качества\nсделает самый чёткий квадрат",
-    images: ["/lovable-uploads/e84b7e94-c364-40bc-a99e-5d69cc533df3.png", "/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png", "/lovable-uploads/97fe75cf-3ac1-4579-911e-f5dd89f29120.png"]
-  }, {
-    name: "Алина",
-    title: "мастер",
-    experience: "опыт 3 года",
-    description: "сделает как нюд так и крутой дизайн\nтворческая, добрая, отзывчивая",
-    images: ["/lovable-uploads/4dd231fb-3fef-4306-9f06-e42942cfde19.png", "/lovable-uploads/82f78b18-14fe-4e4d-9d23-d4c0f6f9cdcb.png", "/lovable-uploads/70c7a95a-b7aa-413f-b691-6b738c05bfd6.png"]
-  }, {
-    name: "Виктория",
-    title: "ТОП-мастер",
-    experience: "опыт 6 лет",
-    description: "сделает безупречный маникюр и педикюр\n100% возвращаемость клиентов",
-    images: ["/lovable-uploads/b85037a7-90ce-4158-af33-f564797e2736.png", "/lovable-uploads/561482c5-bd57-423e-908b-8c13c394a90b.png", "/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png"]
-  }, {
-    name: "Оля",
-    title: "ТОП-мастер",
-    experience: "опыт 5 лет",
-    description: "коммуникабельность\nнюд за час\nидельный френч",
-    images: ["/lovable-uploads/3663b521-4a9a-4846-90b4-6c24e0c5cf6c.png", "/lovable-uploads/fd23db15-f23d-4ff9-8c88-6f63706dc4a1.png", "/lovable-uploads/770b1f7b-239e-4d27-9d9f-ccbcd0f4d782.png"]
-  }];
+  const { data: masters = [], isLoading } = useQuery({
+    queryKey: ['masters'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('masters')
+        .select('*')
+        .eq('is_active', true)
+        .order('sort_order');
+      
+      if (error) throw error;
+      return data;
+    }
+  });
+
+  if (isLoading) {
+    return (
+      <section id="team" className="relative min-h-screen py-20" style={{
+        backgroundImage: 'url(/lovable-uploads/ff28dcc9-cddd-4feb-8f66-ce26adedc889.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}>
+        <div className="container mx-auto px-6">
+          <div className="text-center text-white">Загрузка...</div>
+        </div>
+      </section>
+    );
+  }
   return <section id="team" className="relative min-h-screen py-20" style={{
     backgroundImage: 'url(/lovable-uploads/ff28dcc9-cddd-4feb-8f66-ce26adedc889.png)',
     backgroundSize: 'cover',
@@ -107,17 +111,16 @@ const MasterCard = ({
         </div>
 
         {/* Button */}
-        {master.name === "Анна" ? <a href="https://dikidi.ru/#widget=192168" target="_blank" rel="noopener noreferrer" className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center">
+        {master.booking_link && (
+          <a 
+            href={master.booking_link} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
+          >
             Записаться
-          </a> : master.name === "Алина" ? <a href="https://dikidi.ru/#widget=192339" target="_blank" rel="noopener noreferrer" className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center">
-            Записаться
-          </a> : master.name === "Виктория" ? <a href="https://dikidi.ru/#widget=192340" target="_blank" rel="noopener noreferrer" className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center">
-            Записаться
-          </a> : master.name === "Оля" ? <a href="https://dikidi.ru/#widget=192341" target="_blank" rel="noopener noreferrer" className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center">
-            Записаться
-          </a> : <Button className="w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300">
-            Записаться
-          </Button>}
+          </a>
+        )}
       </div>
     </Card>;
 };
