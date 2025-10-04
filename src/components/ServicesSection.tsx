@@ -1,6 +1,7 @@
 import { useState, memo } from "react";
 import appBackground from "@/assets/app-background.jpg";
 import LazyImage from "@/components/LazyImage";
+import { openDikidiWidgetById } from "@/lib/dikidi";
 
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState<'manicure' | 'pedicure'>('manicure');
@@ -26,8 +27,12 @@ const ServicesSection = () => {
   const currentServices = activeTab === 'manicure' ? manicureServices : pedicureServices;
 
 
-  const handleServiceClick = (widget: string) => {
-    window.open(`https://dikidi.ru/#widget=${widget}`, '_blank');
+  const handleServiceClick = async (widget: string) => {
+    try {
+      await openDikidiWidgetById(widget);
+    } catch (error) {
+      console.error('Error opening service booking:', error);
+    }
   };
 
   console.log('ServicesSection rendering');

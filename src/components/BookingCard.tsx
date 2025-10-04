@@ -8,8 +8,10 @@ import { useState, useEffect, memo } from "react";
 import { supabase } from '@/integrations/supabase/client';
 import LazyImage from "@/components/LazyImage";
 import masterEmily from "@/assets/master-anna.jpg";
+import { normalizeDikidiUrl, getWidgetIdFromUrl, openDikidiWidgetById } from "@/lib/dikidi";
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isBookingLoading, setIsBookingLoading] = useState(false);
   const [bookingData, setBookingData] = useState({
     serviceTitle: 'Маникюр',
     serviceSubtitle: '+ pedicure',
@@ -56,34 +58,22 @@ const BookingCard = () => {
       console.error('Error fetching booking data:', error);
     }
   };
-  const handleBookingClick = () => {
-    console.log('Button clicked, checking dikidi widget...');
-    console.log('window.dikidi:', (window as any).dikidi);
-    console.log('window.DikidiOnlineWidget:', (window as any).DikidiOnlineWidget);
-
-    // Попробуем разные варианты API
+  const handleBookingClick = async () => {
+    setIsBookingLoading(true);
+    
     try {
-      // @ts-ignore
-      if (typeof (window as any).DikidiOnlineWidget === 'function') {
-        // @ts-ignore
-        (window as any).DikidiOnlineWidget();
-        console.log('DikidiOnlineWidget() called');
-        // @ts-ignore  
-      } else if ((window as any).dikidi && typeof (window as any).dikidi.openWidget === 'function') {
-        // @ts-ignore
-        (window as any).dikidi.openWidget();
-        console.log('dikidi.openWidget() called');
-        // @ts-ignore
-      } else if ((window as any).dikidi && typeof (window as any).dikidi.open === 'function') {
-        // @ts-ignore
-        (window as any).dikidi.open();
-        console.log('dikidi.open() called');
+      const normalizedUrl = normalizeDikidiUrl(bookingData.bookingLink);
+      const widgetId = getWidgetIdFromUrl(normalizedUrl);
+      
+      if (widgetId) {
+        await openDikidiWidgetById(widgetId);
       } else {
-        console.error('Dikidi widget not found or not loaded properly');
-        console.log('Available window properties:', Object.keys(window).filter(key => key.toLowerCase().includes('dikidi')));
+        window.location.href = normalizedUrl;
       }
     } catch (error) {
-      console.error('Error opening widget:', error);
+      console.error('Error opening booking:', error);
+    } finally {
+      setIsBookingLoading(false);
     }
   };
   return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
@@ -198,9 +188,13 @@ const BookingCard = () => {
       </div>
 
       {/* Payment Button */}
-      <a href={bookingData.bookingLink} className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base block text-center">
-        Записаться
-      </a>
+      <button 
+        onClick={handleBookingClick}
+        disabled={isBookingLoading}
+        className="w-full bg-gray-900 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-2xl py-4 font-semibold text-base"
+      >
+        {isBookingLoading ? 'Загрузка...' : 'Записаться'}
+      </button>
 
       <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персональной скидкой 20%</p>
     </div>;

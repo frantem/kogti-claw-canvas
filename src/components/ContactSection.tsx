@@ -1,18 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle } from "lucide-react";
+import { openDikidiWidgetById } from "@/lib/dikidi";
 
 const ContactSection = () => {
-  const handleDikidiBooking = () => {
-    // Load Dikidi widget script if not already loaded
-    if (!document.querySelector('script[src*="widget2.min.js"]')) {
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = 'https://dikidi.ru/assets/js/widget_record/widget2.min.js?v=1755082659';
-      document.head.appendChild(script);
+  const handleDikidiBooking = async () => {
+    try {
+      await openDikidiWidgetById('192160');
+    } catch (error) {
+      console.error('Error opening booking:', error);
     }
-    
-    // Open Dikidi widget
-    window.open('https://dikidi.ru/#widget=192160', '_blank');
   };
 
   const handlePhoneCall = () => {

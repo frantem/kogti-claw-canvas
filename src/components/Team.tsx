@@ -3,6 +3,7 @@ import { memo, useState } from "react";
 import LazyImage from "@/components/LazyImage";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { normalizeDikidiUrl, getWidgetIdFromUrl, openDikidiWidgetById } from "@/lib/dikidi";
 
 const Team = () => {
   const { data: masters = [], isLoading } = useQuery({
@@ -63,35 +64,24 @@ const MasterCard = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const handleBooking = async () => {
+    if (!master.booking_link) return;
+    
     setIsLoading(true);
     
-    // Normalize URL to dikidi.net
-    const normalizedUrl = master.booking_link.replace('dikidi.ru', 'dikidi.net');
-    const widgetId = normalizedUrl.match(/#widget=(\d+)/)?.[1];
-    
-    // Wait for script to load if needed
-    if (widgetId) {
-      let attempts = 0;
-      while (!(window as any).DIKIDI && attempts < 20) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-        attempts++;
-      }
+    try {
+      const normalizedUrl = normalizeDikidiUrl(master.booking_link);
+      const widgetId = getWidgetIdFromUrl(normalizedUrl);
       
-      if ((window as any).DIKIDI) {
-        try {
-          (window as any).DIKIDI.openWidget({ widget_id: widgetId });
-        } catch (error) {
-          console.error('Error opening Dikidi widget:', error);
-          window.open(normalizedUrl, '_blank');
-        }
+      if (widgetId) {
+        await openDikidiWidgetById(widgetId);
       } else {
-        window.open(normalizedUrl, '_blank');
+        window.location.href = normalizedUrl;
       }
-    } else {
-      window.open(normalizedUrl, '_blank');
+    } catch (error) {
+      console.error('Error opening booking:', error);
+    } finally {
+      setIsLoading(false);
     }
-    
-    setIsLoading(false);
   };
 
   return <Card className="relative overflow-hidden h-[450px] md:h-[600px] animate-fade-in border-8 border-white/20 backdrop-blur-sm" style={{
