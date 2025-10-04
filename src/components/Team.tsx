@@ -112,14 +112,19 @@ const MasterCard = ({
 
         {/* Button */}
         {master.booking_link && (
-          <a 
-            href={master.booking_link} 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <button 
+            onClick={() => {
+              const widgetId = master.booking_link.match(/#widget=(\d+)/)?.[1];
+              if (widgetId && (window as any).DIKIDI) {
+                (window as any).DIKIDI.openWidget({ widget_id: widgetId });
+              } else {
+                window.open(master.booking_link, '_blank');
+              }
+            }}
             className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
           >
             Записаться
-          </a>
+          </button>
         )}
       </div>
     </Card>;
