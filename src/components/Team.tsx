@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { memo } from "react";
+import { memo, useState } from "react";
 import LazyImage from "@/components/LazyImage";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -16,7 +16,9 @@ const Team = () => {
       
       if (error) throw error;
       return data;
-    }
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
   });
 
   if (isLoading) {
@@ -58,6 +60,40 @@ const MasterCard = ({
   master: any;
   index: number;
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleBooking = async () => {
+    setIsLoading(true);
+    
+    // Normalize URL to dikidi.net
+    const normalizedUrl = master.booking_link.replace('dikidi.ru', 'dikidi.net');
+    const widgetId = normalizedUrl.match(/#widget=(\d+)/)?.[1];
+    
+    // Wait for script to load if needed
+    if (widgetId) {
+      let attempts = 0;
+      while (!(window as any).DIKIDI && attempts < 20) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+        attempts++;
+      }
+      
+      if ((window as any).DIKIDI) {
+        try {
+          (window as any).DIKIDI.openWidget({ widget_id: widgetId });
+        } catch (error) {
+          console.error('Error opening Dikidi widget:', error);
+          window.open(normalizedUrl, '_blank');
+        }
+      } else {
+        window.open(normalizedUrl, '_blank');
+      }
+    } else {
+      window.open(normalizedUrl, '_blank');
+    }
+    
+    setIsLoading(false);
+  };
+
   return <Card className="relative overflow-hidden h-[450px] md:h-[600px] animate-fade-in border-8 border-white/20 backdrop-blur-sm" style={{
     borderRadius: '3rem',
     animationDelay: `${index * 150}ms`,
@@ -66,7 +102,7 @@ const MasterCard = ({
       {/* Single Background Image with lazy loading */}
       <div className="absolute inset-0">
         <LazyImage
-          src={master.images[0]}
+          src={master.images[0] || master.avatar_url}
           alt={`${master.name} - мастер маникюра`}
           className="w-full h-full object-cover"
           placeholder="true"
@@ -113,17 +149,11 @@ const MasterCard = ({
         {/* Button */}
         {master.booking_link && (
           <button 
-            onClick={() => {
-              const widgetId = master.booking_link.match(/#widget=(\d+)/)?.[1];
-              if (widgetId && (window as any).DIKIDI) {
-                (window as any).DIKIDI.openWidget({ widget_id: widgetId });
-              } else {
-                window.open(master.booking_link, '_blank');
-              }
-            }}
-            className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
+            onClick={handleBooking}
+            disabled={isLoading}
+            className="block w-full bg-white text-black hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
           >
-            Записаться
+            {isLoading ? 'Загрузка...' : 'Записаться'}
           </button>
         )}
       </div>
