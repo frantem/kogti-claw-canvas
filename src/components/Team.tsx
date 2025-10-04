@@ -75,10 +75,14 @@ const MasterCard = ({
       if (widgetId) {
         await openDikidiWidgetById(widgetId);
       } else {
-        window.location.href = normalizedUrl;
+        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
       }
     } catch (error) {
       console.error('Error opening booking:', error);
+      try {
+        const normalizedUrl = normalizeDikidiUrl(master.booking_link);
+        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
+      } catch {}
     } finally {
       setIsLoading(false);
     }

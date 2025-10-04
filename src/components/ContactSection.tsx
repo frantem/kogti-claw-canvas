@@ -8,6 +8,7 @@ const ContactSection = () => {
       await openDikidiWidgetById('192160');
     } catch (error) {
       console.error('Error opening booking:', error);
+      window.open('https://dikidi.net/#widget=192160', '_blank', 'noopener,noreferrer');
     }
   };
 

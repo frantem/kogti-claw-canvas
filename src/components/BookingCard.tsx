@@ -68,10 +68,14 @@ const BookingCard = () => {
       if (widgetId) {
         await openDikidiWidgetById(widgetId);
       } else {
-        window.location.href = normalizedUrl;
+        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
       }
     } catch (error) {
       console.error('Error opening booking:', error);
+      try {
+        const normalizedUrl = normalizeDikidiUrl(bookingData.bookingLink);
+        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
+      } catch {}
     } finally {
       setIsBookingLoading(false);
     }

@@ -32,6 +32,7 @@ const ServicesSection = () => {
       await openDikidiWidgetById(widget);
     } catch (error) {
       console.error('Error opening service booking:', error);
+      window.open(`https://dikidi.net/#widget=${widget}`, '_blank', 'noopener,noreferrer');
     }
   };
 

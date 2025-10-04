@@ -32,31 +32,60 @@ export const getWidgetIdFromUrl = (url: string): string | null => {
 export const ensureDikidiReady = async (): Promise<boolean> => {
   // Check if script is already loaded
   if (window.DIKIDI) {
+    console.info('[Dikidi] DIKIDI API already available');
     return true;
   }
 
-  // Check if script tag exists
-  const existingScript = document.querySelector('script[src*="dikidi.net"]');
+  // Find existing script (from index.html or previous injection)
+  let script = (document.querySelector('script[data-dikidi-widget]') as HTMLScriptElement | null)
+    || (document.querySelector('script[src*="dikidi.net/assets/js/widget_record/widget2.min.js"]') as HTMLScriptElement | null);
   
-  if (!existingScript) {
+  if (!script) {
     // Script not loaded, load it now
-    const script = document.createElement('script');
+    console.info('[Dikidi] Injecting widget script');
+    script = document.createElement('script');
     script.src = 'https://dikidi.net/assets/js/widget_record/widget2.min.js';
-    script.async = true;
+    script.defer = true;
     script.crossOrigin = 'anonymous';
+    script.setAttribute('data-dikidi-widget', 'true');
     document.head.appendChild(script);
   }
 
-  // Wait for DIKIDI to be available (max 3 seconds)
+  // If script is loading, wait once for onload
+  if (script && !script.dataset.loaded) {
+    await new Promise<void>((resolve) => {
+      // Some browsers expose readyState
+      if ((script as any).readyState === 'complete') {
+        resolve();
+      } else {
+        script!.addEventListener('load', () => {
+          script!.dataset.loaded = 'true';
+          resolve();
+        }, { once: true });
+        script!.addEventListener('error', () => {
+          resolve();
+        }, { once: true });
+      }
+    });
+  }
+
+  // Wait for DIKIDI to be available (max ~10 seconds)
   let attempts = 0;
-  const maxAttempts = 30;
+  const maxAttempts = 100;
   
   while (!window.DIKIDI && attempts < maxAttempts) {
     await new Promise(resolve => setTimeout(resolve, 100));
     attempts++;
   }
 
-  return !!window.DIKIDI;
+  const ready = !!window.DIKIDI;
+  if (ready) {
+    console.info('[Dikidi] DIKIDI widget ready');
+  } else {
+    console.warn('[Dikidi] DIKIDI widget failed to initialize in time');
+  }
+  
+  return ready;
 };
 
 /**
@@ -72,10 +101,16 @@ export const openDikidiWidgetById = async (widgetId: string): Promise<void> => {
       return;
     } catch (error) {
       console.error('Error opening Dikidi widget:', error);
+      throw error;
     }
   }
   
-  // Fallback to opening URL
-  const fallbackUrl = `https://dikidi.net/#widget=${widgetId}`;
-  window.location.href = fallbackUrl;
+  throw new Error('Dikidi widget not ready');
+};
+
+export const preloadDikidiWidget = (): void => {
+  // Fire-and-forget preload
+  ensureDikidiReady().catch(() => {
+    // no-op
+  });
 };
