@@ -1,6 +1,14 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
+declare global {
+  interface Window {
+    dikidi?: {
+      open: (widgetId: string) => void;
+    };
+  }
+}
+
 interface DikidiButtonProps {
   widgetId: string;
   children?: ReactNode;
@@ -22,10 +30,21 @@ export const DikidiButton = ({
     outline: "bg-transparent hover:bg-white/10 text-white border border-white/20 hover:border-white/40"
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    if (window.dikidi && typeof window.dikidi.open === 'function') {
+      window.dikidi.open(widgetId);
+    } else {
+      window.open(`https://dikidi.net/#widget=${widgetId}`, '_blank');
+    }
+  };
+
   return (
     <a
       href={`https://dikidi.net/#widget=${widgetId}`}
       className={cn(baseStyles, variantStyles[variant], className)}
+      onClick={handleClick}
       aria-label="Записаться онлайн"
     >
       {children}
