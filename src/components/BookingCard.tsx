@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -7,12 +6,9 @@ import { Check } from "lucide-react";
 import { useState, useEffect, memo } from "react";
 import { supabase } from '@/integrations/supabase/client';
 import LazyImage from "@/components/LazyImage";
-import masterEmily from "@/assets/master-anna.jpg";
-import { normalizeDikidiUrl, getWidgetIdFromUrl } from "@/lib/dikidi";
-import { useBookingModal } from "@/components/booking/BookingModalProvider";
+import { DikidiButton } from "@/components/booking/DikidiButton";
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const bookingModal = useBookingModal();
   const [bookingData, setBookingData] = useState({
     serviceTitle: 'Маникюр',
     serviceSubtitle: '+ pedicure',
@@ -59,18 +55,9 @@ const BookingCard = () => {
       console.error('Error fetching booking data:', error);
     }
   };
-  const handleBookingClick = () => {
-    console.info('[BookingCard] Opening booking');
-    const normalizedUrl = normalizeDikidiUrl(bookingData.bookingLink);
-    const widgetId = getWidgetIdFromUrl(normalizedUrl);
-    
-    if (window.DIKIDI && widgetId) {
-      console.info('[BookingCard] Using DIKIDI SDK');
-      window.DIKIDI.openWidget({ widget_id: widgetId });
-    } else {
-      console.info('[BookingCard] Using iframe fallback');
-      bookingModal.open({ widgetId: widgetId || undefined, url: normalizedUrl });
-    }
+  const getWidgetId = () => {
+    const match = bookingData.bookingLink.match(/widget[=\/](\d+)/);
+    return match ? match[1] : '192147';
   };
   return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
 
@@ -183,13 +170,11 @@ const BookingCard = () => {
         </div>
       </div>
 
-      {/* Payment Button */}
-      <button 
-        onClick={handleBookingClick}
-        className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base"
-      >
-        Записаться
-      </button>
+      {/* Booking Button */}
+      <DikidiButton 
+        widgetId={getWidgetId()}
+        className="w-full py-4 font-semibold text-base"
+      />
 
       <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персональной скидкой 20%</p>
     </div>;

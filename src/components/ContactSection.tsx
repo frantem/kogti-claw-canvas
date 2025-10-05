@@ -1,20 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle } from "lucide-react";
-import { useBookingModal } from "@/components/booking/BookingModalProvider";
+import { DikidiButton } from "@/components/booking/DikidiButton";
 
 const ContactSection = () => {
-  const bookingModal = useBookingModal();
-  
-  const handleDikidiBooking = () => {
-    console.info('[ContactSection] Opening booking');
-    if (window.DIKIDI) {
-      console.info('[ContactSection] Using DIKIDI SDK');
-      window.DIKIDI.openWidget({ widget_id: '192160' });
-    } else {
-      console.info('[ContactSection] Using iframe fallback');
-      bookingModal.open({ widgetId: '192160', url: 'https://dikidi.net/#widget=192160' });
-    }
-  };
 
   const handlePhoneCall = () => {
     window.location.href = 'tel:+375336582639';
@@ -50,22 +37,23 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {/* Онлайн-запись */}
-          <div 
-            onClick={handleDikidiBooking}
-            className="bg-gray-800 rounded-2xl p-6 cursor-pointer hover:bg-gray-700 transition-all duration-300 border border-gray-700"
+          <DikidiButton 
+            widgetId="192160"
+            className="bg-gray-800 rounded-2xl p-6 cursor-pointer hover:bg-gray-700 transition-all duration-300 border border-gray-700 h-auto"
+            variant="secondary"
           >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center">
+            <div className="flex items-center gap-4 w-full">
+              <div className="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center flex-shrink-0">
                 <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 3H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
                 </svg>
               </div>
-              <div>
+              <div className="text-left">
                 <h4 className="text-white font-semibold text-lg">Онлайн-запись</h4>
                 <p className="text-gray-400 text-sm">Удобная запись через Dikidi</p>
               </div>
             </div>
-          </div>
+          </DikidiButton>
 
           {/* Позвонить */}
           <div 

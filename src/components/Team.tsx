@@ -1,10 +1,9 @@
 import { Card } from "@/components/ui/card";
-import { memo, useState } from "react";
+import { memo } from "react";
 import LazyImage from "@/components/LazyImage";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { normalizeDikidiUrl, getWidgetIdFromUrl } from "@/lib/dikidi";
-import { useBookingModal } from "@/components/booking/BookingModalProvider";
+import { DikidiButton } from "@/components/booking/DikidiButton";
 
 const Team = () => {
   const { data: masters = [], isLoading } = useQuery({
@@ -62,22 +61,10 @@ const MasterCard = ({
   master: any;
   index: number;
 }) => {
-  const bookingModal = useBookingModal();
-
-  const handleBooking = () => {
-    if (!master.booking_link) return;
-    
-    console.info('[Team] Opening booking for master:', master.name);
-    const normalizedUrl = normalizeDikidiUrl(master.booking_link);
-    const widgetId = getWidgetIdFromUrl(normalizedUrl);
-    
-    if (window.DIKIDI && widgetId) {
-      console.info('[Team] Using DIKIDI SDK');
-      window.DIKIDI.openWidget({ widget_id: widgetId });
-    } else {
-      console.info('[Team] Using iframe fallback');
-      bookingModal.open({ widgetId: widgetId || undefined, url: normalizedUrl });
-    }
+  const getWidgetId = () => {
+    if (!master.booking_link) return '';
+    const match = master.booking_link.match(/widget[=\/](\d+)/);
+    return match ? match[1] : '';
   };
 
   return <Card className="relative overflow-hidden h-[450px] md:h-[600px] animate-fade-in border-8 border-white/20 backdrop-blur-sm" style={{
@@ -133,13 +120,11 @@ const MasterCard = ({
         </div>
 
         {/* Button */}
-        {master.booking_link && (
-          <button 
-            onClick={handleBooking}
+        {master.booking_link && getWidgetId() && (
+          <DikidiButton 
+            widgetId={getWidgetId()}
             className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
-          >
-            Записаться
-          </button>
+          />
         )}
       </div>
     </Card>;

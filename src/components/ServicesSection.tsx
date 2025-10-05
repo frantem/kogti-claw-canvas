@@ -1,11 +1,10 @@
 import { useState, memo } from "react";
 import appBackground from "@/assets/app-background.jpg";
 import LazyImage from "@/components/LazyImage";
-import { useBookingModal } from "@/components/booking/BookingModalProvider";
+import { DikidiButton } from "@/components/booking/DikidiButton";
 
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState<'manicure' | 'pedicure'>('manicure');
-  const bookingModal = useBookingModal();
 
   const manicureServices = [
     { name: "Коррекция/покрытие ногтей гелем", widget: "192348", image: "/lovable-uploads/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.png" },
@@ -26,20 +25,6 @@ const ServicesSection = () => {
   ];
 
   const currentServices = activeTab === 'manicure' ? manicureServices : pedicureServices;
-
-
-  const handleServiceClick = (widget: string) => {
-    console.info('[ServicesSection] Opening booking for widget:', widget);
-    if (window.DIKIDI) {
-      console.info('[ServicesSection] Using DIKIDI SDK');
-      window.DIKIDI.openWidget({ widget_id: widget });
-    } else {
-      console.info('[ServicesSection] Using iframe fallback');
-      bookingModal.open({ widgetId: widget });
-    }
-  };
-
-  console.log('ServicesSection rendering');
   
   return (
     <section className="relative min-h-screen bg-gray-100 py-20">
@@ -89,16 +74,13 @@ const ServicesSection = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {currentServices.map((service, index) => (
-            <div
+            <DikidiButton
               key={`${activeTab}-${index}`}
-              className="animate-fade-in overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group border-4 border-white/20 rounded-3xl"
-              style={{ 
-                animationDelay: `${index * 100}ms`,
-                boxShadow: '0 0 4px rgba(255, 204, 102, 0.6), 0 0 8px rgba(255, 204, 102, 0.4), 0 0 12px rgba(255, 204, 102, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2)'
-              }}
-              onClick={() => handleServiceClick(service.widget)}
+              widgetId={service.widget}
+              className="animate-fade-in overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group border-4 border-white/20 rounded-3xl p-0 h-auto"
+              variant="secondary"
             >
-              <div className="aspect-square relative overflow-hidden">
+              <div className="aspect-square relative overflow-hidden w-full">
                 <LazyImage
                   src={service.image}
                   alt={service.name}
@@ -112,7 +94,7 @@ const ServicesSection = () => {
                   </h3>
                 </div>
               </div>
-            </div>
+            </DikidiButton>
           ))}
         </div>
       </div>
