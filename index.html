@@ -50,12 +50,32 @@
     <script>
     (function() {
       let customCloseBtn = null;
+      let intervalId = null;
+      let keydownBound = false;
+
+      function closeDikidi() {
+        const ov = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
+        if (ov && typeof ov.click === 'function') {
+          ov.click();
+        } else {
+          document.querySelectorAll(
+            '[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"], ' +
+            '[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"], [class*="dikidi-"][class*="-container"], ' +
+            'iframe[src*="dikidi"]'
+          ).forEach(function(el){ el.parentNode && el.parentNode.removeChild(el); });
+          document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+          document.body.classList.remove('dikidi-open','dikidi-modal-open');
+        }
+      }
 
       function ensureButton() {
         const modal = document.querySelector('[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"], [class*="dikidi-"][class*="-container"]');
         const overlay = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
         const iframe = document.querySelector('iframe[src*="dikidi"]');
         const isOpen = !!(modal || overlay || iframe);
+
+        console.log('[dikidi-x] ensureButton', { modal: !!modal, overlay: !!overlay, iframe: !!iframe, isOpen });
 
         if (isOpen && !customCloseBtn) {
           customCloseBtn = document.createElement('button');
@@ -64,44 +84,58 @@
           customCloseBtn.textContent = '✕';
           customCloseBtn.setAttribute('aria-label', 'Закрыть');
 
-          customCloseBtn.onclick = function(e) {
+          customCloseBtn.style.cssText = [
+            'position:fixed',
+            'top:8px',
+            'right:8px',
+            'left:auto',
+            'width:48px',
+            'height:48px',
+            'display:flex',
+            'align-items:center',
+            'justify-content:center',
+            'font-size:28px',
+            'font-weight:700',
+            'line-height:1',
+            'border-radius:9999px',
+            'border:2px solid #fff',
+            'background:rgba(10,13,11,0.92)',
+            'color:#fff',
+            'cursor:pointer',
+            'z-index:2147483647',
+            'box-shadow:0 6px 24px rgba(0,0,0,0.6)',
+            'pointer-events:auto',
+            'user-select:none'
+          ].join(';');
+
+          customCloseBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            const ov = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
-            if (ov && typeof ov.click === 'function') {
-              ov.click();
-            } else {
-              document.querySelectorAll(
-                '[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"], ' +
-                '[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"], [class*="dikidi-"][class*="-container"], ' +
-                'iframe[src*="dikidi"]'
-              ).forEach(function(el){ el.parentNode && el.parentNode.removeChild(el); });
-              document.body.style.overflow = '';
-              document.documentElement.style.overflow = '';
-              document.body.classList.remove('dikidi-open','dikidi-modal-open');
-            }
-          };
+            closeDikidi();
+          });
 
           document.body.appendChild(customCloseBtn);
+          console.log('[dikidi-x] created');
         }
 
         if (!isOpen && customCloseBtn) {
           customCloseBtn.remove();
           customCloseBtn = null;
+          console.log('[dikidi-x] removed');
         }
 
         if (customCloseBtn) {
-          const m = document.querySelector('[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"], [class*="dikidi-"][class*="-container"]');
-          if (m && m.getBoundingClientRect) {
-            const rect = m.getBoundingClientRect();
-            customCloseBtn.style.position = 'fixed';
-            customCloseBtn.style.top = Math.max(8, rect.top - 16) + 'px';
-            customCloseBtn.style.left = Math.min(window.innerWidth - 52, rect.right - 20) + 'px';
-            customCloseBtn.style.right = 'auto';
-          } else {
-            customCloseBtn.style.top = '8px';
-            customCloseBtn.style.right = '8px';
-            customCloseBtn.style.left = 'auto';
-          }
+          customCloseBtn.style.top = '8px';
+          customCloseBtn.style.right = '8px';
+          customCloseBtn.style.left = 'auto';
+        }
+
+        if (!keydownBound) {
+          keydownBound = true;
+          document.addEventListener('keydown', function(ev) {
+            if (ev.key === 'Escape' && customCloseBtn) {
+              closeDikidi();
+            }
+          }, true);
         }
       }
 
@@ -118,6 +152,13 @@
           setTimeout(ensureButton, 50);
           setTimeout(ensureButton, 300);
           setTimeout(ensureButton, 1000);
+          if (!intervalId) {
+            intervalId = setInterval(ensureButton, 250);
+            setTimeout(function() {
+              clearInterval(intervalId);
+              intervalId = null;
+            }, 5000);
+          }
         }
       }, true);
 
