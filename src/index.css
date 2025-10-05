@@ -222,11 +222,6 @@ All colors MUST be HSL.
     transform: scale(0.95);
   }
 
-  @media (min-width: 768px) {
-    .dikidi-custom-close-btn {
-      display: none;
-    }
-  }
 
   @media (min-width: 768px) {
     [class*="dikidi-"][class*="-dialog"],

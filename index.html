@@ -48,36 +48,81 @@
     <script type="module" src="/src/main.tsx"></script>
     
     <script>
-    // Создаём кликабельный крестик для закрытия модалки Dikidi
     (function() {
       let customCloseBtn = null;
-      
-      const observer = new MutationObserver(() => {
-        const modal = document.querySelector('[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"]');
+
+      function ensureButton() {
+        const modal = document.querySelector('[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"], [class*="dikidi-"][class*="-container"]');
         const overlay = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
-        
-        if (modal && overlay && !customCloseBtn) {
-          console.log('Creating close button');
+        const iframe = document.querySelector('iframe[src*="dikidi"]');
+        const isOpen = !!(modal || overlay || iframe);
+
+        if (isOpen && !customCloseBtn) {
           customCloseBtn = document.createElement('button');
           customCloseBtn.className = 'dikidi-custom-close-btn';
-          customCloseBtn.innerHTML = '✕';
+          customCloseBtn.type = 'button';
+          customCloseBtn.textContent = '✕';
           customCloseBtn.setAttribute('aria-label', 'Закрыть');
-          
-          customCloseBtn.onclick = (e) => {
+
+          customCloseBtn.onclick = function(e) {
             e.stopPropagation();
-            overlay.click();
+            const ov = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
+            if (ov && typeof ov.click === 'function') {
+              ov.click();
+            } else {
+              document.querySelectorAll(
+                '[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"], ' +
+                '[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"], [class*="dikidi-"][class*="-container"], ' +
+                'iframe[src*="dikidi"]'
+              ).forEach(function(el){ el.parentNode && el.parentNode.removeChild(el); });
+              document.body.style.overflow = '';
+              document.documentElement.style.overflow = '';
+              document.body.classList.remove('dikidi-open','dikidi-modal-open');
+            }
           };
-          
+
           document.body.appendChild(customCloseBtn);
         }
-        
-        if (!modal && customCloseBtn) {
+
+        if (!isOpen && customCloseBtn) {
           customCloseBtn.remove();
           customCloseBtn = null;
         }
-      });
-      
-      observer.observe(document.body, { childList: true, subtree: true });
+
+        if (customCloseBtn) {
+          const m = document.querySelector('[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"], [class*="dikidi-"][class*="-container"]');
+          if (m && m.getBoundingClientRect) {
+            const rect = m.getBoundingClientRect();
+            customCloseBtn.style.position = 'fixed';
+            customCloseBtn.style.top = Math.max(8, rect.top - 16) + 'px';
+            customCloseBtn.style.left = Math.min(window.innerWidth - 52, rect.right - 20) + 'px';
+            customCloseBtn.style.right = 'auto';
+          } else {
+            customCloseBtn.style.top = '8px';
+            customCloseBtn.style.right = '8px';
+            customCloseBtn.style.left = 'auto';
+          }
+        }
+      }
+
+      const observer = new MutationObserver(ensureButton);
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+
+      window.addEventListener('resize', ensureButton);
+      window.addEventListener('scroll', ensureButton, true);
+      window.addEventListener('hashchange', ensureButton);
+
+      document.addEventListener('click', function(e) {
+        const a = e.target && e.target.closest && e.target.closest('a[href*="#widget="], button[data-dikidi], a[href*="dikidi"]');
+        if (a) {
+          setTimeout(ensureButton, 50);
+          setTimeout(ensureButton, 300);
+          setTimeout(ensureButton, 1000);
+        }
+      }, true);
+
+      // Run once in case modal is already open
+      ensureButton();
     })();
     </script>
   </body>
