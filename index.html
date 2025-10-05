@@ -59,12 +59,28 @@
           closeBtn.setAttribute('aria-label', 'Закрыть');
           closeBtn.onclick = (e) => {
             e.stopPropagation();
-            const overlay = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"]');
-            if (overlay) {
-              overlay.click();
-            } else {
-              modal.remove();
-            }
+            e.preventDefault();
+            
+            // Удаляем все элементы Dikidi
+            const allModals = document.querySelectorAll('[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"], [class*="dikidi-"][class*="-container"]');
+            const allOverlays = document.querySelectorAll('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
+            const allWrappers = document.querySelectorAll('[class*="dikidi-"], [id*="dikidi"]');
+            
+            allModals.forEach(el => el.remove());
+            allOverlays.forEach(el => el.remove());
+            allWrappers.forEach(el => {
+              if (el.style.display === 'none' || el.style.visibility === 'hidden') {
+                el.remove();
+              }
+            });
+            
+            // Восстанавливаем прокрутку страницы
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.documentElement.style.overflow = '';
+            
+            // Убираем классы, добавленные Dikidi
+            document.body.classList.remove('dikidi-open', 'dikidi-modal-open');
           };
           modal.style.position = 'relative';
           modal.appendChild(closeBtn);

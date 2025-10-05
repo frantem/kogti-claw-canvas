@@ -202,6 +202,7 @@ All colors MUST be HSL.
     cursor: pointer;
     z-index: 10000;
     transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
   .dikidi-custom-close:hover {
