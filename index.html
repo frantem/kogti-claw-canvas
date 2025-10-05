@@ -52,15 +52,15 @@
       document.addEventListener('click', function(e) {
         const target = e.target;
         const isOverlay = target.matches('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
-        const isModal = target.closest('[class*="dikidi-"][class*="-dialog"], [class*="dikidi-"][class*="-modal"], [id*="dikidi"][id*="dialog"], [id*="dikidi"][id*="modal"]');
+        const isInsideModal = target.closest('[class*="dikidi-"][class*="-dialog"], [class*="dikidi-"][class*="-modal"], [id*="dikidi"][id*="dialog"], [id*="dikidi"][id*="modal"]');
         
-        if (isOverlay && !isModal) {
+        if (isOverlay && !isInsideModal) {
           const closeBtn = document.querySelector('[class*="dikidi-"] [class*="close"], [id*="dikidi"] [class*="close"], [class*="dikidi-"] button[aria-label*="lose"], [class*="dikidi-"] button[aria-label*="закр"]');
           if (closeBtn) {
             closeBtn.click();
           }
         }
-      }, true);
+      }, false);
     </script>
   </body>
 </html>
