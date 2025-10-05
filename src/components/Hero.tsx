@@ -58,11 +58,11 @@ const Hero = () => {
            alt="Ногтевая студия KOGTI - профессиональный маникюр"
            wrapperClassName="absolute inset-0"
            imgClassName="w-full h-full object-cover"
+           eager={true}
+           fetchPriority="high"
          />
-        {/* Simplified overlay - removed heavy blur effects */}
-        <div className="absolute inset-0" style={{
-          background: `radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0.9) 100%)`
-        }}></div>
+        {/* Simplified overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
       </div>
       
       {/* Header on background with SEO H1 */}

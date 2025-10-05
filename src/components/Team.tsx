@@ -74,7 +74,7 @@ const MasterCard = ({
   return <Card className="relative overflow-hidden h-[450px] md:h-[600px] animate-fade-in border-8 border-white/20 backdrop-blur-sm" style={{
     borderRadius: '3rem',
     animationDelay: `${index * 150}ms`,
-    boxShadow: '0 0 8px rgba(255, 204, 102, 0.6), 0 0 16px rgba(255, 204, 102, 0.4), 0 0 24px rgba(255, 204, 102, 0.2), 0 4px 12px rgba(0, 0, 0, 0.2)'
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
   }}>
       {/* Single Background Image with lazy loading */}
       <div className="absolute inset-0">
@@ -82,7 +82,7 @@ const MasterCard = ({
           src={master.images[0] || master.avatar_url}
           alt={`${master.name} - мастер маникюра`}
           className="w-full h-full object-cover"
-          placeholder="true"
+          placeholder={true}
         />
       </div>
 

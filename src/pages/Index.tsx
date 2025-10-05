@@ -155,42 +155,42 @@ const Index = () => {
       <main className="min-h-screen">
         <Hero />
         <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={500}>
+          <DeferredSection delay={0}>
             <ServicesSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={800}>
+          <DeferredSection delay={150}>
             <Team />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={1000}>
+          <DeferredSection delay={300}>
             <ContactSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={1200}>
+          <DeferredSection delay={450}>
             <LocationSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={1400}>
+          <DeferredSection delay={600}>
             <SEOContent />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={1600}>
+          <DeferredSection delay={750}>
             <AboutSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={1800}>
+          <DeferredSection delay={900}>
             <FAQSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={2000}>
+          <DeferredSection delay={1050}>
             <Footer />
           </DeferredSection>
         </React.Suspense>

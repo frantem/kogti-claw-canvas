@@ -76,7 +76,7 @@ const ServicesSection = () => {
             <DikidiButton
               key={`${activeTab}-${index}`}
               widgetId={service.widget}
-              className="animate-fade-in overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group border-4 border-white/20 rounded-3xl p-0 h-auto"
+              className="overflow-hidden hover:shadow-xl transition-all duration-200 cursor-pointer group border-4 border-white/20 rounded-3xl p-0 h-auto"
               variant="secondary"
             >
               <div className="aspect-square relative overflow-hidden w-full">
@@ -84,7 +84,7 @@ const ServicesSection = () => {
                   src={service.image}
                   alt={service.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  placeholder="true"
+                  placeholder={true}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/90 transition-all duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">

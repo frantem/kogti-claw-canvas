@@ -126,7 +126,7 @@ const BookingCard = () => {
                           alt={`Master work ${index + 1}`}
                           wrapperClassName="w-full h-full rounded-full overflow-hidden aspect-square"
                           imgClassName="w-full h-full object-cover"
-                          placeholder="true"
+                          placeholder={true}
                         />
                         {index === 2 && bookingData.masterPhotos.length > 3 && (
                           <div className="absolute inset-0 bg-black/60 text-white text-xs font-medium rounded-full flex items-center justify-center">
