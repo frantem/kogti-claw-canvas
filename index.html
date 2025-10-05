@@ -47,5 +47,31 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
+    <script>
+    // Добавляем кнопку закрытия для модалки Dikidi на мобильных
+    (function() {
+      const observer = new MutationObserver(() => {
+        const modal = document.querySelector('[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"]');
+        if (modal && !modal.querySelector('.dikidi-custom-close')) {
+          const closeBtn = document.createElement('button');
+          closeBtn.className = 'dikidi-custom-close';
+          closeBtn.innerHTML = '✕';
+          closeBtn.setAttribute('aria-label', 'Закрыть');
+          closeBtn.onclick = (e) => {
+            e.stopPropagation();
+            const overlay = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"]');
+            if (overlay) {
+              overlay.click();
+            } else {
+              modal.remove();
+            }
+          };
+          modal.style.position = 'relative';
+          modal.appendChild(closeBtn);
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    })();
+    </script>
   </body>
 </html>
