@@ -153,38 +153,22 @@ All colors MUST be HSL.
     z-index: 9999 !important;
   }
 
-  /* Overlay для модалки - как в Яндекс.Картах */
-  [class*="dikidi-"][class*="-overlay"],
-  [id*="dikidi"][id*="overlay"],
-  [class*="dikidi-"][class*="-backdrop"] {
-    background-color: rgba(0, 0, 0, 0.6) !important;
-    backdrop-filter: blur(4px) !important;
-    z-index: 9998 !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-  }
-
   [class*="dikidi-"][class*="-dialog"],
   [id*="dikidi"][id*="dialog"],
   [class*="dikidi-"][class*="-container"] {
-    max-width: 90vw !important;
-    max-height: 80vh !important;
+    max-width: 95vw !important;
+    max-height: 90vh !important;
     width: 100% !important;
     height: auto !important;
-    margin: 10vh auto !important;
-    padding: 0 !important;
-    border-radius: 16px !important;
-    overflow: hidden !important;
+    margin: auto !important;
   }
 
   [class*="dikidi-"][class*="-dialog"] iframe,
   [id*="dikidi"] iframe {
     width: 100% !important;
-    height: 65vh !important;
-    max-height: 450px !important;
-    border-radius: 16px !important;
+    height: 85vh !important;
+    max-height: 600px !important;
   }
-
 
   @media (min-width: 768px) {
     [class*="dikidi-"][class*="-dialog"],

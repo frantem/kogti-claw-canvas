@@ -22,27 +22,9 @@ export const DikidiButton = ({
     outline: "bg-transparent hover:bg-white/10 text-white border border-white/20 hover:border-white/40"
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Сбрасываем флаг, чтобы виджет мог открыться
-    sessionStorage.removeItem('dikidi-opened');
-    
-    // Даём браузеру обновить hash
-    setTimeout(() => {
-      // Проверяем, открылся ли overlay
-      const hasOverlay = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"]');
-      
-      // Если overlay не появился (iOS Safari), открываем в новом окне как fallback
-      if (!hasOverlay) {
-        window.open(`https://dikidi.app/#widget=${widgetId}`, '_blank', 'noopener,noreferrer');
-      }
-    }, 400);
-  };
-
   return (
     <a
-      href={`#widget=${widgetId}`}
-      data-dikidi="true"
-      onClick={handleClick}
+      href={`https://dikidi.app/#widget=${widgetId}`}
       className={cn(baseStyles, variantStyles[variant], className)}
       aria-label="Записаться онлайн"
     >
