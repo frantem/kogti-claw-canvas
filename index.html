@@ -57,6 +57,7 @@
         const overlay = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
         
         if (modal && overlay && !customCloseBtn) {
+          console.log('Creating close button');
           customCloseBtn = document.createElement('button');
           customCloseBtn.className = 'dikidi-custom-close-btn';
           customCloseBtn.innerHTML = '✕';
