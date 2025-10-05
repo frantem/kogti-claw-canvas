@@ -146,6 +146,44 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Dikidi modal mobile optimization */
+  [class*="dikidi-"][class*="-modal"],
+  [id*="dikidi"][id*="modal"] {
+    z-index: 9999 !important;
+  }
+
+  [class*="dikidi-"][class*="-dialog"],
+  [id*="dikidi"][id*="dialog"],
+  [class*="dikidi-"][class*="-container"] {
+    max-width: 95vw !important;
+    max-height: 90vh !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: auto !important;
+  }
+
+  [class*="dikidi-"][class*="-dialog"] iframe,
+  [id*="dikidi"] iframe {
+    width: 100% !important;
+    height: 85vh !important;
+    max-height: 600px !important;
+  }
+
+  @media (min-width: 768px) {
+    [class*="dikidi-"][class*="-dialog"],
+    [id*="dikidi"][id*="dialog"],
+    [class*="dikidi-"][class*="-container"] {
+      max-width: 740px !important;
+      height: 670px !important;
+    }
+    
+    [class*="dikidi-"][class*="-dialog"] iframe,
+    [id*="dikidi"] iframe {
+      height: 100% !important;
+      max-height: none !important;
+    }
+  }
 }
 
 @layer components {
