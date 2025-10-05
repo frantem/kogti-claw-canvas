@@ -23,6 +23,9 @@ export const DikidiButton = ({
   };
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Сбрасываем флаг, чтобы виджет мог открыться
+    sessionStorage.removeItem('dikidi-opened');
+    
     // Даём браузеру обновить hash
     setTimeout(() => {
       // Проверяем, открылся ли overlay

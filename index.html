@@ -56,20 +56,33 @@
         if (widgetMatch && widgetMatch[1]) {
           const widgetId = widgetMatch[1];
           
-          // Создаём временную ссылку для запуска скрипта Dikidi
-          const tempLink = document.createElement('a');
-          tempLink.href = `https://dikidi.app/#widget=${widgetId}`;
-          tempLink.setAttribute('data-dikidi', 'true');
-          tempLink.style.display = 'none';
-          document.body.appendChild(tempLink);
+          // Проверяем, уже открывали ли виджет в этой сессии
+          const alreadyOpened = sessionStorage.getItem('dikidi-opened');
           
-          // Симулируем клик для запуска виджета
-          tempLink.click();
+          // Открываем только если ещё не открывали
+          if (!alreadyOpened) {
+            sessionStorage.setItem('dikidi-opened', 'true');
+            
+            // Создаём временную ссылку для запуска скрипта Dikidi
+            const tempLink = document.createElement('a');
+            tempLink.href = `https://dikidi.app/#widget=${widgetId}`;
+            tempLink.setAttribute('data-dikidi', 'true');
+            tempLink.style.display = 'none';
+            document.body.appendChild(tempLink);
+            
+            // Симулируем клик для запуска виджета
+            tempLink.click();
+            
+            // Удаляем временную ссылку
+            setTimeout(() => {
+              document.body.removeChild(tempLink);
+            }, 100);
+          }
           
-          // Удаляем временную ссылку
+          // Очищаем hash после открытия
           setTimeout(() => {
-            document.body.removeChild(tempLink);
-          }, 100);
+            history.replaceState(null, '', window.location.pathname);
+          }, 500);
         }
       }
       
