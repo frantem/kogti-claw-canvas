@@ -24,7 +24,8 @@ export const DikidiButton = ({
 
   return (
     <a
-      href={`https://dikidi.app/#widget=${widgetId}`}
+      href={`#widget=${widgetId}`}
+      data-dikidi="true"
       className={cn(baseStyles, variantStyles[variant], className)}
       aria-label="Записаться онлайн"
     >
