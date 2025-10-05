@@ -3,7 +3,8 @@ import { memo, useState } from "react";
 import LazyImage from "@/components/LazyImage";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { normalizeDikidiUrl, getWidgetIdFromUrl, openDikidiWidgetById } from "@/lib/dikidi";
+import { normalizeDikidiUrl, getWidgetIdFromUrl } from "@/lib/dikidi";
+import { useBookingModal } from "@/components/booking/BookingModalProvider";
 
 const Team = () => {
   const { data: masters = [], isLoading } = useQuery({
@@ -61,30 +62,21 @@ const MasterCard = ({
   master: any;
   index: number;
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const bookingModal = useBookingModal();
 
-  const handleBooking = async () => {
+  const handleBooking = () => {
     if (!master.booking_link) return;
     
-    setIsLoading(true);
+    console.info('[Team] Opening booking for master:', master.name);
+    const normalizedUrl = normalizeDikidiUrl(master.booking_link);
+    const widgetId = getWidgetIdFromUrl(normalizedUrl);
     
-    try {
-      const normalizedUrl = normalizeDikidiUrl(master.booking_link);
-      const widgetId = getWidgetIdFromUrl(normalizedUrl);
-      
-      if (widgetId) {
-        await openDikidiWidgetById(widgetId);
-      } else {
-        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
-      }
-    } catch (error) {
-      console.error('Error opening booking:', error);
-      try {
-        const normalizedUrl = normalizeDikidiUrl(master.booking_link);
-        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
-      } catch {}
-    } finally {
-      setIsLoading(false);
+    if (window.DIKIDI && widgetId) {
+      console.info('[Team] Using DIKIDI SDK');
+      window.DIKIDI.openWidget({ widget_id: widgetId });
+    } else {
+      console.info('[Team] Using iframe fallback');
+      bookingModal.open({ widgetId: widgetId || undefined, url: normalizedUrl });
     }
   };
 
@@ -144,10 +136,9 @@ const MasterCard = ({
         {master.booking_link && (
           <button 
             onClick={handleBooking}
-            disabled={isLoading}
-            className="block w-full bg-white text-black hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
+            className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-3 rounded-full text-base transition-all duration-300 text-center"
           >
-            {isLoading ? 'Загрузка...' : 'Записаться'}
+            Записаться
           </button>
         )}
       </div>

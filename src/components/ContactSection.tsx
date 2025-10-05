@@ -1,14 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle } from "lucide-react";
-import { openDikidiWidgetById } from "@/lib/dikidi";
+import { useBookingModal } from "@/components/booking/BookingModalProvider";
 
 const ContactSection = () => {
-  const handleDikidiBooking = async () => {
-    try {
-      await openDikidiWidgetById('192160');
-    } catch (error) {
-      console.error('Error opening booking:', error);
-      window.open('https://dikidi.net/#widget=192160', '_blank', 'noopener,noreferrer');
+  const bookingModal = useBookingModal();
+  
+  const handleDikidiBooking = () => {
+    console.info('[ContactSection] Opening booking');
+    if (window.DIKIDI) {
+      console.info('[ContactSection] Using DIKIDI SDK');
+      window.DIKIDI.openWidget({ widget_id: '192160' });
+    } else {
+      console.info('[ContactSection] Using iframe fallback');
+      bookingModal.open({ widgetId: '192160', url: 'https://dikidi.net/#widget=192160' });
     }
   };
 

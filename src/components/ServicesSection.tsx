@@ -1,10 +1,11 @@
 import { useState, memo } from "react";
 import appBackground from "@/assets/app-background.jpg";
 import LazyImage from "@/components/LazyImage";
-import { openDikidiWidgetById } from "@/lib/dikidi";
+import { useBookingModal } from "@/components/booking/BookingModalProvider";
 
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState<'manicure' | 'pedicure'>('manicure');
+  const bookingModal = useBookingModal();
 
   const manicureServices = [
     { name: "Коррекция/покрытие ногтей гелем", widget: "192348", image: "/lovable-uploads/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.png" },
@@ -27,12 +28,14 @@ const ServicesSection = () => {
   const currentServices = activeTab === 'manicure' ? manicureServices : pedicureServices;
 
 
-  const handleServiceClick = async (widget: string) => {
-    try {
-      await openDikidiWidgetById(widget);
-    } catch (error) {
-      console.error('Error opening service booking:', error);
-      window.open(`https://dikidi.net/#widget=${widget}`, '_blank', 'noopener,noreferrer');
+  const handleServiceClick = (widget: string) => {
+    console.info('[ServicesSection] Opening booking for widget:', widget);
+    if (window.DIKIDI) {
+      console.info('[ServicesSection] Using DIKIDI SDK');
+      window.DIKIDI.openWidget({ widget_id: widget });
+    } else {
+      console.info('[ServicesSection] Using iframe fallback');
+      bookingModal.open({ widgetId: widget });
     }
   };
 

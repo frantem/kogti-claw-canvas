@@ -8,10 +8,11 @@ import { useState, useEffect, memo } from "react";
 import { supabase } from '@/integrations/supabase/client';
 import LazyImage from "@/components/LazyImage";
 import masterEmily from "@/assets/master-anna.jpg";
-import { normalizeDikidiUrl, getWidgetIdFromUrl, openDikidiWidgetById } from "@/lib/dikidi";
+import { normalizeDikidiUrl, getWidgetIdFromUrl } from "@/lib/dikidi";
+import { useBookingModal } from "@/components/booking/BookingModalProvider";
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [isBookingLoading, setIsBookingLoading] = useState(false);
+  const bookingModal = useBookingModal();
   const [bookingData, setBookingData] = useState({
     serviceTitle: 'Маникюр',
     serviceSubtitle: '+ pedicure',
@@ -58,26 +59,17 @@ const BookingCard = () => {
       console.error('Error fetching booking data:', error);
     }
   };
-  const handleBookingClick = async () => {
-    setIsBookingLoading(true);
+  const handleBookingClick = () => {
+    console.info('[BookingCard] Opening booking');
+    const normalizedUrl = normalizeDikidiUrl(bookingData.bookingLink);
+    const widgetId = getWidgetIdFromUrl(normalizedUrl);
     
-    try {
-      const normalizedUrl = normalizeDikidiUrl(bookingData.bookingLink);
-      const widgetId = getWidgetIdFromUrl(normalizedUrl);
-      
-      if (widgetId) {
-        await openDikidiWidgetById(widgetId);
-      } else {
-        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
-      }
-    } catch (error) {
-      console.error('Error opening booking:', error);
-      try {
-        const normalizedUrl = normalizeDikidiUrl(bookingData.bookingLink);
-        window.open(normalizedUrl, '_blank', 'noopener,noreferrer');
-      } catch {}
-    } finally {
-      setIsBookingLoading(false);
+    if (window.DIKIDI && widgetId) {
+      console.info('[BookingCard] Using DIKIDI SDK');
+      window.DIKIDI.openWidget({ widget_id: widgetId });
+    } else {
+      console.info('[BookingCard] Using iframe fallback');
+      bookingModal.open({ widgetId: widgetId || undefined, url: normalizedUrl });
     }
   };
   return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
@@ -194,10 +186,9 @@ const BookingCard = () => {
       {/* Payment Button */}
       <button 
         onClick={handleBookingClick}
-        disabled={isBookingLoading}
-        className="w-full bg-gray-900 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-2xl py-4 font-semibold text-base"
+        className="w-full bg-gray-900 hover:bg-gray-800 text-white rounded-2xl py-4 font-semibold text-base"
       >
-        {isBookingLoading ? 'Загрузка...' : 'Записаться'}
+        Записаться
       </button>
 
       <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персональной скидкой 20%</p>
