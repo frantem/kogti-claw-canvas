@@ -47,5 +47,37 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
+    <script>
+    // Создаём кликабельный крестик для закрытия модалки Dikidi
+    (function() {
+      let customCloseBtn = null;
+      
+      const observer = new MutationObserver(() => {
+        const modal = document.querySelector('[class*="dikidi-"][class*="-dialog"], [id*="dikidi"][id*="dialog"]');
+        const overlay = document.querySelector('[class*="dikidi-"][class*="-overlay"], [id*="dikidi"][id*="overlay"], [class*="dikidi-"][class*="-backdrop"]');
+        
+        if (modal && overlay && !customCloseBtn) {
+          customCloseBtn = document.createElement('button');
+          customCloseBtn.className = 'dikidi-custom-close-btn';
+          customCloseBtn.innerHTML = '✕';
+          customCloseBtn.setAttribute('aria-label', 'Закрыть');
+          
+          customCloseBtn.onclick = (e) => {
+            e.stopPropagation();
+            overlay.click();
+          };
+          
+          document.body.appendChild(customCloseBtn);
+        }
+        
+        if (!modal && customCloseBtn) {
+          customCloseBtn.remove();
+          customCloseBtn = null;
+        }
+      });
+      
+      observer.observe(document.body, { childList: true, subtree: true });
+    })();
+    </script>
   </body>
 </html>
