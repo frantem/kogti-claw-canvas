@@ -47,6 +47,42 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
+    <!-- Автоматическое открытие Dikidi виджета из hash -->
+    <script>
+      function tryOpenFromHash() {
+        const hash = window.location.hash;
+        const widgetMatch = hash.match(/#widget=(\d+)/);
+        
+        if (widgetMatch && widgetMatch[1]) {
+          const widgetId = widgetMatch[1];
+          
+          // Создаём временную ссылку для запуска скрипта Dikidi
+          const tempLink = document.createElement('a');
+          tempLink.href = `https://dikidi.app/#widget=${widgetId}`;
+          tempLink.setAttribute('data-dikidi', 'true');
+          tempLink.style.display = 'none';
+          document.body.appendChild(tempLink);
+          
+          // Симулируем клик для запуска виджета
+          tempLink.click();
+          
+          // Удаляем временную ссылку
+          setTimeout(() => {
+            document.body.removeChild(tempLink);
+          }, 100);
+        }
+      }
+      
+      // Пробуем открыть при загрузке
+      document.addEventListener('DOMContentLoaded', tryOpenFromHash);
+      
+      // Пробуем открыть при изменении hash
+      window.addEventListener('hashchange', tryOpenFromHash);
+      
+      // Даём скрипту Dikidi время загрузиться
+      setTimeout(tryOpenFromHash, 500);
+    </script>
+    
     <!-- Закрытие модалки Dikidi по клику на overlay -->
     <script>
       document.addEventListener('click', function(e) {
