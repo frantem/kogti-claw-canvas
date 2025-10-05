@@ -14,12 +14,12 @@ export const DikidiButton = ({
   className,
   variant = "default"
 }: DikidiButtonProps) => {
-  const baseStyles = "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-12 px-6 py-3 rounded-2xl";
+  const baseStyles = "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
   
   const variantStyles = {
-    default: "bg-gray-900 hover:bg-gray-800 text-white",
-    secondary: "btn-secondary",
-    outline: "btn-secondary"
+    default: "bg-gray-900 hover:bg-gray-800 text-white h-12 px-6 py-3 rounded-2xl",
+    secondary: "bg-transparent hover:bg-white/10 text-white border border-white/20 hover:border-white/40",
+    outline: "bg-transparent hover:bg-white/10 text-white border border-white/20 hover:border-white/40"
   };
 
   return (

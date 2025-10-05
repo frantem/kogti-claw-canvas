@@ -1,5 +1,4 @@
 import { useState, memo } from "react";
-import appBackground from "@/assets/app-background.jpg";
 import LazyImage from "@/components/LazyImage";
 import { DikidiButton } from "@/components/booking/DikidiButton";
 
