@@ -161,16 +161,17 @@ All colors MUST be HSL.
     backdrop-filter: blur(4px) !important;
     z-index: 9998 !important;
     cursor: pointer !important;
+    pointer-events: auto !important;
   }
 
   [class*="dikidi-"][class*="-dialog"],
   [id*="dikidi"][id*="dialog"],
   [class*="dikidi-"][class*="-container"] {
-    max-width: 95vw !important;
-    max-height: 85vh !important;
+    max-width: 90vw !important;
+    max-height: 80vh !important;
     width: 100% !important;
     height: auto !important;
-    margin: 5vh auto !important;
+    margin: 10vh auto !important;
     padding: 0 !important;
     border-radius: 16px !important;
     overflow: hidden !important;
@@ -179,8 +180,8 @@ All colors MUST be HSL.
   [class*="dikidi-"][class*="-dialog"] iframe,
   [id*="dikidi"] iframe {
     width: 100% !important;
-    height: 75vh !important;
-    max-height: 500px !important;
+    height: 65vh !important;
+    max-height: 450px !important;
     border-radius: 16px !important;
   }
 
