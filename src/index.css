@@ -184,45 +184,6 @@ All colors MUST be HSL.
     border-radius: 16px !important;
   }
 
-  /* Кнопка закрытия для модалки на мобильных */
-  @media (max-width: 767px) {
-    [class*="dikidi-"][class*="-dialog"]::before,
-    [id*="dikidi"][id*="dialog"]::before {
-      display: none;
-    }
-  }
-
-  .dikidi-custom-close-btn {
-    position: fixed;
-    top: 8px;
-    right: 8px;
-    width: 44px;
-    height: 44px;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    border: 2px solid white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 999999;
-    transition: all 0.2s;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
-  }
-
-  .dikidi-custom-close-btn:hover {
-    background: rgba(0, 0, 0, 0.9);
-    transform: scale(1.1);
-  }
-
-  .dikidi-custom-close-btn:active {
-    transform: scale(0.95);
-  }
-
-
   @media (min-width: 768px) {
     [class*="dikidi-"][class*="-dialog"],
     [id*="dikidi"][id*="dialog"],
