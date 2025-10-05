@@ -1,6 +1,7 @@
 import { useState, useEffect, memo } from 'react';
 import BookingCard from "@/components/BookingCard";
 import { supabase } from '@/integrations/supabase/client';
+import LazyImage from "@/components/LazyImage";
 
 const Hero = () => {
   const [heroData, setHeroData] = useState({
@@ -52,12 +53,12 @@ const Hero = () => {
       </div>
       {/* Nail art background with optimized loading */}
       <div className="absolute inset-0">
-         <div 
-           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-           style={{
-             backgroundImage: `url(${heroData.backgroundImage})`
-           }}
-         ></div>
+         <LazyImage 
+           src={heroData.backgroundImage}
+           alt="Ногтевая студия KOGTI - профессиональный маникюр"
+           wrapperClassName="absolute inset-0"
+           imgClassName="w-full h-full object-cover"
+         />
         {/* Simplified overlay - removed heavy blur effects */}
         <div className="absolute inset-0" style={{
           background: `radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0.9) 100%)`

@@ -66,9 +66,13 @@ const BookingCard = () => {
         <div className="flex items-center gap-4">
           {/* Oval image with KOGTI text */}
           <div className="relative -mt-4 -ml-4 -mb-4">
-            <div className="w-24 h-36 rounded-[4rem] bg-cover bg-center border-2 border-white shadow-md" style={{
-            backgroundImage: `url(${bookingData.serviceImage})`
-          }}>
+            <div className="w-24 h-36 rounded-[4rem] border-2 border-white shadow-md overflow-hidden relative">
+              <LazyImage 
+                src={bookingData.serviceImage}
+                alt="Маникюр в студии KOGTI"
+                wrapperClassName="w-full h-full"
+                imgClassName="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-black/30 rounded-[4rem] flex items-center justify-center">
                 <span className="text-white text-xs font-bold">Ленина 26</span>
               </div>

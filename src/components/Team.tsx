@@ -24,23 +24,27 @@ const Team = () => {
 
   if (isLoading) {
     return (
-      <section id="team" className="relative min-h-screen py-20" style={{
-        backgroundImage: 'url(/lovable-uploads/ff28dcc9-cddd-4feb-8f66-ce26adedc889.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}>
-        <div className="container mx-auto px-6">
+      <section id="team" className="relative min-h-screen py-20">
+        <LazyImage 
+          src="/lovable-uploads/ff28dcc9-cddd-4feb-8f66-ce26adedc889.png"
+          alt="Команда мастеров студии KOGTI"
+          wrapperClassName="absolute inset-0"
+          imgClassName="w-full h-full object-cover"
+        />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center text-white">Загрузка...</div>
         </div>
       </section>
     );
   }
-  return <section id="team" className="relative min-h-screen py-20" style={{
-    backgroundImage: 'url(/lovable-uploads/ff28dcc9-cddd-4feb-8f66-ce26adedc889.png)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center'
-  }}>
-      <div className="container mx-auto px-6">
+  return <section id="team" className="relative min-h-screen py-20">
+      <LazyImage 
+        src="/lovable-uploads/ff28dcc9-cddd-4feb-8f66-ce26adedc889.png"
+        alt="Команда мастеров студии KOGTI"
+        wrapperClassName="absolute inset-0"
+        imgClassName="w-full h-full object-cover"
+      />
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-4"> Мастера ногтевого сервиса</h2>
           <p className="text-white/90 text-lg">
