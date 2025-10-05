@@ -68,14 +68,10 @@ const Hero = () => {
       {/* Header on background with SEO H1 */}
       <div className="absolute top-[15%] left-0 right-0 z-10 text-center">
         <div className="text-white">
-          <h2 className="text-4xl font-bold tracking-tight drop-shadow-lg" style={{
-            textShadow: '0 0 10px rgba(255, 204, 102, 1), 0 0 20px rgba(255, 204, 102, 0.8), 0 0 30px rgba(255, 204, 102, 0.6)'
-          }}>
+          <h2 className="text-4xl font-bold tracking-tight">
             {heroData.title}
           </h2>
-          <h1 className="text-sm font-medium uppercase tracking-wider drop-shadow-md" style={{
-            textShadow: '0 0 8px rgba(255, 204, 102, 1), 0 0 16px rgba(255, 204, 102, 0.7)'
-          }}>
+          <h1 className="text-sm font-medium uppercase tracking-wider">
             {heroData.subtitle}
           </h1>
         </div>
