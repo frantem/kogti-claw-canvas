@@ -153,21 +153,58 @@ All colors MUST be HSL.
     z-index: 9999 !important;
   }
 
+  /* Overlay для модалки - как в Яндекс.Картах */
+  [class*="dikidi-"][class*="-overlay"],
+  [id*="dikidi"][id*="overlay"],
+  [class*="dikidi-"][class*="-backdrop"] {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(4px) !important;
+    z-index: 9998 !important;
+    cursor: pointer !important;
+  }
+
   [class*="dikidi-"][class*="-dialog"],
   [id*="dikidi"][id*="dialog"],
   [class*="dikidi-"][class*="-container"] {
     max-width: 95vw !important;
-    max-height: 90vh !important;
+    max-height: 85vh !important;
     width: 100% !important;
     height: auto !important;
-    margin: auto !important;
+    margin: 5vh auto !important;
+    padding: 0 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
   }
 
   [class*="dikidi-"][class*="-dialog"] iframe,
   [id*="dikidi"] iframe {
     width: 100% !important;
-    height: 85vh !important;
-    max-height: 600px !important;
+    height: 75vh !important;
+    max-height: 500px !important;
+    border-radius: 16px !important;
+  }
+
+  /* Кнопка закрытия для модалки на мобильных */
+  @media (max-width: 767px) {
+    [class*="dikidi-"][class*="-dialog"]::before,
+    [id*="dikidi"][id*="dialog"]::before {
+      content: "✕";
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10000;
+      pointer-events: auto;
+    }
   }
 
   @media (min-width: 768px) {
