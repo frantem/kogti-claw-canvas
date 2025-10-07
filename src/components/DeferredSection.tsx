@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 
 interface DeferredSectionProps {
   children: ReactNode;
@@ -7,18 +7,43 @@ interface DeferredSectionProps {
 
 const DeferredSection = ({ children, delay = 100 }: DeferredSectionProps) => {
   const [shouldRender, setShouldRender] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShouldRender(true);
-    }, delay);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '200px',
+        threshold: 0.01
+      }
+    );
 
-    return () => clearTimeout(timer);
-  }, [delay]);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isInView && !shouldRender) {
+      const timer = setTimeout(() => {
+        setShouldRender(true);
+      }, delay);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isInView, delay, shouldRender]);
 
   if (!shouldRender) {
     return (
-      <div className="min-h-[200px] bg-gray-100 animate-pulse" />
+      <div ref={ref} className="min-h-[200px] bg-muted/20" />
     );
   }
 

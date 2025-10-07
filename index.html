@@ -8,11 +8,10 @@
     
     <!-- Preconnect to critical domains -->
     <link rel="preconnect" href="https://kribifrbfiaxrnbkezyt.supabase.co" crossorigin />
-    <link rel="preconnect" href="https://dikidi.net" crossorigin />
+    <link rel="dns-prefetch" href="https://dikidi.net" />
     
-    <!-- Dikidi Widget Script - Load early for instant overlay -->
-    <script>window.dikidi={domain:"dikidi.net"}</script>
-    <script type="text/javascript" src="https://dikidi.net/assets/js/widget_record/widget2.min.js?v=1758698230"></script>
+    <!-- Preload critical hero image -->
+    <link rel="preload" as="image" href="/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png" fetchpriority="high" />
     
     <meta name="description" content="KOGTI - ногтевая студия в центре Витебска. Профессиональный маникюр, педикюр, наращивание ногтей. Запись по телефону +375 (33) 658-26-39" />
     <meta name="author" content="KOGTI nail studio" />
@@ -47,5 +46,8 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
+    <!-- Dikidi Widget Script - Load async at end for better performance -->
+    <script>window.dikidi={domain:"dikidi.net"}</script>
+    <script type="text/javascript" src="https://dikidi.net/assets/js/widget_record/widget2.min.js?v=1758698230" async defer></script>
   </body>
 </html>

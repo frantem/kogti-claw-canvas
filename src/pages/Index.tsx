@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { Helmet } from "react-helmet";
-import { supabase } from '@/integrations/supabase/client';
 import Hero from "@/components/Hero";
 import DeferredSection from "@/components/DeferredSection";
+import { useSettings } from "@/hooks/useSettings";
 
 // Lazy load non-critical components
 const AboutSection = React.lazy(() => import("@/components/AboutSection"));
@@ -15,41 +15,13 @@ const SEOContent = React.lazy(() => import("@/components/SEOContent"));
 const Footer = React.lazy(() => import("@/components/Footer"));
 
 const Index = () => {
-  const [seoData, setSeoData] = useState({
-    title: 'Маникюр Витебск - Салон красоты KOGTI | Лучший маникюр и педикюр в Витебске',
-    description: 'Профессиональный маникюр и педикюр в Витебске в салоне красоты KOGTI. Наращивание ногтей, гель-лак, nail-арт. Опытные мастера, качественные материалы. г. Витебск, ул. Ленина 26.',
-    keywords: 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, студия красоты Витебск, гель-лак Витебск, френч Витебск, ногтевая студия Витебск, nail арт Витебск'
-  });
+  const { data: settings } = useSettings(['seo_title', 'seo_description', 'seo_keywords']);
 
-  useEffect(() => {
-    const fetchSEOData = async () => {
-      try {
-        const { data } = await supabase
-          .from('site_settings')
-          .select('setting_key, setting_value')
-          .in('setting_key', ['seo_title', 'seo_description', 'seo_keywords']);
-
-        if (data) {
-          const settingsMap = data.reduce((acc, item) => {
-            acc[item.setting_key] = item.setting_value || '';
-            return acc;
-          }, {} as Record<string, string>);
-
-          setSeoData({
-            title: settingsMap.seo_title || 'Маникюр Витебск - Салон красоты KOGTI | Лучший маникюр и педикюр в Витебске',
-            description: settingsMap.seo_description || 'Профессиональный маникюр и педикюр в Витебске в салоне красоты KOGTI. Наращивание ногтей, гель-лак, nail-арт. Опытные мастера, качественные материалы. г. Витебск, ул. Ленина 26.',
-            keywords: settingsMap.seo_keywords || 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, студия красоты Витебск, гель-лак Витебск, френч Витебск, ногтевая студия Витебск, nail арт Витебск'
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching SEO data:', error);
-      }
-    };
-
-    fetchSEOData();
-  }, []);
-
-  console.log('Index component rendering', { seoData });
+  const seoData = useMemo(() => ({
+    title: settings?.seo_title || 'Маникюр Витебск - Салон красоты KOGTI | Лучший маникюр и педикюр в Витебске',
+    description: settings?.seo_description || 'Профессиональный маникюр и педикюр в Витебске в салоне красоты KOGTI. Наращивание ногтей, гель-лак, nail-арт. Опытные мастера, качественные материалы. г. Витебск, ул. Ленина 26.',
+    keywords: settings?.seo_keywords || 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, студия красоты Витебск, гель-лак Витебск, френч Витебск, ногтевая студия Витебск, nail арт Витебск'
+  }), [settings]);
   
   return (
     <>
@@ -154,43 +126,41 @@ const Index = () => {
       </Helmet>
       <main className="min-h-screen">
         <Hero />
-        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={0}>
-            <ServicesSection />
-          </DeferredSection>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
+          <ServicesSection />
         </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={150}>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
+          <DeferredSection delay={50}>
             <Team />
           </DeferredSection>
         </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={300}>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
+          <DeferredSection delay={100}>
             <ContactSection />
           </DeferredSection>
         </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={450}>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
+          <DeferredSection delay={150}>
             <LocationSection />
           </DeferredSection>
         </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={600}>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
+          <DeferredSection delay={200}>
             <SEOContent />
           </DeferredSection>
         </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={750}>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
+          <DeferredSection delay={250}>
             <AboutSection />
           </DeferredSection>
         </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={900}>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
+          <DeferredSection delay={300}>
             <FAQSection />
           </DeferredSection>
         </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-gray-100 animate-pulse" />}>
-          <DeferredSection delay={1050}>
+        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
+          <DeferredSection delay={350}>
             <Footer />
           </DeferredSection>
         </React.Suspense>

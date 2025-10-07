@@ -1,48 +1,18 @@
-import { useState, useEffect, memo } from 'react';
+import { useMemo, memo } from 'react';
 import BookingCard from "@/components/BookingCard";
-import { supabase } from '@/integrations/supabase/client';
 import LazyImage from "@/components/LazyImage";
+import { useSettings } from "@/hooks/useSettings";
 
 const Hero = () => {
-  const [heroData, setHeroData] = useState({
-    title: 'KOGTI',
-    subtitle: 'МАНИКЮР ПЕДИКЮР ВИТЕБСК',
-    backgroundImage: '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png',
-    h1Title: 'Маникюр',
-    h1Subtitle: 'pedicure'
-  });
+  const { data: settings } = useSettings(['hero_title', 'hero_subtitle', 'hero_background', 'hero_h1_title', 'hero_h1_subtitle']);
 
-  console.log('Hero component mounting');
-  
-  useEffect(() => {
-    fetchHeroData();
-  }, []);
-
-  const fetchHeroData = async () => {
-    try {
-      const { data } = await supabase
-        .from('site_settings')
-        .select('setting_key, setting_value')
-        .in('setting_key', ['hero_title', 'hero_subtitle', 'hero_background', 'hero_h1_title', 'hero_h1_subtitle']);
-
-      if (data) {
-        const settingsMap = data.reduce((acc, item) => {
-          acc[item.setting_key] = item.setting_value || '';
-          return acc;
-        }, {} as Record<string, string>);
-
-        setHeroData({
-          title: settingsMap.hero_title || 'KOGTI',
-          subtitle: settingsMap.hero_subtitle || 'МАНИКЮР ПЕДИКЮР ВИТЕБСК',
-          backgroundImage: settingsMap.hero_background || '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png',
-          h1Title: settingsMap.hero_h1_title || 'Маникюр',
-          h1Subtitle: settingsMap.hero_h1_subtitle || 'pedicure'
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching hero data:', error);
-    }
-  };
+  const heroData = useMemo(() => ({
+    title: settings?.hero_title || 'KOGTI',
+    subtitle: settings?.hero_subtitle || 'МАНИКЮР ПЕДИКЮР ВИТЕБСК',
+    backgroundImage: settings?.hero_background || '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png',
+    h1Title: settings?.hero_h1_title || 'Маникюр',
+    h1Subtitle: settings?.hero_h1_subtitle || 'pedicure'
+  }), [settings]);
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Content positioned slightly above middle of screen */}

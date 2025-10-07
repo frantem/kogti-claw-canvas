@@ -3,58 +3,50 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
 import { Check } from "lucide-react";
-import { useState, useEffect, memo } from "react";
-import { supabase } from '@/integrations/supabase/client';
+import { useState, useMemo, memo } from "react";
 import LazyImage from "@/components/LazyImage";
 import { DikidiButton } from "@/components/booking/DikidiButton";
+import { useSettings } from "@/hooks/useSettings";
+
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [bookingData, setBookingData] = useState({
-    serviceTitle: 'Маникюр',
-    serviceSubtitle: '+ pedicure',
-    serviceImage: '/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png',
-    masterName: 'Мастер: Аня',
-    masterAvatar: '/lovable-uploads/0037d6a4-735d-49bb-8011-d4ba7f19c613.png',
-    hotDate: 'Пн 21.08',
-    hotTime: '12:00-18:30',
-    masterPhotos: ["/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png", "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png", "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png", "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"],
-    bookingLink: 'https://dikidi.ru/#widget=192147'
-  });
-  useEffect(() => {
-    fetchBookingData();
-  }, []);
-  const fetchBookingData = async () => {
+  const { data: settings } = useSettings([
+    'booking_service_title',
+    'booking_service_subtitle', 
+    'booking_service_image',
+    'booking_master_name',
+    'booking_master_avatar',
+    'booking_hot_date',
+    'booking_hot_time',
+    'booking_master_photos',
+    'booking_link'
+  ]);
+
+  const bookingData = useMemo(() => {
+    let masterPhotos = [];
     try {
-      const {
-        data
-      } = await supabase.from('site_settings').select('setting_key, setting_value').in('setting_key', ['booking_service_title', 'booking_service_subtitle', 'booking_service_image', 'booking_master_name', 'booking_master_avatar', 'booking_hot_date', 'booking_hot_time', 'booking_master_photos', 'booking_link']);
-      if (data) {
-        const settingsMap = data.reduce((acc, item) => {
-          acc[item.setting_key] = item.setting_value || '';
-          return acc;
-        }, {} as Record<string, string>);
-        let masterPhotos = [];
-        try {
-          masterPhotos = JSON.parse(settingsMap.booking_master_photos || '[]');
-        } catch (e) {
-          masterPhotos = ["/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png", "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png", "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png", "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"];
-        }
-        setBookingData({
-          serviceTitle: settingsMap.booking_service_title || 'Маникюр',
-          serviceSubtitle: settingsMap.booking_service_subtitle || '+ pedicure',
-          serviceImage: settingsMap.booking_service_image || '/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png',
-          masterName: settingsMap.booking_master_name || 'Мастер: Аня',
-          masterAvatar: settingsMap.booking_master_avatar || '/lovable-uploads/0037d6a4-735d-49bb-8011-d4ba7f19c613.png',
-          hotDate: settingsMap.booking_hot_date || 'Пн 21.08',
-          hotTime: settingsMap.booking_hot_time || '12:00-18:30',
-          masterPhotos: masterPhotos,
-          bookingLink: settingsMap.booking_link || 'https://dikidi.ru/#widget=192147'
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching booking data:', error);
+      masterPhotos = JSON.parse(settings?.booking_master_photos || '[]');
+    } catch (e) {
+      masterPhotos = [
+        "/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png",
+        "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png",
+        "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png",
+        "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"
+      ];
     }
-  };
+
+    return {
+      serviceTitle: settings?.booking_service_title || 'Маникюр',
+      serviceSubtitle: settings?.booking_service_subtitle || '+ pedicure',
+      serviceImage: settings?.booking_service_image || '/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png',
+      masterName: settings?.booking_master_name || 'Мастер: Аня',
+      masterAvatar: settings?.booking_master_avatar || '/lovable-uploads/0037d6a4-735d-49bb-8011-d4ba7f19c613.png',
+      hotDate: settings?.booking_hot_date || 'Пн 21.08',
+      hotTime: settings?.booking_hot_time || '12:00-18:30',
+      masterPhotos,
+      bookingLink: settings?.booking_link || 'https://dikidi.ru/#widget=192147'
+    };
+  }, [settings]);
   const getWidgetId = () => {
     const match = bookingData.bookingLink.match(/widget[=\/](\d+)/);
     return match ? match[1] : '192147';
