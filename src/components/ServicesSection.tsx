@@ -1,6 +1,5 @@
 import { useState, memo } from "react";
 import LazyImage from "@/components/LazyImage";
-import { DikidiButton } from "@/components/booking/DikidiButton";
 
 const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState<'manicure' | 'pedicure'>('manicure');
@@ -73,11 +72,9 @@ const ServicesSection = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {currentServices.map((service, index) => (
-            <DikidiButton
+            <div
               key={`${activeTab}-${index}`}
-              widgetId={service.widget}
-              className="block whitespace-normal text-left overflow-hidden hover:shadow-xl transition-all duration-200 cursor-pointer group border-4 border-white/20 rounded-3xl p-0 h-auto"
-              variant="secondary"
+              className="overflow-hidden hover:shadow-xl transition-all duration-200 group border-4 border-white/20 rounded-3xl bg-white"
             >
               <div className="aspect-square relative overflow-hidden w-full">
                 <LazyImage
@@ -93,7 +90,15 @@ const ServicesSection = () => {
                   </h3>
                 </div>
               </div>
-            </DikidiButton>
+              <div className="p-3">
+                <a 
+                  href={`https://dikidi.app/#widget=${service.widget}`}
+                  className="block text-center py-2 px-4 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors duration-200"
+                >
+                  Записаться
+                </a>
+              </div>
+            </div>
           ))}
         </div>
       </div>
