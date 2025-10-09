@@ -8,7 +8,7 @@ const ServicesSection = () => {
   const manicureServices = [
     { name: "Коррекция/покрытие ногтей гелем", widget: "192348", image: "/lovable-uploads/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.png" },
     { name: "Наращивание ногтей (длина до 4-х клеток)", widget: "192349", image: "/lovable-uploads/5a5fefe4-d334-417b-8e67-e9fd1563b7ae.png" },
-    { name: "Коррекция ногтей с восстановлением архитектуры", widget: "195250", image: "/lovable-uploads/ac52d59c-f173-4e8c-bda0-e07b3687552e.png" },
+    { name: "Коррекция ногтей с восстановлением архитектуры", widget: "195345", image: "/lovable-uploads/ac52d59c-f173-4e8c-bda0-e07b3687552e.png" },
     { name: "Комбинированный маникюр без покрытия", widget: "192351", image: "/lovable-uploads/b0c50a98-cb3f-4518-81bb-8897d4388396.png" },
     { name: "Комбинированный маникюр + покрытие лаком", widget: "192352", image: "/lovable-uploads/e81a2e04-654b-4138-9198-7283d67c442d.png" },
     { name: "Снятие покрытия + комбинированный маникюр", widget: "192471", image: "/lovable-uploads/d7e74cb2-6e4b-46ca-88e0-27733084fb89.png" },
