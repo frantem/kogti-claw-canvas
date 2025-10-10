@@ -8,7 +8,7 @@ import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { ImageUpload } from './ImageUpload';
-import { Plus, Edit, Trash2, Save, X } from 'lucide-react';
+import { Plus, Edit, Trash2, Save, X, ArrowUp, ArrowDown } from 'lucide-react';
 
 interface Master {
   id: string;
@@ -28,6 +28,7 @@ export function MastersManagement() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [movingId, setMovingId] = useState<string | null>(null);
   const { toast } = useToast();
 
   const emptyMaster: Omit<Master, 'id'> = {
@@ -136,6 +137,72 @@ export function MastersManagement() {
     setFormData(emptyMaster);
     setEditingId(null);
     setIsCreating(false);
+  };
+
+  const moveMasterUp = async (master: Master) => {
+    const currentIndex = masters.findIndex(m => m.id === master.id);
+    if (currentIndex === 0) return;
+    
+    setMovingId(master.id);
+    try {
+      const previousMaster = masters[currentIndex - 1];
+      
+      const { error: error1 } = await supabase
+        .from('masters')
+        .update({ sort_order: previousMaster.sort_order })
+        .eq('id', master.id);
+      
+      const { error: error2 } = await supabase
+        .from('masters')
+        .update({ sort_order: master.sort_order })
+        .eq('id', previousMaster.id);
+
+      if (error1 || error2) throw error1 || error2;
+      
+      await fetchMasters();
+      toast({ title: "Порядок изменен" });
+    } catch (error) {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось изменить порядок",
+        variant: "destructive"
+      });
+    } finally {
+      setMovingId(null);
+    }
+  };
+
+  const moveMasterDown = async (master: Master) => {
+    const currentIndex = masters.findIndex(m => m.id === master.id);
+    if (currentIndex === masters.length - 1) return;
+    
+    setMovingId(master.id);
+    try {
+      const nextMaster = masters[currentIndex + 1];
+      
+      const { error: error1 } = await supabase
+        .from('masters')
+        .update({ sort_order: nextMaster.sort_order })
+        .eq('id', master.id);
+      
+      const { error: error2 } = await supabase
+        .from('masters')
+        .update({ sort_order: master.sort_order })
+        .eq('id', nextMaster.id);
+
+      if (error1 || error2) throw error1 || error2;
+      
+      await fetchMasters();
+      toast({ title: "Порядок изменен" });
+    } catch (error) {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось изменить порядок",
+        variant: "destructive"
+      });
+    } finally {
+      setMovingId(null);
+    }
   };
 
   if (loading) return <div>Загрузка...</div>;
@@ -258,6 +325,24 @@ export function MastersManagement() {
                   <CardDescription className="text-sm text-muted-foreground">{master.title || 'Не указана должность'}</CardDescription>
                 </div>
                 <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => moveMasterUp(master)}
+                    disabled={masters.findIndex(m => m.id === master.id) === 0 || movingId === master.id}
+                    className="hover:bg-blue-50 hover:border-blue-300"
+                  >
+                    <ArrowUp className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => moveMasterDown(master)}
+                    disabled={masters.findIndex(m => m.id === master.id) === masters.length - 1 || movingId === master.id}
+                    className="hover:bg-blue-50 hover:border-blue-300"
+                  >
+                    <ArrowDown className="h-4 w-4" />
+                  </Button>
                   <Button
                     variant="outline"
                     size="sm"
