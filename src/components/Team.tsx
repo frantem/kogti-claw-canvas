@@ -79,7 +79,7 @@ const MasterCard = ({
       {/* Single Background Image with lazy loading */}
       <div className="absolute inset-0">
         <LazyImage
-          src={master.images[0] || master.avatar_url}
+          src={master.avatar_url || master.images[0]}
           alt={`${master.name} - мастер маникюра`}
           className="w-full h-full object-cover"
           placeholder={true}
