@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { ImageUpload } from './ImageUpload';
 import { Plus, Edit, Trash2, Save, X, ArrowUp, ArrowDown } from 'lucide-react';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface Master {
   id: string;
@@ -30,6 +31,7 @@ export function MastersManagement() {
   const [loading, setLoading] = useState(true);
   const [movingId, setMovingId] = useState<string | null>(null);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const emptyMaster: Omit<Master, 'id'> = {
     name: '',
@@ -89,6 +91,7 @@ export function MastersManagement() {
       }
 
       await fetchMasters();
+      queryClient.invalidateQueries({ queryKey: ['masters'] });
       resetForm();
     } catch (error) {
       toast({
@@ -111,6 +114,7 @@ export function MastersManagement() {
       if (error) throw error;
       
       await fetchMasters();
+      queryClient.invalidateQueries({ queryKey: ['masters'] });
       toast({ title: "Мастер удален" });
     } catch (error) {
       toast({
@@ -160,6 +164,7 @@ export function MastersManagement() {
       if (error1 || error2) throw error1 || error2;
       
       await fetchMasters();
+      queryClient.invalidateQueries({ queryKey: ['masters'] });
       toast({ title: "Порядок изменен" });
     } catch (error) {
       toast({
@@ -193,6 +198,7 @@ export function MastersManagement() {
       if (error1 || error2) throw error1 || error2;
       
       await fetchMasters();
+      queryClient.invalidateQueries({ queryKey: ['masters'] });
       toast({ title: "Порядок изменен" });
     } catch (error) {
       toast({
