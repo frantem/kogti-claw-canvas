@@ -127,7 +127,7 @@ const MasterCard = ({
         {master.booking_link && getWidgetId() && (
           <DikidiButton 
             widgetId={getWidgetId()}
-            className="flex items-center justify-center w-[75%] mx-auto mb-1 bg-white text-black hover:bg-white/90 font-semibold py-1 md:py-1.5 rounded-full text-xs md:text-base transition-all duration-300"
+            className="flex items-center justify-center w-[85%] mx-auto bg-white text-black hover:bg-white/90 font-semibold py-1.5 md:py-2.5 rounded-full text-xs md:text-base transition-all duration-300"
           />
         )}
       </div>
