@@ -52,7 +52,7 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6 mx-auto">
           {masters.map((master, index) => <MasterCard key={index} master={master} index={index} />)}
         </div>
       </div>
@@ -101,12 +101,12 @@ const MasterCard = ({
       {/* Content Section */}
       <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 text-white">
         {/* Master Name */}
-        <p className="text-lg md:text-2xl font-bold mb-2 md:mb-3">
+        <p className="text-lg md:text-2xl font-bold mb-1 md:mb-1.5">
           {master.name}
         </p>
         
         {/* Description */}
-        <h3 className="text-[8px] md:text-[9px] text-gray-200 mb-2 md:mb-4 leading-relaxed line-clamp-2 md:line-clamp-none">
+        <h3 className="text-[9px] md:text-[10px] font-medium text-gray-200 mb-1 md:mb-2 leading-relaxed line-clamp-2 md:line-clamp-none">
           {master.description.split('\n').map((line: string, lineIndex: number) => <span key={lineIndex}>
               {line}
               {lineIndex < master.description.split('\n').length - 1 && <br />}
@@ -114,11 +114,11 @@ const MasterCard = ({
         </h3>
 
         {/* Tags */}
-        <div className="flex gap-1.5 md:gap-3 mb-2 md:mb-4">
-          <span className="bg-white/20 text-white text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-lg">
+        <div className="flex flex-wrap gap-1.5 md:gap-3 mb-1 md:mb-2">
+          <span className="inline-flex w-fit bg-white/20 text-white text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-lg">
             {master.title}
           </span>
-          <span className="bg-white/20 text-white text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-lg">
+          <span className="inline-flex w-fit bg-white/20 text-white text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-lg">
             {master.experience}
           </span>
         </div>
@@ -127,7 +127,7 @@ const MasterCard = ({
         {master.booking_link && getWidgetId() && (
           <DikidiButton 
             widgetId={getWidgetId()}
-            className="block w-full bg-white text-black hover:bg-white/90 font-semibold py-2 md:py-3 rounded-full text-xs md:text-base transition-all duration-300 text-center"
+            className="flex items-center justify-center w-[85%] mx-auto bg-white text-black hover:bg-white/90 font-semibold py-1.5 md:py-2.5 rounded-full text-xs md:text-base transition-all duration-300"
           />
         )}
       </div>
