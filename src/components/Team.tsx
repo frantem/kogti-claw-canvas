@@ -71,7 +71,7 @@ const MasterCard = ({
     return match ? match[1] : '';
   };
 
-  return <Card className="relative overflow-hidden h-[350px] md:h-[550px] animate-fade-in border-4 md:border-8 border-white/20 backdrop-blur-sm" style={{
+  return <Card className="relative overflow-hidden h-[245px] md:h-[385px] animate-fade-in border-4 md:border-8 border-white/20 backdrop-blur-sm" style={{
     borderRadius: '1.5rem',
     animationDelay: `${index * 150}ms`,
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
@@ -106,7 +106,7 @@ const MasterCard = ({
         </p>
         
         {/* Description */}
-        <h3 className="text-xs md:text-sm text-gray-200 mb-2 md:mb-4 leading-relaxed line-clamp-2 md:line-clamp-none">
+        <h3 className="text-[8px] md:text-[9px] text-gray-200 mb-2 md:mb-4 leading-relaxed line-clamp-2 md:line-clamp-none">
           {master.description.split('\n').map((line: string, lineIndex: number) => <span key={lineIndex}>
               {line}
               {lineIndex < master.description.split('\n').length - 1 && <br />}
