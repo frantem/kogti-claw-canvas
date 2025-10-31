@@ -101,7 +101,7 @@ const MasterCard = ({
       {/* Content Section */}
       <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 text-white">
         {/* Master Name */}
-        <p className="text-lg md:text-2xl font-bold mb-0.5 md:mb-0.5">
+        <p className="text-lg md:text-2xl font-bold mb-0">
           {master.name}
         </p>
         
