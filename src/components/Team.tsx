@@ -101,12 +101,12 @@ const MasterCard = ({
       {/* Content Section */}
       <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 text-white">
         {/* Master Name */}
-        <p className="text-lg md:text-2xl font-bold mb-1 md:mb-1.5">
+        <p className="text-lg md:text-2xl font-bold mb-0.5 md:mb-0.5">
           {master.name}
         </p>
         
         {/* Description */}
-        <h3 className="text-[9px] md:text-[10px] font-medium text-gray-200 mb-1 md:mb-2 leading-relaxed line-clamp-2 md:line-clamp-none">
+        <h3 className="text-[10.5px] md:text-[11.5px] font-medium text-gray-200 mb-1 md:mb-2 leading-relaxed line-clamp-3 md:line-clamp-none">
           {master.description.split('\n').map((line: string, lineIndex: number) => <span key={lineIndex}>
               {line}
               {lineIndex < master.description.split('\n').length - 1 && <br />}
