@@ -81,15 +81,28 @@ export function SettingsManagement() {
   };
 
   const updateSettingValue = (key: string, value: string) => {
-    setSettings(prev => prev.map(setting => 
-      setting.setting_key === key 
-        ? { ...setting, setting_value: value }
-        : setting
-    ));
+    setSettings(prev => {
+      const exists = prev.find(s => s.setting_key === key);
+      if (exists) {
+        return prev.map(setting => 
+          setting.setting_key === key 
+            ? { ...setting, setting_value: value }
+            : setting
+        );
+      } else {
+        // Create new setting if it doesn't exist
+        return [...prev, { 
+          id: `temp-${key}`, 
+          setting_key: key, 
+          setting_value: value, 
+          setting_type: 'text' 
+        }];
+      }
+    });
   };
 
   const getSetting = (key: string) => {
-    return settings.find(s => s.setting_key === key)?.setting_value || '';
+    return settings.find(s => s.setting_key === key)?.setting_value ?? '';
   };
 
   const saveAllSettings = async () => {

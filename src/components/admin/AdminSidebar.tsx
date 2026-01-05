@@ -27,8 +27,7 @@ const menuItems = [
 ];
 
 export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarProps) {
-  const { state, isMobile, setOpenMobile } = useSidebar();
-  const isCollapsed = state === 'collapsed';
+  const { isMobile, setOpenMobile } = useSidebar();
 
   const handleSectionChange = (section: string) => {
     onSectionChange(section);
@@ -38,22 +37,22 @@ export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarPro
   };
 
   return (
-    <Sidebar collapsible="offcanvas" className={isCollapsed ? "w-14" : "w-64"}>
-      <SidebarContent>
+    <Sidebar collapsible="offcanvas" className="w-64">
+      <SidebarContent className="pt-4">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-lg font-bold">
-            {!isCollapsed && 'Админ панель'}
+          <SidebarGroupLabel className="text-lg font-bold px-4 mb-2">
+            Админ панель
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton asChild className="h-12 px-4">
                   <Link 
                     to="/" 
-                    className="flex items-center gap-2 hover:bg-muted/50"
+                    className="flex items-center gap-3 hover:bg-muted/50"
                   >
-                    <Home className="h-4 w-4" />
-                    {!isCollapsed && <span>На сайт</span>}
+                    <Home className="h-5 w-5" />
+                    <span>На сайт</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -62,14 +61,14 @@ export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarPro
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton 
                     onClick={() => handleSectionChange(item.id)}
-                    className={`flex items-center gap-2 cursor-pointer ${
+                    className={`h-12 px-4 flex items-center gap-3 cursor-pointer ${
                       activeSection === item.id 
                         ? 'bg-primary text-primary-foreground' 
                         : 'hover:bg-muted/50'
                     }`}
                   >
-                    <item.icon className="h-4 w-4" />
-                    {!isCollapsed && <span>{item.title}</span>}
+                    <item.icon className="h-5 w-5" />
+                    <span>{item.title}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
