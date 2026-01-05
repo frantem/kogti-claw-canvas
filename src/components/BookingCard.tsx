@@ -8,7 +8,6 @@ import LazyImage from "@/components/LazyImage";
 import { DikidiButton } from "@/components/booking/DikidiButton";
 import { useSettings } from "@/hooks/useSettings";
 import { Phone } from "lucide-react";
-
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const {
@@ -120,11 +119,8 @@ const BookingCard = () => {
         <Separator orientation="vertical" className="h-16 justify-self-center mx-4" />
         
         <div className="min-w-0 flex flex-col items-end justify-center">
-          <p className="text-xs text-gray-500 mb-2">Звоните 7:00-22:00</p>
-          <a 
-            href={`tel:${bookingData.phone.replace(/[^+\d]/g, '')}`}
-            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors shadow-md"
-          >
+          <p className="text-xs text-gray-500 mb-2">Звоните 8:00-22:00</p>
+          <a href={`tel:${bookingData.phone.replace(/[^+\d]/g, '')}`} className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors shadow-md">
             <Phone className="w-4 h-4" />
             Позвонить
           </a>
