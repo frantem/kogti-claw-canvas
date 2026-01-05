@@ -7,34 +7,18 @@ import { useState, useMemo, memo } from "react";
 import LazyImage from "@/components/LazyImage";
 import { DikidiButton } from "@/components/booking/DikidiButton";
 import { useSettings } from "@/hooks/useSettings";
-
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const { data: settings } = useSettings([
-    'booking_service_title',
-    'booking_service_subtitle', 
-    'booking_service_image',
-    'booking_master_name',
-    'booking_master_avatar',
-    'booking_hot_date',
-    'booking_hot_time',
-    'booking_master_photos',
-    'booking_link'
-  ]);
-
+  const {
+    data: settings
+  } = useSettings(['booking_service_title', 'booking_service_subtitle', 'booking_service_image', 'booking_master_name', 'booking_master_avatar', 'booking_hot_date', 'booking_hot_time', 'booking_master_photos', 'booking_link']);
   const bookingData = useMemo(() => {
     let masterPhotos = [];
     try {
       masterPhotos = JSON.parse(settings?.booking_master_photos || '[]');
     } catch (e) {
-      masterPhotos = [
-        "/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png",
-        "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png",
-        "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png",
-        "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"
-      ];
+      masterPhotos = ["/lovable-uploads/58196edf-6796-4ef3-8d8a-9ed421cec0e6.png", "/lovable-uploads/e16237c3-b291-4dbe-8aaa-562788dd5191.png", "/lovable-uploads/14cd72d6-4ee9-44f2-851e-66bdb17cc1a2.png", "/lovable-uploads/fc02b8a7-9d93-48fc-a79a-b0584e950765.png"];
     }
-
     return {
       serviceTitle: settings?.booking_service_title || 'Маникюр',
       serviceSubtitle: settings?.booking_service_subtitle || '+ pedicure',
@@ -59,12 +43,7 @@ const BookingCard = () => {
           {/* Oval image with KOGTI text */}
           <div className="relative -mt-4 -ml-4 -mb-4">
             <div className="w-24 h-36 rounded-[4rem] border-2 border-white shadow-md overflow-hidden relative">
-              <LazyImage 
-                src={bookingData.serviceImage}
-                alt="Маникюр в студии KOGTI"
-                wrapperClassName="w-full h-full"
-                imgClassName="w-full h-full object-cover"
-              />
+              <LazyImage src={bookingData.serviceImage} alt="Маникюр в студии KOGTI" wrapperClassName="w-full h-full" imgClassName="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/30 rounded-[4rem] flex items-center justify-center">
                 <span className="text-white text-xs font-bold">Ленина 26</span>
               </div>
@@ -107,58 +86,40 @@ const BookingCard = () => {
         <div className="min-w-0">
           <p className="text-xs text-gray-500 mb-2">Работы мастера</p>
           <div className="flex -space-x-3">
-            {bookingData.masterPhotos && bookingData.masterPhotos.length > 0 ? (
-              <>
-                {bookingData.masterPhotos.slice(0, 3).map((photo, index) => (
-                  <Dialog key={index}>
+            {bookingData.masterPhotos && bookingData.masterPhotos.length > 0 ? <>
+                {bookingData.masterPhotos.slice(0, 3).map((photo, index) => <Dialog key={index}>
                     <DialogTrigger asChild>
-                      <div className="relative w-12 h-12 flex-shrink-0 rounded-full border-2 border-white cursor-pointer hover:scale-105 hover:z-10 transition-all shadow-md overflow-hidden aspect-square" style={{ zIndex: index }}>
-                        <LazyImage
-                          src={photo}
-                          alt={`Master work ${index + 1}`}
-                          wrapperClassName="w-full h-full rounded-full overflow-hidden aspect-square"
-                          imgClassName="w-full h-full object-cover"
-                          placeholder={true}
-                        />
-                        {index === 2 && bookingData.masterPhotos.length > 3 && (
-                          <div className="absolute inset-0 bg-black/60 text-white text-xs font-medium rounded-full flex items-center justify-center">
+                      <div className="relative w-12 h-12 flex-shrink-0 rounded-full border-2 border-white cursor-pointer hover:scale-105 hover:z-10 transition-all shadow-md overflow-hidden aspect-square" style={{
+                  zIndex: index
+                }}>
+                        <LazyImage src={photo} alt={`Master work ${index + 1}`} wrapperClassName="w-full h-full rounded-full overflow-hidden aspect-square" imgClassName="w-full h-full object-cover" placeholder={true} />
+                        {index === 2 && bookingData.masterPhotos.length > 3 && <div className="absolute inset-0 bg-black/60 text-white text-xs font-medium rounded-full flex items-center justify-center">
                             +{bookingData.masterPhotos.length - 2}
-                          </div>
-                        )}
+                          </div>}
                       </div>
                     </DialogTrigger>
                       <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
                         <Carousel className="w-full">
                           <CarouselContent>
-                            {bookingData.masterPhotos.map((photo, photoIndex) => (
-                              <CarouselItem key={photoIndex}>
+                            {bookingData.masterPhotos.map((photo, photoIndex) => <CarouselItem key={photoIndex}>
                                 <div className="flex aspect-square items-center justify-center p-6">
-                                  <LazyImage 
-                                    src={photo}
-                                    alt={`Nail work ${photoIndex + 1}`}
-                                    className="max-w-full max-h-full object-contain rounded-lg"
-                                  />
+                                  <LazyImage src={photo} alt={`Nail work ${photoIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
                                 </div>
-                              </CarouselItem>
-                            ))}
+                              </CarouselItem>)}
                           </CarouselContent>
                           <CarouselPrevious className="left-4" />
                           <CarouselNext className="right-4" />
                         </Carousel>
                       </DialogContent>
-                  </Dialog>
-                ))}
-              </>
-            ) : (
-              <div className="text-xs text-gray-400">Нет фотографий</div>
-            )}
+                  </Dialog>)}
+              </> : <div className="text-xs text-gray-400">Нет фотографий</div>}
           </div>
         </div>
         
         <Separator orientation="vertical" className="h-16 justify-self-center mx-4" />
         
         <div className="min-w-0">
-          <p className="text-xs text-gray-500 mb-2">Горящие окна🔥</p>
+          <p className="text-xs text-gray-500 mb-2">Звоните 7:00-22:00</p>
           <div className="text-right">
              <p className="font-semibold text-gray-900">{bookingData.hotDate}</p>
              <p className="text-sm text-gray-500">{bookingData.hotTime}</p>
@@ -167,10 +128,7 @@ const BookingCard = () => {
       </div>
 
       {/* Booking Button */}
-      <DikidiButton 
-        widgetId={getWidgetId()}
-        className="w-full py-4 font-semibold text-base"
-      />
+      <DikidiButton widgetId={getWidgetId()} className="w-full py-4 font-semibold text-base" />
 
       <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">При записи Вы получаете карту клиента с персональной скидкой 20%</p>
     </div>;
