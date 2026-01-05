@@ -178,7 +178,17 @@ export function SettingsManagement() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <Label htmlFor="contact_phone">Телефон</Label>
+              <Label htmlFor="booking_phone">Телефон для записи (карточка)</Label>
+              <Input
+                id="booking_phone"
+                value={getSetting('booking_phone')}
+                onChange={(e) => updateSettingValue('booking_phone', e.target.value)}
+                placeholder="+7 (999) 123-45-67"
+              />
+            </div>
+            
+            <div>
+              <Label htmlFor="contact_phone">Телефон (основной)</Label>
               <Input
                 id="contact_phone"
                 value={getSetting('contact_phone')}
