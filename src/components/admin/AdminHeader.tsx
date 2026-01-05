@@ -7,12 +7,12 @@ export function AdminHeader() {
   const { user, signOut } = useAuth();
 
   return (
-    <header className="border-b border-border/50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md px-6 py-4 shadow-sm">
+    <header className="border-b border-border/50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md px-4 md:px-6 py-3 md:py-4 shadow-sm">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <SidebarTrigger />
-          <h1 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            A-Art Studio - Админ панель
+        <div className="flex items-center gap-2 md:gap-4">
+          <SidebarTrigger className="h-10 w-10 md:h-9 md:w-9 min-h-[40px] min-w-[40px] md:min-h-[36px] md:min-w-[36px]" />
+          <h1 className="text-lg md:text-xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="hidden sm:inline">A-Art Studio - </span>Админ панель
           </h1>
         </div>
         
