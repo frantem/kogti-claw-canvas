@@ -7,11 +7,13 @@ import { useState, useMemo, memo } from "react";
 import LazyImage from "@/components/LazyImage";
 import { DikidiButton } from "@/components/booking/DikidiButton";
 import { useSettings } from "@/hooks/useSettings";
+import { Phone } from "lucide-react";
+
 const BookingCard = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const {
     data: settings
-  } = useSettings(['booking_service_title', 'booking_service_subtitle', 'booking_service_image', 'booking_master_name', 'booking_master_avatar', 'booking_hot_date', 'booking_hot_time', 'booking_master_photos', 'booking_link']);
+  } = useSettings(['booking_service_title', 'booking_service_subtitle', 'booking_service_image', 'booking_master_name', 'booking_master_avatar', 'booking_master_photos', 'booking_link', 'booking_phone']);
   const bookingData = useMemo(() => {
     let masterPhotos = [];
     try {
@@ -25,10 +27,9 @@ const BookingCard = () => {
       serviceImage: settings?.booking_service_image || '/lovable-uploads/91410034-49dc-4e34-8fa7-4730a6d1e217.png',
       masterName: settings?.booking_master_name || 'Мастер: Аня',
       masterAvatar: settings?.booking_master_avatar || '/lovable-uploads/0037d6a4-735d-49bb-8011-d4ba7f19c613.png',
-      hotDate: settings?.booking_hot_date || 'Пн 21.08',
-      hotTime: settings?.booking_hot_time || '12:00-18:30',
       masterPhotos,
-      bookingLink: settings?.booking_link || 'https://dikidi.ru/#widget=192147'
+      bookingLink: settings?.booking_link || 'https://dikidi.ru/#widget=192147',
+      phone: settings?.booking_phone || '+7 (999) 123-45-67'
     };
   }, [settings]);
   const getWidgetId = () => {
@@ -118,12 +119,14 @@ const BookingCard = () => {
         
         <Separator orientation="vertical" className="h-16 justify-self-center mx-4" />
         
-        <div className="min-w-0">
-          <p className="text-xs text-gray-500 mb-2">Звоните 7:00-22:00</p>
-          <div className="text-right">
-             <p className="font-semibold text-gray-900">{bookingData.hotDate}</p>
-             <p className="text-sm text-gray-500">{bookingData.hotTime}</p>
-          </div>
+        <div className="min-w-0 flex flex-col items-end justify-center">
+          <a 
+            href={`tel:${bookingData.phone.replace(/[^+\d]/g, '')}`}
+            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors shadow-md"
+          >
+            <Phone className="w-4 h-4" />
+            Позвонить
+          </a>
         </div>
       </div>
 
