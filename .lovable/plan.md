@@ -1,73 +1,49 @@
 
 
-## Очистка неиспользуемого кода и оптимизация загрузки
+## Добавление управления фавиконкой и OG-изображением в админ-панель
 
-### Что нужно сделать
+### Что будет сделано
 
-### 1. Удалить неиспользуемые компоненты
+В раздел "Настройки сайта" админ-панели добавится новая карточка с двумя загрузчиками изображений:
+1. **Фавиконка** -- загрузка/удаление иконки сайта
+2. **Open Graph изображение** -- загрузка/удаление картинки для соцсетей (предпросмотр при отправке ссылки)
 
-Следующие компоненты НЕ используются на сайте (не импортируются в Index.tsx или других страницах):
+Загруженные изображения будут храниться в Supabase Storage (bucket `product-images`), а ссылки на них -- в таблице `site_settings` (ключи `favicon_url` и `og_image_url`).
 
-- **`src/components/Header.tsx`** -- старый хедер с "tropical" стилями, нигде не импортируется
-- **`src/components/Services.tsx`** -- старый компонент услуг (заменен на `ServicesSection.tsx`), нигде не импортируется
-- **`src/components/Contacts.tsx`** -- старый компонент контактов (заменен на `ContactSection.tsx`), нигде не импортируется
-- **`src/components/InspirationSection.tsx`** -- нигде не используется на сайте
-- **`src/components/InspirationGallery.tsx`** -- используется только в `InspirationSection.tsx`, которая сама не используется
+На главной странице (`Index.tsx`) через `react-helmet` будут динамически подставляться загруженные изображения вместо статических.
 
-### 2. Удалить неиспользуемые статические изображения
+### Шаги реализации
 
-Файлы из `src/assets/` которые используются ТОЛЬКО в удаляемых компонентах:
+### 1. Обновить SettingsManagement.tsx
 
-- `src/assets/app-background.jpg` -- только в InspirationSection
-- `src/assets/hero-hands.jpg` -- нигде не используется
-- `src/assets/modern-background.jpg` -- нигде не используется
-- `src/assets/master-anna.jpg` -- только в InspirationGallery
-- `src/assets/master-alina.jpg` -- нигде не используется
-- `src/assets/master-olya.jpg` -- нигде не используется
-- `src/assets/master-victoria.jpg` -- нигде не используется
-- `src/assets/nail-work-1.jpg` .. `nail-work-6.jpg` -- только в InspirationGallery
+Добавить новую карточку "Изображения сайта" с двумя компонентами `ImageUpload`:
+- **Фавиконка** (ключ `favicon_url`) -- с превью текущей иконки
+- **OG-изображение** (ключ `og_image_url`) -- с превью текущей картинки и рекомендацией размера 1200x630px
 
-Итого: ~13 изображений, которые загружаются в бандл впустую.
+При загрузке/удалении изображения значение автоматически обновляется в локальном состоянии и сохраняется вместе с остальными настройками.
 
-### 3. Убрать "Горящие окна" из админ-панели
+### 2. Обновить Index.tsx
 
-В `HeroManagement.tsx` остались поля "Горящая дата" и "Время", которые больше не используются на сайте (карточка BookingCard теперь показывает кнопку "Позвонить" вместо даты/времени). Нужно:
+- Добавить ключи `favicon_url` и `og_image_url` в запрос `useSettings`
+- Динамически подставлять `og:image` и `twitter:image` из настроек (с фолбэком на текущий `/og-image.jpg`)
+- Динамически менять `<link rel="icon">` через Helmet
 
-- Удалить поля `hot_date` и `hot_time` из интерфейса `BookingSettings`
-- Удалить их из формы, из fetch-запроса и из сохранения
+### 3. Обновить index.html
 
-### 4. Убрать пустой компонент SEOContent
-
-`src/components/SEOContent.tsx` возвращает `null` -- он пустой и не несет никакой пользы, но все равно lazy-загружается на главной странице. Нужно удалить его и убрать из `Index.tsx`.
-
-### 5. Итоговый эффект
-
-- Удалится 7 компонентов/файлов
-- Удалится ~13 изображений из бандла
-- Упростится админ-панель (уберутся неактуальные поля)
-- Сайт станет загружаться быстрее за счет меньшего размера бандла
+- Добавить фолбэк-значения для OG-изображения (уже есть) -- без изменений, Helmet перезапишет мета-теги при загрузке React
 
 ---
 
 ### Технические детали
 
-**Файлы для удаления:**
-- `src/components/Header.tsx`
-- `src/components/Services.tsx`
-- `src/components/Contacts.tsx`
-- `src/components/InspirationSection.tsx`
-- `src/components/InspirationGallery.tsx`
-- `src/components/SEOContent.tsx`
-- `src/assets/app-background.jpg`
-- `src/assets/hero-hands.jpg`
-- `src/assets/modern-background.jpg`
-- `src/assets/master-anna.jpg`
-- `src/assets/master-alina.jpg`
-- `src/assets/master-olya.jpg`
-- `src/assets/master-victoria.jpg`
-- `src/assets/nail-work-1.jpg` .. `nail-work-6.jpg`
-
 **Файлы для редактирования:**
-- `src/pages/Index.tsx` -- убрать импорт и рендер `SEOContent`
-- `src/components/admin/HeroManagement.tsx` -- убрать поля `hot_date`, `hot_time` из интерфейса, состояния, fetch, save и формы (строки 30-31, 55-56, 78-79, 114-115, 150-151, 356-374)
+- `src/components/admin/SettingsManagement.tsx` -- добавить импорт `ImageUpload`, новую карточку с загрузчиками для favicon и OG image
+- `src/pages/Index.tsx` -- добавить `favicon_url`, `og_image_url` в `useSettings`, обновить Helmet мета-теги
+- `src/hooks/useSettings.tsx` -- без изменений (уже поддерживает любые ключи)
+
+**Хранение:**
+- Изображения загружаются в bucket `product-images` (папки `favicon` и `og`)
+- URL сохраняются в `site_settings` как `favicon_url` и `og_image_url`
+
+**Миграции базы данных:** не требуются -- таблица `site_settings` уже поддерживает произвольные ключи.
 
