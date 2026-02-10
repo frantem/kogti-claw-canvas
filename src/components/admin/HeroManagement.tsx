@@ -27,8 +27,6 @@ interface BookingSettings {
   service_image: string;
   master_name: string;
   master_avatar: string;
-  hot_date: string;
-  hot_time: string;
   master_photos: string[];
   booking_link: string;
 }
@@ -52,8 +50,6 @@ export function HeroManagement() {
     service_image: '',
     master_name: '',
     master_avatar: '',
-    hot_date: '',
-    hot_time: '',
     master_photos: [],
     booking_link: ''
   });
@@ -75,8 +71,8 @@ export function HeroManagement() {
           'hero_title', 'hero_subtitle', 'hero_background',
           'seo_title', 'seo_description', 'seo_keywords',
           'booking_service_title', 'booking_service_subtitle', 'booking_service_image',
-          'booking_master_name', 'booking_master_avatar', 'booking_hot_date',
-          'booking_hot_time', 'booking_master_photos', 'booking_link'
+          'booking_master_name', 'booking_master_avatar',
+          'booking_master_photos', 'booking_link'
         ]);
 
       if (error) throw error;
@@ -111,8 +107,6 @@ export function HeroManagement() {
         service_image: settingsMap.booking_service_image || '',
         master_name: settingsMap.booking_master_name || '',
         master_avatar: settingsMap.booking_master_avatar || '',
-        hot_date: settingsMap.booking_hot_date || '',
-        hot_time: settingsMap.booking_hot_time || '',
         master_photos: masterPhotos,
         booking_link: settingsMap.booking_link || ''
       });
@@ -147,8 +141,6 @@ export function HeroManagement() {
         { setting_key: 'booking_service_image', setting_value: bookingSettings.service_image },
         { setting_key: 'booking_master_name', setting_value: bookingSettings.master_name },
         { setting_key: 'booking_master_avatar', setting_value: bookingSettings.master_avatar },
-        { setting_key: 'booking_hot_date', setting_value: bookingSettings.hot_date },
-        { setting_key: 'booking_hot_time', setting_value: bookingSettings.hot_time },
         { setting_key: 'booking_master_photos', setting_value: JSON.stringify(bookingSettings.master_photos) },
         { setting_key: 'booking_link', setting_value: bookingSettings.booking_link }
       ];
@@ -353,25 +345,7 @@ export function HeroManagement() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <Label htmlFor="hot-date">Горящая дата</Label>
-              <Input
-                id="hot-date"
-                value={bookingSettings.hot_date}
-                onChange={(e) => setBookingSettings(prev => ({...prev, hot_date: e.target.value}))}
-                placeholder="Пн 21.08"
-              />
-            </div>
-            <div>
-              <Label htmlFor="hot-time">Время</Label>
-              <Input
-                id="hot-time"
-                value={bookingSettings.hot_time}
-                onChange={(e) => setBookingSettings(prev => ({...prev, hot_time: e.target.value}))}
-                placeholder="12:00-18:30"
-              />
-            </div>
+          <div>
             <div>
               <Label htmlFor="booking-link">Ссылка для записи</Label>
               <Input
