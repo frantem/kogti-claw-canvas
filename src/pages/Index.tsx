@@ -15,18 +15,21 @@ const ContactSection = React.lazy(() => import("@/components/ContactSection"));
 const Footer = React.lazy(() => import("@/components/Footer"));
 
 const Index = () => {
-  const { data: settings } = useSettings(['seo_title', 'seo_description', 'seo_keywords']);
+  const { data: settings } = useSettings(['seo_title', 'seo_description', 'seo_keywords', 'favicon_url', 'og_image_url']);
 
   const seoData = useMemo(() => ({
     title: settings?.seo_title || 'Маникюр Витебск - Салон красоты KOGTI | Лучший маникюр и педикюр в Витебске',
     description: settings?.seo_description || 'Профессиональный маникюр и педикюр в Витебске в салоне красоты KOGTI. Наращивание ногтей, гель-лак, nail-арт. Опытные мастера, качественные материалы. г. Витебск, ул. Ленина 26.',
-    keywords: settings?.seo_keywords || 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, студия красоты Витебск, гель-лак Витебск, френч Витебск, ногтевая студия Витебск, nail арт Витебск'
+    keywords: settings?.seo_keywords || 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, студия красоты Витебск, гель-лак Витебск, френч Витебск, ногтевая студия Витебск, nail арт Витебск',
+    ogImage: settings?.og_image_url || 'https://kogtistudio.by/og-image.jpg',
+    favicon: settings?.favicon_url || '/favicon.svg',
   }), [settings]);
   
   return (
     <>
       <Helmet>
         <title>{seoData.title}</title>
+        <link rel="icon" type="image/svg+xml" href={seoData.favicon} />
         <meta name="description" content={seoData.description} />
         <meta name="keywords" content={seoData.keywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,7 +49,7 @@ const Index = () => {
         <meta property="og:description" content={seoData.description} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kogtistudio.by/" />
-        <meta property="og:image" content="https://kogtistudio.by/og-image.jpg" />
+        <meta property="og:image" content={seoData.ogImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:locale" content="ru_BY" />
@@ -56,7 +59,7 @@ const Index = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={seoData.title} />
         <meta name="twitter:description" content={seoData.description} />
-        <meta name="twitter:image" content="https://kogtistudio.by/og-image.jpg" />
+        <meta name="twitter:image" content={seoData.ogImage} />
         
         {/* Business Schema */}
         <script type="application/ld+json">
