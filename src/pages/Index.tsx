@@ -11,7 +11,7 @@ const Team = React.lazy(() => import("@/components/Team"));
 const FAQSection = React.lazy(() => import("@/components/FAQSection"));
 const LocationSection = React.lazy(() => import("@/components/LocationSection"));
 const ContactSection = React.lazy(() => import("@/components/ContactSection"));
-const SEOContent = React.lazy(() => import("@/components/SEOContent"));
+
 const Footer = React.lazy(() => import("@/components/Footer"));
 
 const Index = () => {
@@ -142,11 +142,6 @@ const Index = () => {
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
           <DeferredSection delay={150}>
             <LocationSection />
-          </DeferredSection>
-        </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={200}>
-            <SEOContent />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>

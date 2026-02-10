@@ -175,6 +175,7 @@ export type Database = {
           hex: string | null
           id: string
           image_url: string | null
+          material: string | null
           name: string
           product_id: string
           sizes: string[]
@@ -185,6 +186,7 @@ export type Database = {
           hex?: string | null
           id?: string
           image_url?: string | null
+          material?: string | null
           name: string
           product_id: string
           sizes?: string[]
@@ -195,6 +197,7 @@ export type Database = {
           hex?: string | null
           id?: string
           image_url?: string | null
+          material?: string | null
           name?: string
           product_id?: string
           sizes?: string[]
@@ -212,40 +215,58 @@ export type Database = {
       }
       products: {
         Row: {
+          assembly_available: boolean | null
           categories: string[]
           created_at: string
+          delivery_free: boolean | null
           description: string | null
+          dimensions: Json | null
           id: string
           image_url: string
           in_stock: boolean
+          material: string | null
           name: string
           price: number
+          rating: number | null
+          room: string[] | null
           sizes: string[]
           sort_order: number | null
           updated_at: string
         }
         Insert: {
+          assembly_available?: boolean | null
           categories?: string[]
           created_at?: string
+          delivery_free?: boolean | null
           description?: string | null
+          dimensions?: Json | null
           id?: string
           image_url: string
           in_stock?: boolean
+          material?: string | null
           name: string
           price: number
+          rating?: number | null
+          room?: string[] | null
           sizes?: string[]
           sort_order?: number | null
           updated_at?: string
         }
         Update: {
+          assembly_available?: boolean | null
           categories?: string[]
           created_at?: string
+          delivery_free?: boolean | null
           description?: string | null
+          dimensions?: Json | null
           id?: string
           image_url?: string
           in_stock?: boolean
+          material?: string | null
           name?: string
           price?: number
+          rating?: number | null
+          room?: string[] | null
           sizes?: string[]
           sort_order?: number | null
           updated_at?: string
