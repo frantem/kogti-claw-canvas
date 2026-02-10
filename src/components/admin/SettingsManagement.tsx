@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { Save } from 'lucide-react';
+import { ImageUpload } from './ImageUpload';
 
 interface SiteSetting {
   id: string;
@@ -235,6 +236,43 @@ export function SettingsManagement() {
                 value={getSetting('work_hours')}
                 onChange={(e) => updateSettingValue('work_hours', e.target.value)}
               />
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="shadow-lg border-primary/20 md:col-span-2">
+          <CardHeader className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20">
+            <CardTitle className="text-xl text-primary flex items-center gap-2">
+              <span>🖼️</span>
+              Изображения сайта
+            </CardTitle>
+            <CardDescription>Фавиконка и изображение для соцсетей</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid gap-6 md:grid-cols-2">
+              <div>
+                <ImageUpload
+                  label="Фавиконка"
+                  currentImageUrl={getSetting('favicon_url')}
+                  onImageUpload={(url) => {
+                    updateSettingValue('favicon_url', url);
+                    updateSetting('favicon_url', url);
+                  }}
+                  folder="favicon"
+                />
+                <p className="text-xs text-muted-foreground mt-2">Рекомендуемый размер: 512×512px, формат PNG или SVG</p>
+              </div>
+              <div>
+                <ImageUpload
+                  label="Open Graph изображение"
+                  currentImageUrl={getSetting('og_image_url')}
+                  onImageUpload={(url) => {
+                    updateSettingValue('og_image_url', url);
+                    updateSetting('og_image_url', url);
+                  }}
+                  folder="og"
+                />
+                <p className="text-xs text-muted-foreground mt-2">Рекомендуемый размер: 1200×630px, формат JPG или PNG</p>
+              </div>
             </div>
           </CardContent>
         </Card>
