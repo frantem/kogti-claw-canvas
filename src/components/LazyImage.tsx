@@ -17,7 +17,7 @@ const LazyImage = ({
   alt,
   className,
   style,
-  placeholder = false,
+  placeholder = true,
   wrapperClassName,
   imgClassName,
   eager = false,
@@ -38,7 +38,7 @@ const LazyImage = ({
         }
       },
       {
-        rootMargin: '200px',
+        rootMargin: '50px',
         threshold: 0.01
       }
     );
@@ -63,7 +63,7 @@ const LazyImage = ({
         <img
           src={src}
           alt={alt}
-          className={imgClassName || className || ''}
+          className={`${imgClassName || className || ''} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
           fetchPriority={fetchPriority}

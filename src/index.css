@@ -353,3 +353,9 @@ All colors MUST be HSL.
     }
   }
 }
+
+/* Performance: skip rendering of off-screen sections */
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}

@@ -133,32 +133,32 @@ const Index = () => {
           <ServicesSection />
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={50}>
+          <DeferredSection delay={0}>
             <Team />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={100}>
+          <DeferredSection delay={0}>
             <ContactSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={150}>
+          <DeferredSection delay={0}>
             <LocationSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={250}>
+          <DeferredSection delay={0}>
             <AboutSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={300}>
+          <DeferredSection delay={0}>
             <FAQSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={350}>
+          <DeferredSection delay={0}>
             <Footer />
           </DeferredSection>
         </React.Suspense>
