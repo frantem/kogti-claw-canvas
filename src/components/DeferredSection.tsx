@@ -19,7 +19,7 @@ const DeferredSection = ({ children, delay = 100 }: DeferredSectionProps) => {
         }
       },
       {
-        rootMargin: '200px',
+        rootMargin: '50px',
         threshold: 0.01
       }
     );
@@ -43,7 +43,7 @@ const DeferredSection = ({ children, delay = 100 }: DeferredSectionProps) => {
 
   if (!shouldRender) {
     return (
-      <div ref={ref} className="min-h-[200px] bg-muted/20" />
+      <div ref={ref} className="min-h-[200px] bg-muted/20 deferred-section" />
     );
   }
 

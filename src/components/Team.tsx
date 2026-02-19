@@ -81,7 +81,8 @@ const MasterCard = ({
         <LazyImage
           src={master.avatar_url || master.images[0]}
           alt={`${master.name} - мастер маникюра`}
-          className="w-full h-full object-cover"
+          wrapperClassName="w-full h-full"
+          imgClassName="w-full h-full object-cover"
           placeholder={true}
         />
       </div>
