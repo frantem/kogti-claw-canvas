@@ -2,6 +2,7 @@
   "validRoutes": [
     "/",
     "/auth",
-    "/admin"
+    "/admin",
+    "/privacy"
   ]
 }
