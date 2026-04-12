@@ -45,10 +45,10 @@ const Index = () => {
         <link rel="alternate" hrefLang="ru" href="https://kogtistudio.by/" />
         
         {/* Preload first 4 service images */}
-        <link rel="preload" as="image" href="/lovable-uploads/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.png" />
-        <link rel="preload" as="image" href="/lovable-uploads/5a5fefe4-d334-417b-8e67-e9fd1563b7ae.png" />
-        <link rel="preload" as="image" href="/lovable-uploads/ac52d59c-f173-4e8c-bda0-e07b3687552e.png" />
-        <link rel="preload" as="image" href="/lovable-uploads/b0c50a98-cb3f-4518-81bb-8897d4388396.png" />
+        <link rel="preload" as="image" type="image/webp" href="/images/services/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.webp" />
+        <link rel="preload" as="image" type="image/webp" href="/images/services/5a5fefe4-d334-417b-8e67-e9fd1563b7ae.webp" />
+        <link rel="preload" as="image" type="image/webp" href="/images/services/ac52d59c-f173-4e8c-bda0-e07b3687552e.webp" />
+        <link rel="preload" as="image" type="image/webp" href="/images/services/b0c50a98-cb3f-4518-81bb-8897d4388396.webp" />
         
         {/* Open Graph */}
         <meta property="og:title" content={seoData.title} />
