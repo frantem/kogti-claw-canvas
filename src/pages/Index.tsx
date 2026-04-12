@@ -135,6 +135,7 @@ const Index = () => {
         </script>
       </Helmet>
       <main className="min-h-screen">
+        <MobileMenu />
         <Hero />
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
           <ServicesSection />
