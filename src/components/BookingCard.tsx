@@ -35,7 +35,7 @@ const BookingCard = () => {
     const match = bookingData.bookingLink.match(/widget[=\/](\d+)/);
     return match ? match[1] : '192147';
   };
-  return <div className="w-full bg-white/95 backdrop-blur-xl rounded-[4rem] p-6 shadow-2xl border border-white/20">
+  return <div className="w-full bg-white/90 backdrop-blur-2xl rounded-[4rem] p-6 shadow-[0_8px_40px_rgba(0,0,0,0.25),0_2px_10px_rgba(0,0,0,0.1)] ring-1 ring-white/30 border border-white/20">
 
       {/* Service Card */}
       <div className="rounded-[4rem] p-6 mb-3 -mt-[20px] -mx-[20px] bg-gray-200">
