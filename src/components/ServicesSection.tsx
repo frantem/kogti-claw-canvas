@@ -26,7 +26,7 @@ const ServicesSection = () => {
   const currentServices = activeTab === 'manicure' ? manicureServices : pedicureServices;
   
   return (
-    <section className="relative min-h-screen bg-gray-100 py-20">
+    <section id="services" className="relative min-h-screen bg-gray-100 py-20">
       {/* Content */}
       <div className="relative z-10 px-6 w-full max-w-6xl mx-auto">
         {/* SEO optimized title */}

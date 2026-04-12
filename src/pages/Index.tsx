@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
+import MobileMenu from "@/components/MobileMenu";
 import DeferredSection from "@/components/DeferredSection";
 import { useSettings } from "@/hooks/useSettings";
 
