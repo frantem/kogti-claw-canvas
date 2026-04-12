@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Upload, X, Image } from 'lucide-react';
+import { compressImage } from '@/lib/imageCompression';
 
 interface ImageUploadProps {
   currentImageUrl?: string;
@@ -65,7 +66,7 @@ export function ImageUpload({
     }
   };
 
-  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -89,7 +90,12 @@ export function ImageUpload({
       return;
     }
 
-    uploadImage(file);
+    try {
+      const compressed = await compressImage(file);
+      uploadImage(compressed);
+    } catch {
+      uploadImage(file);
+    }
   };
 
   const removeImage = () => {
