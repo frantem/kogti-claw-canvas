@@ -6,21 +6,21 @@ const ServicesSection = () => {
   const [activeTab, setActiveTab] = useState<'manicure' | 'pedicure'>('manicure');
 
   const manicureServices = [
-    { name: "Коррекция/покрытие ногтей гелем", widget: "192348", image: "/lovable-uploads/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.png" },
-    { name: "Наращивание ногтей (длина до 4-х клеток)", widget: "192349", image: "/lovable-uploads/5a5fefe4-d334-417b-8e67-e9fd1563b7ae.png" },
-    { name: "Коррекция ногтей с восстановлением архитектуры", widget: "195345", image: "/lovable-uploads/ac52d59c-f173-4e8c-bda0-e07b3687552e.png" },
-    { name: "Комбинированный маникюр без покрытия", widget: "192351", image: "/lovable-uploads/b0c50a98-cb3f-4518-81bb-8897d4388396.png" },
-    { name: "Комбинированный маникюр + покрытие лаком", widget: "192352", image: "/lovable-uploads/e81a2e04-654b-4138-9198-7283d67c442d.png" },
-    { name: "Снятие покрытия + комбинированный маникюр", widget: "192471", image: "/lovable-uploads/d7e74cb2-6e4b-46ca-88e0-27733084fb89.png" },
-    { name: "Маникюр мужской", widget: "192472", image: "/lovable-uploads/f11a9b3d-0b52-4c87-b221-d4b74c8eb4c1.png" },
-    { name: "Наращивание ногтей ЭКСТРА (длина больше 4-х клеток)", widget: "192473", image: "/lovable-uploads/94931675-31c1-47b7-8be5-3f3ea6ea18ec.png" }
+    { name: "Коррекция/покрытие ногтей гелем", widget: "192348", image: "/images/services/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.webp" },
+    { name: "Наращивание ногтей (длина до 4-х клеток)", widget: "192349", image: "/images/services/5a5fefe4-d334-417b-8e67-e9fd1563b7ae.webp" },
+    { name: "Коррекция ногтей с восстановлением архитектуры", widget: "195345", image: "/images/services/ac52d59c-f173-4e8c-bda0-e07b3687552e.webp" },
+    { name: "Комбинированный маникюр без покрытия", widget: "192351", image: "/images/services/b0c50a98-cb3f-4518-81bb-8897d4388396.webp" },
+    { name: "Комбинированный маникюр + покрытие лаком", widget: "192352", image: "/images/services/e81a2e04-654b-4138-9198-7283d67c442d.webp" },
+    { name: "Снятие покрытия + комбинированный маникюр", widget: "192471", image: "/images/services/d7e74cb2-6e4b-46ca-88e0-27733084fb89.webp" },
+    { name: "Маникюр мужской", widget: "192472", image: "/images/services/f11a9b3d-0b52-4c87-b221-d4b74c8eb4c1.webp" },
+    { name: "Наращивание ногтей ЭКСТРА (длина больше 4-х клеток)", widget: "192473", image: "/images/services/94931675-31c1-47b7-8be5-3f3ea6ea18ec.webp" }
   ];
 
   const pedicureServices = [
-    { name: "педикюр пальчики + покрытие гель-лаком", widget: "192474", image: "/lovable-uploads/20348d5e-0d42-4891-8a1b-fc777688060e.png" },
-    { name: "смарт педикюр + пальчики+гель-лак", widget: "192475", image: "/lovable-uploads/5f76a2d7-9098-48a7-9551-6d80c029d356.png" },
-    { name: "смарт педикюр + пальчики без покрытия", widget: "192476", image: "/lovable-uploads/2ec81cab-cda0-461a-a37e-305b414a0c9d.png" },
-    { name: "только пальчики без покрытия", widget: "192477", image: "/lovable-uploads/2863e9a1-5c91-4251-b35e-bff60835aebc.png" }
+    { name: "педикюр пальчики + покрытие гель-лаком", widget: "192474", image: "/images/services/20348d5e-0d42-4891-8a1b-fc777688060e.webp" },
+    { name: "смарт педикюр + пальчики+гель-лак", widget: "192475", image: "/images/services/5f76a2d7-9098-48a7-9551-6d80c029d356.webp" },
+    { name: "смарт педикюр + пальчики без покрытия", widget: "192476", image: "/images/services/2ec81cab-cda0-461a-a37e-305b414a0c9d.webp" },
+    { name: "только пальчики без покрытия", widget: "192477", image: "/images/services/2863e9a1-5c91-4251-b35e-bff60835aebc.webp" }
   ];
 
   const currentServices = activeTab === 'manicure' ? manicureServices : pedicureServices;
