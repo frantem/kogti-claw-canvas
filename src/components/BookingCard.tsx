@@ -103,7 +103,7 @@ const BookingCard = () => {
                           <CarouselContent>
                             {bookingData.masterPhotos.map((photo, photoIndex) => <CarouselItem key={photoIndex}>
                                 <div className="flex aspect-square items-center justify-center p-6">
-                                  <LazyImage src={photo} alt={`Nail work ${photoIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg" />
+                                  <LazyImage src={photo} alt={`Nail work ${photoIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg" eager={true} placeholder={false} />
                                 </div>
                               </CarouselItem>)}
                           </CarouselContent>
