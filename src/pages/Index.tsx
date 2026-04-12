@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
+import MobileMenu from "@/components/MobileMenu";
 import DeferredSection from "@/components/DeferredSection";
 import { useSettings } from "@/hooks/useSettings";
 
@@ -134,6 +135,7 @@ const Index = () => {
         </script>
       </Helmet>
       <main className="min-h-screen">
+        <MobileMenu />
         <Hero />
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
           <ServicesSection />
