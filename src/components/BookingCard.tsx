@@ -98,17 +98,17 @@ const BookingCard = () => {
                           </div>}
                       </div>
                     </DialogTrigger>
-                      <DialogContent className="max-w-4xl w-full p-0 bg-black/95">
-                        <Carousel className="w-full">
+                      <DialogContent className="max-w-[95vw] sm:max-w-2xl w-full p-0 bg-black/95 border-none rounded-2xl overflow-hidden [&>button]:text-white/70 [&>button]:hover:text-white [&>button]:top-3 [&>button]:right-3 [&>button]:z-20">
+                        <Carousel className="w-full" opts={{ loop: true, dragFree: false }}>
                           <CarouselContent>
                             {bookingData.masterPhotos.map((photo, photoIndex) => <CarouselItem key={photoIndex}>
-                                <div className="flex aspect-square items-center justify-center p-6">
-                                  <LazyImage src={photo} alt={`Nail work ${photoIndex + 1}`} className="max-w-full max-h-full object-contain rounded-lg" eager={true} placeholder={false} />
+                                <div className="flex items-center justify-center p-2 sm:p-4">
+                                  <img src={photo} alt={`Nail work ${photoIndex + 1}`} className="w-full h-auto max-h-[80vh] object-contain rounded-xl" />
                                 </div>
                               </CarouselItem>)}
                           </CarouselContent>
-                          <CarouselPrevious className="left-4" />
-                          <CarouselNext className="right-4" />
+                          <CarouselPrevious className="left-2 sm:left-3 h-10 w-10 bg-white/10 hover:bg-white/20 border-none text-white backdrop-blur-sm" />
+                          <CarouselNext className="right-2 sm:right-3 h-10 w-10 bg-white/10 hover:bg-white/20 border-none text-white backdrop-blur-sm" />
                         </Carousel>
                       </DialogContent>
                   </Dialog>)}
