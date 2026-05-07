@@ -9,6 +9,21 @@ const NotFound = () => {
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
+
+    // Set page title
+    const previousTitle = document.title;
+    document.title = "404 — Страница не найдена | KOGTI";
+
+    // Add noindex meta tag dynamically so search engines don't index 404 pages
+    const meta = document.createElement("meta");
+    meta.name = "robots";
+    meta.content = "noindex, nofollow";
+    document.head.appendChild(meta);
+
+    return () => {
+      document.title = previousTitle;
+      document.head.removeChild(meta);
+    };
   }, [location.pathname]);
 
   return (

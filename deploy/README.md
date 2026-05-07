@@ -197,6 +197,34 @@ If you encounter issues:
 3. Test with curl commands provided above
 4. Clear browser cache completely
 
+## Fix: Корректный возврат HTTP 404 (для Яндекс.Вебмастера)
+
+Если Яндекс.Вебмастер сообщает, что сайт некорректно возвращает 404, значит на сервере действует упрощённая SPA-конфигурация nginx, которая отдаёт `index.html` (со статусом 200) на любой путь. Нужно обновить конфиг до версии с белым списком маршрутов:
+
+```bash
+# 1. Скопировать обновлённый конфиг из репозитория
+cd /var/www/kogti
+sudo git pull origin main
+sudo cp deploy/nginx.example.conf /etc/nginx/sites-available/kogti
+
+# 2. Проверить и применить
+sudo nginx -t
+sudo systemctl reload nginx
+
+# 3. Убедиться, что несуществующие пути возвращают 404
+curl -I https://kogtistudio.by/non-existent-page-test
+# Ожидаемый ответ: HTTP/2 404
+
+# 4. А существующие маршруты — 200
+curl -I https://kogtistudio.by/
+curl -I https://kogtistudio.by/privacy
+# Ожидаемый ответ: HTTP/2 200
+```
+
+Валидные маршруты (отдают 200): `/`, `/auth`, `/admin`, `/privacy`. Все остальные пути возвращают 404 со страницей `public/404.html`.
+
+После исправления — в Яндекс.Вебмастере нажать «Проверить» в разделе с предупреждением.
+
 ## Quick fix: White screen (MIME type) after deploy
 
 - Ensure Nginx serves the built site: `root /var/www/kogti/dist;` in your server block.
