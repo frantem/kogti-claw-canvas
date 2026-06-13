@@ -19,9 +19,9 @@ const Index = () => {
   const { data: settings } = useSettings(['seo_title', 'seo_description', 'seo_keywords', 'favicon_url', 'og_image_url']);
 
   const seoData = useMemo(() => ({
-    title: settings?.seo_title || 'Маникюр Витебск - Салон красоты KOGTI | Лучший маникюр и педикюр в Витебске',
-    description: settings?.seo_description || 'Профессиональный маникюр и педикюр в Витебске в салоне красоты KOGTI. Наращивание ногтей, гель-лак, nail-арт. Опытные мастера, качественные материалы. г. Витебск, ул. Ленина 26.',
-    keywords: settings?.seo_keywords || 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, студия красоты Витебск, гель-лак Витебск, френч Витебск, ногтевая студия Витебск, nail арт Витебск',
+    title: settings?.seo_title || 'KOGTI — Маникюр и педикюр в Витебске',
+    description: settings?.seo_description || 'Студия KOGTI в центре Витебска: маникюр, педикюр, наращивание ногтей, гель-лак, nail-арт. ул. Ленина 26.',
+    keywords: settings?.seo_keywords || 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, гель-лак Витебск, ногтевая студия Витебск',
     ogImage: settings?.og_image_url || 'https://kogtistudio.by/og-image.jpg',
     favicon: settings?.favicon_url || '/favicon.svg',
   }), [settings]);
@@ -131,6 +131,21 @@ const Index = () => {
                 }
               ]
             }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "Где находится салон красоты KOGTI в Витебске?", "acceptedAnswer": { "@type": "Answer", "text": "ул. Ленина, 26, БЦ СИТИ (вход в Сбербанк), 3 этаж, офис 314, Витебск." } },
+              { "@type": "Question", "name": "Сколько стоит маникюр в Витебске в вашем салоне?", "acceptedAnswer": { "@type": "Answer", "text": "Стоимость зависит от мастера и услуги. Коррекция ногтей гелем от 50 BYN." } },
+              { "@type": "Question", "name": "Какие материалы вы используете для маникюра и педикюра?", "acceptedAnswer": { "@type": "Answer", "text": "Профессиональные гель-лаки, безопасные средства для кутикулы и современное стерилизационное оборудование." } },
+              { "@type": "Question", "name": "Как записаться на маникюр в Витебске?", "acceptedAnswer": { "@type": "Answer", "text": "Через виджет онлайн-записи на сайте, по телефону или в соцсетях." } },
+              { "@type": "Question", "name": "Делаете ли вы наращивание ногтей в Витебске?", "acceptedAnswer": { "@type": "Answer", "text": "Да, наращивание гелем на верхние и нижние формы." } },
+              { "@type": "Question", "name": "Сколько времени занимает процедура маникюра?", "acceptedAnswer": { "@type": "Answer", "text": "Коррекция гелем 1–1,5 часа, с дизайном 1,5–2 часа, наращивание 2–2,5 часа." } },
+              { "@type": "Question", "name": "Работаете ли вы в выходные дни?", "acceptedAnswer": { "@type": "Answer", "text": "Да, студия работает 7 дней в неделю. График мастера уточняйте при записи." } }
+            ]
           })}
         </script>
       </Helmet>
