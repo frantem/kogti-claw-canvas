@@ -119,7 +119,7 @@ const BookingCard = () => {
         <Separator orientation="vertical" className="h-16 justify-self-center mx-4" />
         
         <div className="min-w-0 flex flex-col items-end justify-center">
-          <p className="text-xs text-gray-500 mb-2">Звоните 8:00-22:00</p>
+          <p className="text-xs text-gray-500 mb-2">Звоните 9:00-21:00</p>
           <a href={`tel:${bookingData.phone.replace(/[^+\d]/g, '')}`} className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors shadow-md">
             <Phone className="w-4 h-4" />
             Позвонить
