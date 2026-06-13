@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-[hsl(var(--tropical-dark))] text-[hsl(var(--tropical-cream))]">
+      <Helmet>
+        <title>Политика конфиденциальности | KOGTI</title>
+        <meta name="description" content="Политика конфиденциальности студии KOGTI: обработка персональных данных в соответствии с Законом РБ №99-З." />
+        <link rel="canonical" href="https://kogtistudio.by/privacy" />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Политика конфиденциальности | KOGTI" />
+        <meta property="og:description" content="Как студия KOGTI обрабатывает и защищает персональные данные пользователей." />
+        <meta property="og:url" content="https://kogtistudio.by/privacy" />
+        <meta property="og:type" content="article" />
+      </Helmet>
       <div className="container mx-auto px-6 py-12 max-w-3xl">
         <Link
           to="/"
