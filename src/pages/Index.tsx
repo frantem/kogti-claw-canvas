@@ -19,9 +19,9 @@ const Index = () => {
   const { data: settings } = useSettings(['seo_title', 'seo_description', 'seo_keywords', 'favicon_url', 'og_image_url']);
 
   const seoData = useMemo(() => ({
-    title: settings?.seo_title || 'Маникюр Витебск - Салон красоты KOGTI | Лучший маникюр и педикюр в Витебске',
-    description: settings?.seo_description || 'Профессиональный маникюр и педикюр в Витебске в салоне красоты KOGTI. Наращивание ногтей, гель-лак, nail-арт. Опытные мастера, качественные материалы. г. Витебск, ул. Ленина 26.',
-    keywords: settings?.seo_keywords || 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, студия красоты Витебск, гель-лак Витебск, френч Витебск, ногтевая студия Витебск, nail арт Витебск',
+    title: settings?.seo_title || 'KOGTI — Маникюр и педикюр в Витебске',
+    description: settings?.seo_description || 'Студия KOGTI в центре Витебска: маникюр, педикюр, наращивание ногтей, гель-лак, nail-арт. ул. Ленина 26.',
+    keywords: settings?.seo_keywords || 'маникюр Витебск, педикюр Витебск, наращивание ногтей Витебск, салон красоты Витебск, гель-лак Витебск, ногтевая студия Витебск',
     ogImage: settings?.og_image_url || 'https://kogtistudio.by/og-image.jpg',
     favicon: settings?.favicon_url || '/favicon.svg',
   }), [settings]);
