@@ -133,6 +133,21 @@ const Index = () => {
             }
           })}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "Где находится салон красоты KOGTI в Витебске?", "acceptedAnswer": { "@type": "Answer", "text": "ул. Ленина, 26, БЦ СИТИ (вход в Сбербанк), 3 этаж, офис 314, Витебск." } },
+              { "@type": "Question", "name": "Сколько стоит маникюр в Витебске в вашем салоне?", "acceptedAnswer": { "@type": "Answer", "text": "Стоимость зависит от мастера и услуги. Коррекция ногтей гелем от 50 BYN." } },
+              { "@type": "Question", "name": "Какие материалы вы используете для маникюра и педикюра?", "acceptedAnswer": { "@type": "Answer", "text": "Профессиональные гель-лаки, безопасные средства для кутикулы и современное стерилизационное оборудование." } },
+              { "@type": "Question", "name": "Как записаться на маникюр в Витебске?", "acceptedAnswer": { "@type": "Answer", "text": "Через виджет онлайн-записи на сайте, по телефону или в соцсетях." } },
+              { "@type": "Question", "name": "Делаете ли вы наращивание ногтей в Витебске?", "acceptedAnswer": { "@type": "Answer", "text": "Да, наращивание гелем на верхние и нижние формы." } },
+              { "@type": "Question", "name": "Сколько времени занимает процедура маникюра?", "acceptedAnswer": { "@type": "Answer", "text": "Коррекция гелем 1–1,5 часа, с дизайном 1,5–2 часа, наращивание 2–2,5 часа." } },
+              { "@type": "Question", "name": "Работаете ли вы в выходные дни?", "acceptedAnswer": { "@type": "Answer", "text": "Да, студия работает 7 дней в неделю. График мастера уточняйте при записи." } }
+            ]
+          })}
+        </script>
       </Helmet>
       <main className="min-h-screen">
         <MobileMenu />
