@@ -43,7 +43,9 @@ const Index = () => {
         
         {/* Canonical URL */}
         <link rel="canonical" href="https://kogtistudio.by/" />
+        <link rel="alternate" hrefLang="ru-BY" href="https://kogtistudio.by/" />
         <link rel="alternate" hrefLang="ru" href="https://kogtistudio.by/" />
+        <link rel="alternate" hrefLang="x-default" href="https://kogtistudio.by/" />
         
         {/* Preload first 4 service images */}
         <link rel="preload" as="image" type="image/webp" href="/images/services/4fe67fb0-8003-4e98-8f68-7ecc827d5bba.webp" />
@@ -72,14 +74,19 @@ const Index = () => {
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "BeautySalon",
-            "name": "KOGTI Beauty Studio",
-            "description": "Профессиональный маникюр и педикюр в Витебске",
+            "@type": ["BeautySalon", "LocalBusiness"],
+            "@id": "https://kogtistudio.by/#business",
+            "name": "KOGTI — ногтевая студия в Витебске",
+            "alternateName": "KOGTI Beauty Studio",
+            "description": "Маникюр, педикюр и наращивание ногтей в центре Витебска. Профессиональные мастера, качественные материалы, онлайн-запись.",
             "image": "https://kogtistudio.by/og-image.jpg",
+            "logo": "https://kogtistudio.by/favicon-192x192.png",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "ул. Ленина, 26, БЦ СИТИ, 3 этаж, офис 314",
               "addressLocality": "Витебск",
+              "addressRegion": "Витебская область",
+              "postalCode": "210026",
               "addressCountry": "BY"
             },
             "geo": {
@@ -88,49 +95,54 @@ const Index = () => {
               "longitude": "30.2049"
             },
             "url": "https://kogtistudio.by/",
-            "telephone": "+375 (29) 123-45-67",
-            "priceRange": "$$",
-            "openingHours": "Mo-Su 10:00-20:00",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "5",
-              "reviewCount": "150"
-            },
+            "telephone": "+375336582639",
+            "priceRange": "BYN 25-150",
+            "currenciesAccepted": "BYN",
+            "paymentAccepted": "Cash, Credit Card",
+            "openingHoursSpecification": [{
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+              "opens": "09:00",
+              "closes": "21:00"
+            }],
+            "areaServed": [
+              { "@type": "City", "name": "Витебск" },
+              { "@type": "AdministrativeArea", "name": "Витебская область" }
+            ],
             "sameAs": [
               "https://instagram.com/kogtistudio",
               "https://vk.com/kogtistudio"
             ],
-            "servedCuisine": [],
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Услуги маникюра и педикюра",
+              "name": "Услуги маникюра и педикюра в Витебске",
               "itemListElement": [
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Маникюр Витебск",
-                    "description": "Профессиональный маникюр в Витебске"
-                  }
-                },
-                {
-                  "@type": "Offer", 
-                  "itemOffered": {
-                    "@type": "Service",
-                    "name": "Педикюр Витебск",
-                    "description": "Качественный педикюр в Витебске"
-                  }
-                },
-                {
-                  "@type": "Offer",
-                  "itemOffered": {
-                    "@type": "Service", 
-                    "name": "Наращивание ногтей Витебск",
-                    "description": "Наращивание ногтей в Витебске"
-                  }
-                }
+                { "@type": "Offer", "priceCurrency": "BYN", "price": "50", "itemOffered": { "@type": "Service", "name": "Маникюр в Витебске", "description": "Комбинированный маникюр с покрытием гель-лаком", "areaServed": "Витебск" } },
+                { "@type": "Offer", "priceCurrency": "BYN", "price": "60", "itemOffered": { "@type": "Service", "name": "Педикюр в Витебске", "description": "Смарт-педикюр с покрытием гель-лаком", "areaServed": "Витебск" } },
+                { "@type": "Offer", "priceCurrency": "BYN", "price": "80", "itemOffered": { "@type": "Service", "name": "Наращивание ногтей в Витебске", "description": "Наращивание ногтей гелем на формы", "areaServed": "Витебск" } },
+                { "@type": "Offer", "priceCurrency": "BYN", "price": "50", "itemOffered": { "@type": "Service", "name": "Покрытие гель-лаком", "description": "Покрытие ногтей гель-лаком", "areaServed": "Витебск" } }
               ]
             }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://kogtistudio.by/",
+            "name": "KOGTI — ногтевая студия в Витебске",
+            "inLanguage": "ru-BY"
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://kogtistudio.by/" },
+              { "@type": "ListItem", "position": 2, "name": "Услуги", "item": "https://kogtistudio.by/#services" },
+              { "@type": "ListItem", "position": 3, "name": "Мастера", "item": "https://kogtistudio.by/#team" }
+            ]
           })}
         </script>
         <script type="application/ld+json">
