@@ -27,11 +27,17 @@ const Footer = () => {
           <p className="text-gray-300 text-lg">+375336582639</p>
         </div>
         
-        <div className="mb-6">
-          <a
-            href="/privacy"
-            className="text-gray-400 hover:text-white text-sm transition-colors duration-300 underline underline-offset-4"
-          >
+        <div className="mb-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+          <a href="/about" className="text-gray-400 hover:text-white transition-colors duration-300 underline underline-offset-4">
+            О студии
+          </a>
+          <a href="/faq" className="text-gray-400 hover:text-white transition-colors duration-300 underline underline-offset-4">
+            Вопросы и ответы
+          </a>
+          <a href="/careers" className="text-gray-400 hover:text-white transition-colors duration-300 underline underline-offset-4">
+            Вакансии
+          </a>
+          <a href="/privacy" className="text-gray-400 hover:text-white transition-colors duration-300 underline underline-offset-4">
             Политика конфиденциальности
           </a>
         </div>
