@@ -1,24 +1,45 @@
 import { useState, useCallback } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const menuItems = [
-  { label: "Главная", id: "hero" },
-  { label: "Услуги", id: "services" },
-  { label: "Наша команда", id: "team" },
-  { label: "Контакты", id: "contact" },
-  { label: "Как нас найти", id: "location" },
-  { label: "О нас", id: "about" },
-  { label: "Вопросы и ответы", id: "faq" },
+type MenuItem =
+  | { label: string; type: "anchor"; id: string }
+  | { label: string; type: "route"; to: string };
+
+const menuItems: MenuItem[] = [
+  { label: "Главная", type: "anchor", id: "hero" },
+  { label: "Услуги", type: "anchor", id: "services" },
+  { label: "Наша команда", type: "anchor", id: "team" },
+  { label: "Контакты", type: "anchor", id: "contact" },
+  { label: "Как нас найти", type: "anchor", id: "location" },
+  { label: "О нас", type: "route", to: "/about" },
+  { label: "Вопросы и ответы", type: "route", to: "/faq" },
+  { label: "Вакансии", type: "route", to: "/careers" },
 ];
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleNavigate = useCallback((id: string) => {
-    setIsOpen(false);
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 300);
-  }, []);
+  const handleClick = useCallback(
+    (item: MenuItem) => {
+      setIsOpen(false);
+      setTimeout(() => {
+        if (item.type === "route") {
+          navigate(item.to);
+          window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+          return;
+        }
+        // anchor
+        if (location.pathname !== "/") {
+          navigate(`/#${item.id}`);
+          return;
+        }
+        document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    },
+    [navigate, location.pathname]
+  );
 
   return (
     <div className="md:hidden">
@@ -54,8 +75,8 @@ const MobileMenu = () => {
         <nav className="flex flex-col items-center justify-center h-full gap-2">
           {menuItems.map((item, i) => (
             <button
-              key={item.id}
-              onClick={() => handleNavigate(item.id)}
+              key={item.label}
+              onClick={() => handleClick(item)}
               className={`text-xl font-medium text-white/80 hover:text-tropical-gold py-3 px-8 rounded-xl transition-all duration-300 ${
                 isOpen
                   ? "opacity-100 translate-y-0"

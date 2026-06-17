@@ -6,10 +6,8 @@ import DeferredSection from "@/components/DeferredSection";
 import { useSettings } from "@/hooks/useSettings";
 
 // Lazy load non-critical components
-const AboutSection = React.lazy(() => import("@/components/AboutSection"));
 const ServicesSection = React.lazy(() => import("@/components/ServicesSection"));
 const Team = React.lazy(() => import("@/components/Team"));
-const FAQSection = React.lazy(() => import("@/components/FAQSection"));
 const LocationSection = React.lazy(() => import("@/components/LocationSection"));
 const ContactSection = React.lazy(() => import("@/components/ContactSection"));
 
@@ -180,16 +178,6 @@ const Index = () => {
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
           <DeferredSection delay={0}>
             <LocationSection />
-          </DeferredSection>
-        </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={0}>
-            <AboutSection />
-          </DeferredSection>
-        </React.Suspense>
-        <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
-          <DeferredSection delay={0}>
-            <FAQSection />
           </DeferredSection>
         </React.Suspense>
         <React.Suspense fallback={<div className="min-h-[200px] bg-muted/20 animate-pulse" />}>
