@@ -8,7 +8,7 @@ const Hero = () => {
   const { data: settings } = useSettings(['hero_title', 'hero_subtitle', 'hero_background', 'hero_h1_title', 'hero_h1_subtitle']);
 
   const heroData = useMemo(() => ({
-    title: settings?.hero_title || 'KOGTI',
+    title: settings?.hero_title || 'kogti',
     subtitle: settings?.hero_subtitle || 'МАНИКЮР ПЕДИКЮР ВИТЕБСК',
     backgroundImage: settings?.hero_background || '/lovable-uploads/3488dd88-10f5-4a10-80a0-f01ed8e005b5.png',
     h1Title: settings?.hero_h1_title || 'Маникюр',
