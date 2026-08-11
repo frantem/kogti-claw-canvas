@@ -49,7 +49,7 @@ const Hero = () => {
       {/* Header on background with SEO H1 */}
       <div className="absolute top-[15%] left-0 right-0 z-10 text-center">
         <div className="text-white">
-          <h2 className="text-4xl font-bold tracking-tight">
+          <h2 className="font-brasika text-4xl font-normal tracking-[0.1em]">
             {heroData.title}
           </h2>
           <h1 className="text-sm font-medium uppercase tracking-wider">
