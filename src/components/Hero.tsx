@@ -1,4 +1,5 @@
 import { useMemo, memo } from 'react';
+import { Link } from "react-router-dom";
 import BookingCard from "@/components/BookingCard";
 import LazyImage from "@/components/LazyImage";
 import { useSettings } from "@/hooks/useSettings";
