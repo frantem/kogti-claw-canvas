@@ -1,4 +1,5 @@
 import { useMemo, memo } from 'react';
+import { Link } from "react-router-dom";
 import BookingCard from "@/components/BookingCard";
 import LazyImage from "@/components/LazyImage";
 import { useSettings } from "@/hooks/useSettings";
@@ -35,6 +36,16 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
       
+      {/* Vacancies pill button */}
+      <div className="absolute top-5 left-0 right-0 z-20 flex justify-center px-20">
+        <Link
+          to="/careers"
+          className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-5 py-2 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-0.5 hover:text-tropical-gold hover:border-tropical-gold/50 hover:shadow-xl active:translate-y-0"
+        >
+          Вакансии
+        </Link>
+      </div>
+
       {/* Header on background with SEO H1 */}
       <div className="absolute top-[15%] left-0 right-0 z-10 text-center">
         <div className="text-white">
@@ -46,6 +57,7 @@ const Hero = () => {
           </h1>
         </div>
       </div>
+
       
     </section>
   );
