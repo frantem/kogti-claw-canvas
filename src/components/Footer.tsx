@@ -19,12 +19,15 @@ const Footer = () => {
     <footer className="bg-gray-900 py-16 text-center">
       <div className="container mx-auto px-6">
         <h3 className="text-3xl font-bold text-white mb-4">
-          ИП Котович О.А.
+          ИП Котович Ольга Александровна
         </h3>
         
         <div className="mb-8">
           <p className="text-gray-300 text-lg mb-2">УНП: 391863210</p>
-          <p className="text-gray-300 text-lg">+375336582639</p>
+          <p className="text-gray-300 text-lg mb-2">+375336582639</p>
+          <p className="text-gray-400 text-sm">
+            Юридический адрес: Республика Беларусь, г. Витебск, ул. Титова, д. 117/1, кв. 6
+          </p>
         </div>
         
         <div className="mb-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
