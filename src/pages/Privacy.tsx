@@ -319,6 +319,16 @@ const Privacy = () => {
                 </a>{" "}
                 с фразой «прошу удалить мои данные»;
               </li>
+              <li>
+                или напишите на электронную почту{" "}
+                <a
+                  href="mailto:kotovich08.09@mail.ru"
+                  className="text-[hsl(var(--tropical-gold))] underline hover:text-[hsl(var(--tropical-gold-light))]"
+                >
+                  kotovich08.09@mail.ru
+                </a>
+                ;
+              </li>
               <li>или позвоните по номеру телефона, указанному в разделе 10.</li>
             </ol>
             <p className="mt-3">
@@ -341,6 +351,15 @@ const Privacy = () => {
             <p>УНП: 391863210</p>
             <p>Телефон: +375 33 658 26 39</p>
             <p>
+              Email:{" "}
+              <a
+                href="mailto:kotovich08.09@mail.ru"
+                className="text-[hsl(var(--tropical-gold))] underline hover:text-[hsl(var(--tropical-gold-light))]"
+              >
+                kotovich08.09@mail.ru
+              </a>
+            </p>
+            <p>
               Instagram:{" "}
               <a
                 href="https://instagram.com/kogti.studio_"
@@ -353,8 +372,8 @@ const Privacy = () => {
             </p>
             <p className="mt-2">
               По всем вопросам, связанным с обработкой персональных данных, вы можете обратиться
-              по указанному номеру телефона, в директ Instagram или через мессенджеры
-              (Telegram, Viber, WhatsApp).
+              по электронной почте kotovich08.09@mail.ru, по указанному номеру телефона, в директ
+              Instagram или через мессенджеры (Telegram, Viber, WhatsApp).
             </p>
           </section>
 
